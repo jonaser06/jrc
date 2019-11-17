@@ -8,5 +8,8 @@
 </head>
 <body>
     Hola Mundo
+    <?php
+        echo $GLOBALS;
+    ?>
 </body>
 </html>

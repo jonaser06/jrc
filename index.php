@@ -1,11 +1,15 @@
 <?php
-/* vendor */
+# compositor
 require_once './vendor/autoload.php';
 
-/* requires */
+# controladores
 require_once './controller/home.controller.php';
-
+# modelos
 require_once './model/home.model.php';
+
+# variables globales
+
+$GLOBALS = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 $index = new homeController();
 $index->index();
