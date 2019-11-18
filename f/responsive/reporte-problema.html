@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="bower_components/morris.js/morris.css">
   <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
   <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-timepicker/css/timepicker.css">
   <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -115,64 +116,23 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="box">
                     <div class="box-body">
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC019
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SR022
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC029
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC035
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC037
-                        </a>
-                    </div>
-                <!-- /.box-body -->
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="box">
-                    <div class="box-header">
-                        <!-- <h3 class="box-title">iCheck - Checkbox &amp; Radio Inputs</h3> -->
-                    </div>
-                    <div class="box-body">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> PM 1
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox"> PM 2
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox"> PM 3
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox"> PM 4
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box">
-                            <div class="box-header">
-                              <h5><b>HORAS ACUMULADAS</b></h5>
-                            </div>
+                        <form class="form-horizontal">
                             <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">NOMBRE DE MECANICO:</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">INCIDENTE:</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">FECHA:</label>
                                     <div class="col-sm-10">
@@ -195,9 +155,17 @@
                                         </div>
                                     </div>
                                 </div>
-                              </div>
-                              <div class="box-footer">
-                                  <button type="button" class="btn btn-block btn-primary">REPORTE DIARIO</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-body">
+                                <button type="button" class="btn btn-block btn-primary">Enviar</button>
                             </div>
                         </div>
                     </div>
@@ -232,11 +200,23 @@
 <script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<script src="bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
 <script src="dist/js/demo.js"></script>
+<script>
+    $(function () {    
+        $('#datepicker').datepicker({
+            orientation: 'bottom right',
+            autoclose: true
+        })
+        $('#timepicker').timepicker(
+
+        );
+    })
+</script>
 </body>
 </html>

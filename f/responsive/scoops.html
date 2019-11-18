@@ -94,7 +94,16 @@
           <a href="#"><i class="fa fa-dashboard"></i> <span>MT2010</span></a>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-dashboard"></i> <span>REQUERIMIENTOS</span></a>
+            <a href="#"><i class="fa fa-user"></i> <span>REGISTRO DE USUARIOS</span></a>
+        </li>
+        <li class="treeview">
+            <a href="#"><i class="fa fa-dashboard"></i> <span>REQUERIMIENTOS</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+            </a>
+            <ul class="treeview-menu" style="display: block;">
+                <li><a href="#"><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
+            </ul>
         </li>
         <li class="header">SOPORTE</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>
@@ -118,92 +127,68 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC019
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SR022
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC029
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC035
-                        </a>
-                        <a class="btn btn-app">
-                            <i class="fa fa-wrench"></i> 2SC037
-                        </a>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">EQUIPO DE TRABAJO:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control">
+                                        <option>2SC019</option>
+                                        <option>2SR022</option>
+                                        <option>2SC029</option>
+                                        <option>2SC035</option>
+                                        <option>2SC037</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">DE:</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control" id="datepicker">
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 control-label">HASTA:</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control" id="datepicker2">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                <!-- /.box-body -->
+                    <div class="box-footer">
+                        <section class="col-lg-12 connectedSortable">
+                            <!-- solid sales graph -->
+                            <div class="box box-solid">
+                                <div class="box-header">
+                                    <i class="fa fa-th"></i>
+                    
+                                    <h3 class="box-title">Performance</h3>
+                    
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body border-radius-none">
+                                    <div id="myfirstchart" style="height: 250px;"></div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        <!-- /.box -->
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="box">
-                    <div class="box-header">
-                        <!-- <h3 class="box-title">iCheck - Checkbox &amp; Radio Inputs</h3> -->
-                    </div>
-                    <div class="box-body">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> PM 1
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox"> PM 2
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox"> PM 3
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox"> PM 4
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box">
-                            <div class="box-header">
-                              <h5><b>HORAS ACUMULADAS</b></h5>
-                            </div>
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">FECHA:</label>
-                                    <div class="col-sm-10">
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control" id="datepicker">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">HORA:</label>
-                                    <div class="col-sm-10">
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <input type="text" class="form-control" id="timepicker">
-                                        </div>
-                                    </div>
-                                </div>
-                              </div>
-                              <div class="box-footer">
-                                  <button type="button" class="btn btn-block btn-primary">REPORTE DIARIO</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-      </div>
     </section>
   </div>
   <!-- /.content-wrapper -->
@@ -238,5 +223,37 @@
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
 <script src="dist/js/demo.js"></script>
+<script>
+    $(function () {    
+        $('#datepicker').datepicker({
+            orientation: 'bottom right',
+            autoclose: true
+        })
+
+        $('#datepicker2').datepicker({
+            orientation: 'bottom right',
+            autoclose: true
+        })
+
+        new Morris.Line({
+
+        element: 'myfirstchart',
+
+        data: [
+        { year: '2008', value: 20 },
+        { year: '2009', value: 10 },
+        { year: '2010', value: 5 },
+        { year: '2011', value: 5 },
+        { year: '2012', value: 20 }
+        ],
+        
+        xkey: 'year',
+        
+        ykeys: ['value'],
+        labels: ['Value']
+        });
+    
+    })
+</script>
 </body>
 </html>
