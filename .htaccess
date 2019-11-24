@@ -5,6 +5,7 @@ Options All -Indexes
 # url amigables
 
 RewriteEngine On
+Access-Control-Allow-Origin: *
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
