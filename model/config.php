@@ -1,4 +1,8 @@
 <?php
+/* 
+** Proyecto : jrc
+** Autor : Jonathan Narvaez
+*/
 
 //ob_start("ob_gzhandler");
 error_reporting(0);

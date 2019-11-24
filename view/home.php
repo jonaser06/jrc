@@ -1,28 +1,109 @@
 <?php
+/* 
+** Proyecto : jrc
+** Autor : Jonathan Narvaez
+*/
 
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
-
-$app->get('/','index');
+#endpoints de servicios
 $app->post('/signup/','signup');
-$app->post('/login/','login');
+$app->post('/signin/','signin');
+
+#endpints de vistas
+$app->get('/','index');
+$app->get('/login/','login');
+$app->get('/logout/','logout');
+$app->get('/inicio/','inicio');
+$app->post('/validasesion/','validasesion');
+$app->get('/validasesion/','validasesion');
 
 function index(){
-    include 'modules/inicio.php';
-}
-
-function signup(){
-    
-    $request = \Slim\Slim::getInstance()->request();
-    $getbody = json_decode($request->getBody());
-
-    authClassController::signupController($getbody);
-    /* var_dump($getbody); */
+    session_start();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        echo '<script type="text/javascript">
+                  window.location = "inicio";
+              </script>';
+    }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+    }
 }
 
 function login(){
-    include 'modules/login.php';
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        echo '<script type="text/javascript">
+                  window.location = "inicio";
+              </script>';
+    }else{
+        include 'modules/login.php';
+    }
 }
+
+function inicio(){
+    session_start();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+      echo 'hola';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+
+function validasesion(){
+    $data = array(
+        'usuario' => $_POST['usuario'],
+        'password' => $_POST['password']
+    );
+    $status = authClassController::loginController($data);
+
+    if($status){
+        echo '<script type="text/javascript">
+                    window.location = "inicio";
+                </script>';
+    }else{
+        echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+
+function logout(){
+    session_start();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        session_destroy();
+        echo 'Cerrando Cuenta ....';
+        echo '<script type="text/javascript">
+                setTimeout(function(){
+                    window.location = "login";
+                }, 1000);
+                </script>';
+    }else{
+        echo '<script type="text/javascript">
+                    window.location = "login";
+                </script>';
+    }
+}
+
+#servicios
+function signup(){
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+    authClassController::signupController($getbody);
+}
+
+function signin(){
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+    authClassController::signinController($getbody);
+}
+
+#vistas
+
 
 $app->run();
 

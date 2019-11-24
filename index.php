@@ -9,10 +9,7 @@ require_once './controller/auth.controller.php';
 require_once './model/home.model.php';
 require_once './model/auth.model.php';
 
-# variables globales
-
-$GLOBALS = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-
+require_once './model/rutas.php';
 $index = new homeController();
 $index->index();
 
