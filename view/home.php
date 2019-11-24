@@ -45,8 +45,12 @@ function login(){
 
 function inicio(){
     session_start();
+    $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
-      echo 'hola';
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/inicio.php';
+        include 'modules/footer.php';
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";

@@ -29,10 +29,10 @@ class authClassController{
         $response = json_decode($response,true);
         if($response['status']){
             $_SESSION['id_usuarios'] = $response['data'][0]['id_usuarios'];
-            $_SESSION['nombres']     = $response['data'][0]['id_usuarios'];
-            $_SESSION['dni']         = $response['data'][0]['id_usuarios'];
-            $_SESSION['usuario']     = $response['data'][0]['id_usuarios'];
-            $_SESSION['rol']         = $response['data'][0]['id_usuarios'];
+            $_SESSION['nombres']     = $response['data'][0]['nombres'];
+            $_SESSION['dni']         = $response['data'][0]['dni'];
+            $_SESSION['usuario']     = $response['data'][0]['usuario'];
+            $_SESSION['rol']         = $response['data'][0]['rol'];
         }
         return true;
     }
