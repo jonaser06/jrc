@@ -128,7 +128,6 @@ function logout(){
     session_start();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
         session_destroy();
-        echo 'Cerrando Cuenta ....';
         echo '<script type="text/javascript">
                 setTimeout(function(){
                     window.location = "login";
