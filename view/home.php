@@ -17,6 +17,54 @@ $app->get('/logout/','logout');
 $app->get('/inicio/','inicio');
 $app->post('/validasesion/','validasesion');
 $app->get('/validasesion/','validasesion');
+$app->get('/r1600g/','r1600g');
+$app->get('/mt2010/','mt2010');
+$app->get('/requerimientos/','requerimientos');
+
+function requerimientos(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/requerimientos.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+
+function mt2010(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/mt2010.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+
+function r1600g(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/r1600g.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
 
 function index(){
     session_start();

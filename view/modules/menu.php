@@ -1,3 +1,10 @@
+<?php
+ $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+ $url = explode('/', $url);
+ $count = count($url);
+ $base = $url[$count-1];
+
+?>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -18,16 +25,16 @@
       </ul>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MÓDULOS</li>
-        <li class="treeview active">
+        <li class="treeview <?php echo ($base=='r1600g')?'active':''; ?>">
           <a href="#"><i class="fa fa-dashboard"></i> <span>SCOOPS</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
-          <ul class="treeview-menu" style="display: block;">
-            <li><a href="#"><i class="fa fa-circle-o"></i> R1600G</a></li>
+          <ul class="treeview-menu" style="display: <?php echo ($base=='r1600g')?'block':''; ?>;">
+            <li class ="<?php echo ($base=='r1600g')?'active':''; ?>"><a href="r1600g"><i class="fa fa-circle-o"></i> R1600G</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-dashboard"></i> <span>MT2010</span></a>
+        <li class ="<?php echo ($base=='mt2010')?'active':''; ?>">
+          <a href="mt2010"><i class="fa fa-dashboard"></i> <span>MT2010</span></a>
         </li>
         <?php
           if(isset($_SESSION['rol'])){
@@ -57,8 +64,9 @@
                     </li>';
             }
             if($_SESSION['rol']=='mecanico'){
-              echo '<li class="treeview">
-                      <a href="#"><i class="fa fa-dashboard"></i> <span>REQUERIMIENTOS</span></a>
+              $active = ($base=='requerimientos')?'active':'';
+              echo '<li class="'.$active.'">
+                      <a href="requerimientos"><i class="fa fa-dashboard"></i> <span>REQUERIMIENTOS</span></a>
                     </li>';
             }
           }
