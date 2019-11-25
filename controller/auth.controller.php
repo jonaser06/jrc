@@ -33,8 +33,10 @@ class authClassController{
             $_SESSION['dni']         = $response['data'][0]['dni'];
             $_SESSION['usuario']     = $response['data'][0]['usuario'];
             $_SESSION['rol']         = $response['data'][0]['rol'];
+            return true;
+        }else{
+            return false;
         }
-        return true;
     }
 
 }

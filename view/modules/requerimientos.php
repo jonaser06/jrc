@@ -16,7 +16,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">NOMBRE DE MECANICO:</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control">
+                                        <input type="email" class="form-control" value="<?php echo $_SESSION['nombres']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
