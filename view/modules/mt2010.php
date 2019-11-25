@@ -1,16 +1,16 @@
 <div class="content-wrapper">
     <section class="content-header">
-      <h1>
+        <h1>
         MT2010
-      </h1>
+        <small>En construcción</small>
+        </h1>
     </section>
 
     <section class="content">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-7">
                 <div class="box">
                     <div class="box-header">
-                        <!-- <h3 class="box-title">iCheck - Checkbox &amp; Radio Inputs</h3> -->
                     </div>
                     <div class="box-body">
                           <button type="button" class="btn btn-lg btn-block btn-warning">PM 1</button>
@@ -45,6 +45,6 @@
                     </div>
                 </div>
             </div>
-      </div>
+      </div> -->
     </section>
   </div>
