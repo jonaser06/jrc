@@ -131,7 +131,7 @@ function logout(){
         echo '<script type="text/javascript">
                 setTimeout(function(){
                     window.location = "login";
-                }, 1000);
+                }, 0);
                 </script>';
     }else{
         echo '<script type="text/javascript">
