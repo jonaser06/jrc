@@ -13,12 +13,10 @@
                         <!-- <h3 class="box-title">iCheck - Checkbox &amp; Radio Inputs</h3> -->
                     </div>
                     <div class="box-body">
-                      <div class="box-body">
                           <button type="button" class="btn btn-lg btn-block btn-warning">PM 1</button>
                           <button type="button" class="btn btn-lg btn-block btn-warning">PM 2</button>
                           <button type="button" class="btn btn-lg btn-block btn-warning">PM 3</button>
                           <button type="button" class="btn btn-lg btn-block btn-warning">PM 4</button>
-                      </div>
                     </div>
                 </div>
             </div>
