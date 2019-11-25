@@ -5,3 +5,13 @@
 .checkbox{
     font-size: 15px;
 }
+.avatar{
+    width: 45px;
+    height: 45px;
+    background: #00c0ef;
+    text-align: center;
+    line-height: 45px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}

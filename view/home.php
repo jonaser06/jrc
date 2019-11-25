@@ -22,7 +22,52 @@ $app->get('/validasesion/','validasesion');
 $app->get('/r1600g/','r1600g');
 $app->get('/mt2010/','mt2010');
 $app->get('/requerimientos/','requerimientos');
+$app->get('/scoops/','scoops');
+$app->get('/registro/','registro');
+$app->get('/registro-s/','registros');
 
+function registros(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/registro-s.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+function registro(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/registro.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+function scoops(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/scoops.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
 
 function superadministrador(){
     session_start();

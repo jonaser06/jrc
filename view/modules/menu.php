@@ -11,7 +11,8 @@
       <!-- panel de usuario -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo $dir; ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <div class="avatar img-circle"><?php echo strtoupper(substr($_SESSION['nombres'],0,1)); ?></div>
+          
         </div>
         <div class="pull-left info">
           <p><?php echo $_SESSION['nombres']; ?></p>
@@ -30,7 +31,15 @@
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu" style="display: <?php echo ($base=='r1600g')?'block':''; ?>;">
-            <li class ="<?php echo ($base=='r1600g')?'active':''; ?>"><a href="r1600g"><i class="fa fa-circle-o"></i> R1600G</a></li>
+            <li class ="<?php echo ($base=='r1600g')?'active':''; ?>">
+              <?php
+                if($_SESSION['rol']=='mecanico'){
+                  echo '<a href="r1600g"><i class="fa fa-circle-o"></i> R1600G</a>';
+                }else{
+                  echo '<a href="scoops"><i class="fa fa-circle-o"></i> R1600G</a>';
+                }
+              ?>
+            </li>
           </ul>
         </li>
         <li class ="<?php echo ($base=='mt2010')?'active':''; ?>">
@@ -39,12 +48,15 @@
         <?php
           if(isset($_SESSION['rol'])){
             if($_SESSION['rol']=='super administrador'){
-              echo '<li class="treeview">
+              $registro = 'registro-s';
+              $active = ($base=='registro-s')?'active':'';
+              $display  = ($base=='registro-s')?'block':'none';
+              echo '<li class="treeview '.$active.'">
                       <a href="#"><i class="fa fa-user"></i> <span>REGISTRO DE USUARIOS</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                       </a>
-                      <ul class="treeview-menu" style="display: none;">
-                          <li><a href="#"><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
+                      <ul class="treeview-menu" style="display: '.$display.';">
+                          <li class="'.$active.'"><a href="'.$registro.'"><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
                           <li><a href="#"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
                       </ul>
                   </li>';
@@ -53,12 +65,15 @@
                     </li>';
             }
             if($_SESSION['rol']=='administrador'){
-              echo '<li class="treeview">
+              $registro = 'registro';
+              $active = ($base=='registro')?'active':'';
+              $display  = ($base=='registro')?'block':'none';
+              echo '<li class="treeview '.$active.'">
                         <a href="#"><i class="fa fa-user"></i> <span>REGISTRO DE USUARIOS</span>
                           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
-                        <ul class="treeview-menu" style="display: none;">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
+                        <ul class="treeview-menu" style="display: '.$display.';">
+                            <li class="'.$active.'"><a href="'.$registro.'  "><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
                         </ul>
                     </li>';
