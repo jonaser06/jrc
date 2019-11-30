@@ -14,7 +14,7 @@
                         <form class="form-horizontal">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">NOMBRE DE MECANICO:</label>
+                                    <label class="col-sm-2 control-label">NOMBRE DE USUARIO:</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" value="<?php echo $_SESSION['nombres']; ?>">
                                     </div>
