@@ -1,5 +1,4 @@
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Reporte de problema
@@ -19,7 +18,6 @@
                                         <input type="email" class="form-control" value="<?php echo $_SESSION['nombres']; ?>">
                                     </div>
                                 </div>
-                                
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">INCIDENTE:</label>
                                     <div class="col-sm-10">
@@ -28,13 +26,24 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">FECHA:</label>
-                                    <div class="fa fa-calendar">
-                                        <input type="text" class="form-control" id="datepicker">
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control" id="datepicker">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label">HORA:</label>
-                                    <div class="fa fa-clock-o">
-                                        <input type="text" class="form-control" id="timepicker">
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <input type="text" class="form-control" id="timepicker">
+                                        </div>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-block btn-primary">Enviar</button>

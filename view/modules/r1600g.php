@@ -38,7 +38,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-block btn-primary">REPORTE DIARIO</button>
+                            <a href="reportediario">
+                                <button type="button" class="btn btn-block btn-primary">REPORTE DIARIO</button>
+                            </a>
                         </div>
                     </div>
                 </div>

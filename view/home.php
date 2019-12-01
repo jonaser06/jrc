@@ -26,6 +26,38 @@ $app->get('/scoops/','scoops');
 $app->get('/registro/','registro');
 $app->get('/registro-s/','registros');
 $app->get('/reporteproblema/','reporteproblema');
+$app->get('/reportediario/','reportediario');
+$app->get('/adminmt2010/','adminmt2010');
+
+function adminmt2010(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/adminmt2010.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+
+function reportediario(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/reportediario.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
 
 function registros(){
     session_start();

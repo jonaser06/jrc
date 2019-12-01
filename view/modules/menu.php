@@ -43,7 +43,13 @@
           </ul>
         </li>
         <li class ="<?php echo ($base=='mt2010')?'active':''; ?>">
-          <a href="mt2010"><i class="fa fa-dashboard"></i> <span>MT2010</span></a>
+          <?php
+            if($_SESSION['rol']=='mecanico'){
+              echo '<a href="mt2010"><i class="fa fa-dashboard"></i> <span>MT2010</span></a>';
+            }else{
+              echo '<a href="adminmt2010"><i class="fa fa-dashboard"></i> <span>MT2010</span></a>';
+            }
+          ?>
         </li>
         <?php
           if(isset($_SESSION['rol'])){
@@ -87,7 +93,7 @@
           }
         ?>
         <li class="header">SOPORTE</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>
+        <li><a href="reporteproblema"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
