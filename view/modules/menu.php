@@ -66,8 +66,8 @@
                           <li><a href="#"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
                       </ul>
                   </li>';
-              echo '<li class="treeview">
-                        <a href="#"><i class="fa fa-dashboard"></i> <span>ASIGNACION DE MAQUINARIA</span></a>
+              echo '<li>
+                        <a href="asignacion"><i class="fa fa-dashboard"></i> <span>ASIGNACION DE MAQUINARIA</span></a>
                     </li>';
             }
             if($_SESSION['rol']=='administrador'){
@@ -93,7 +93,13 @@
           }
         ?>
         <li class="header">SOPORTE</li>
-        <li><a href="reporteproblema"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>
+        <?php
+          if($_SESSION['rol']=='mecanico'){
+            echo '<li><a href="reporteproblema"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>';
+          }else{
+            echo '<li><a href="reporteadmin"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>';
+          }
+        ?>
       </ul>
     </section>
     <!-- /.sidebar -->

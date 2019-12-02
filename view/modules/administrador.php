@@ -4,6 +4,7 @@
         Dashboard
         <small>Control panel</small>
       </h1>
+      <!-- <a id="download">Tomar screenshot y descargar</a> -->
     </section>
     <section class="content">
       <div class="row">

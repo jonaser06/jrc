@@ -28,6 +28,55 @@ $app->get('/registro-s/','registros');
 $app->get('/reporteproblema/','reporteproblema');
 $app->get('/reportediario/','reportediario');
 $app->get('/adminmt2010/','adminmt2010');
+$app->get('/reporteadmin/','reporteadmin');
+$app->get('/asignacion/','asignacion');
+$app->get('/pm/','pm');
+
+function pm(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/pm.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+
+function asignacion(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/asignamaquina.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
+
+
+function reporteadmin(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/reporteadmin.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
+}
 
 function adminmt2010(){
     session_start();

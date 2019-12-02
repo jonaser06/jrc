@@ -30,7 +30,21 @@
 <script src="<?php echo $dir; ?>dist/js/adminlte.min.js"></script>
 <script src="<?php echo $dir; ?>dist/js/pages/dashboard.js"></script>
 <script src="<?php echo $dir; ?>dist/js/demo.js"></script>
+<script src="<?php echo $dir; ?>js/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script>
+    function getPDF(){
+      html2canvas(document.querySelector("#capture"), {
+        onrendered (canvas) {
+          var img = canvas.toDataURL();
+          var doc = new jsPDF();
+          doc.addImage(img,'JPEG', 0, 0, 210, 400);
+          doc.save("reportepm.pdf");
+        }
+      });
+    }
+
+
     $(function () {    
         $('#datepicker').datepicker({
             orientation: 'bottom right',
@@ -38,6 +52,11 @@
         })
 
         $('#datepicker2').datepicker({
+            orientation: 'bottom right',
+            autoclose: true
+        })
+
+        $('#datepicker3').datepicker({
             orientation: 'bottom right',
             autoclose: true
         })
@@ -61,6 +80,17 @@
         });
     
     })
+</script>
+<script>
+  /* html2canvas(document.body, {
+    onrendered (canvas) {
+      var link = document.getElementById('download');;
+      var image = canvas.toDataURL();
+      link.href = image;
+      link.download = 'screenshot.png';
+    }
+  }); */
+  
 </script>
 </body>
 </html>

@@ -5,6 +5,9 @@
 .checkbox{
     font-size: 15px;
 }
+.links{
+    margin: 1px;
+}
 .avatar{
     width: 45px;
     height: 45px;
@@ -14,4 +17,15 @@
     font-size: 2rem;
     font-weight: bold;
     color: #fff;
+}
+.checkbox-table{
+    text-align: center;
+}
+.table-head{
+    background: #9a9a9a;
+    color: #fff;
+    font-weight: bold;
+}
+.table-body{
+    font-weight: bold;
 }
