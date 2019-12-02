@@ -44,6 +44,18 @@
       });
     }
 
+    var i = 0;
+    $(".checked").click(function(){
+      if(i==0){
+        $(this).addClass('fa-check-square-o');
+        $(this).removeClass('fa-square-o');
+        i++
+      }else{
+        $(this).addClass('fa-square-o');
+        $(this).removeClass('fa-check-square-o');
+        i=0;
+      }
+    });
 
     $(function () {    
         $('#datepicker').datepicker({

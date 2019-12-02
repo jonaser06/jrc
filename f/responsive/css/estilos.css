@@ -29,3 +29,18 @@
 .table-body{
     font-weight: bold;
 }
+/* cheked */
+/* .ichecked::after{
+    position: absolute;
+    content: '\f046';
+    width: 10px;
+    height: 10px;
+    background: chartreuse;
+}
+.ichecked::before{
+    position: absolute;
+    content: '\f046';
+    width: 10px;
+    height: 10px;
+    background: chartreuse;
+} */
