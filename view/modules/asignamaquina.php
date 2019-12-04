@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Asigancion de maquinaria
+        Asignación de maquinaria
         <small>Control panel</small>
       </h1>
     </section>
