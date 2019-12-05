@@ -13,6 +13,4 @@ require_once './model/rutas.php';
 $index = new homeController();
 $index->index();
 
-
-
 ?>
