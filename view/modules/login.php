@@ -23,7 +23,7 @@
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Inicia sesión</p>
+    <p class="login-box-msg">Inicia sesióna</p>
 
     <form action="validasesion" method="post">
       <div class="form-group has-feedback">
