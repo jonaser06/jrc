@@ -61,15 +61,15 @@
                                     <label> SEGURIDAD:</label>
                                     <tbody class="table-body">
                                         <tr>
-                                            <td><span class="checked fa fa-square-o"></span> utilizar los EPP's respectivos </td>
-                                            <td><span class="checked fa fa-square-o"></span> apagar el motor, aplicar freno de parqueo </td>
-                                            <td><span class="checked fa fa-square-o"></span> desactivar el master switch </td>
-                                            <td><span class="checked fa fa-square-o"></span>extintor, cinta reflectiva y cono </td>
+                                            <td><span class="checked fa fa-square-o"></span> Utilizar los EPP's respectivos </td>
+                                            <td><span class="checked fa fa-square-o"></span> Apagar el motor, aplicar freno de parqueo </td>
+                                            <td><span class="checked fa fa-square-o"></span> Desactivar el master switch </td>
+                                            <td><span class="checked fa fa-square-o"></span> Extintor, cinta reflectiva y cono </td>
                                         </tr>
                                         <tr>
-                                            <td><span class="checked fa fa-square-o"></span> colocar tacos para evitar movimientos </td>
-                                            <td><span class="checked fa fa-square-o"></span>revisar la alarma de retroceso </td>
-                                            <td><span class="checked fa fa-square-o"></span>revisar estado de correa de seguridad </td>
+                                            <td><span class="checked fa fa-square-o"></span> Colocar tacos para evitar movimientos </td>
+                                            <td><span class="checked fa fa-square-o"></span> Revisar la alarma de retroceso </td>
+                                            <td><span class="checked fa fa-square-o"></span> Revisar estado de correa de seguridad </td>
                                         </tr>
                                     </tbody>
                                 </table>
