@@ -32,6 +32,11 @@ $app->get('/reporteadmin/','reporteadmin');
 $app->get('/asignacion/','asignacion');
 $app->get('/pm/','pm');
 
+$app->notFound(function () use ($app) {
+    echo 'esta pagina no existe'; 
+});
+
+
 function pm(){
     session_start();
     $dir = rutasClass::rutas();
