@@ -93,11 +93,10 @@
           }
         ?>
         <li class="header">SOPORTE</li>
+        <li><a href="reporteproblema"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>
         <?php
-          if($_SESSION['rol']=='mecanico'){
-            echo '<li><a href="reporteproblema"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>';
-          }else{
-            echo '<li><a href="reporteadmin"><i class="fa fa-circle-o text-red"></i> <span>REPORTAR PROBLEMA</span></a></li>';
+          if($_SESSION['rol']!='mecanico'){
+            echo '<li><a href="reporteadmin"><i class="fa fa-circle-o text-red"></i> <span>REPORTES</span></a></li>';
           }
         ?>
       </ul>
