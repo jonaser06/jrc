@@ -33,18 +33,24 @@
                     <div class="box">
                         <div class="box-body">
                             <div class="info-box bg-yellow">
-                                <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+                                <span class="info-box-icon"><i class="fa fa-clock-o"></i></span>
                                 <div class="info-box-content">
                                 <span class="info-box-text">Horas acumuladas</span>
-                                <span class="info-box-number">70,00</span>
-                    
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 70%"></div>
-                                </div>
-                                    <span class="progress-description">
-                                        70% Increase in 30 Days
-                                    </span>
-                                </div>
+                                <?php
+                                    $horaDia = 24;
+                                    $diaMes = 30;
+                                    $horamaquina = $maquina->horas_acumuladas;
+                                    $total = $horaDia*$diaMes;
+                                    $porcent = (100*$horamaquina)/$total;
+                                    echo '<span class="info-box-number">'.$maquina->horas_acumuladas.' Horas</span>
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: '.$porcent.'%"></div>
+                                            </div>
+                                                <span class="progress-description">
+                                                    '.substr($porcent,0,3).'% consumidas de las '.$total.' horas
+                                                </span>
+                                            </div>';
+                                ?>
                             </div>
                             <a href="reportediario">
                                 <button type="button" class="btn btn-block btn-primary">REPORTE DIARIO</button>

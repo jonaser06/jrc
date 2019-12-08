@@ -44,14 +44,28 @@
       });
     }
 
-    $(".checked").click(function(){
+    $(document).ready(function(){
+
+      $(".checked").click(function(){
       if($(this).hasClass('fa-square-o')){
         $(this).removeClass('fa-square-o');
         $(this).addClass('fa-check-square-o');
+        $(this).parent().find('.psg').prop("checked", true);
+        $(this).parent().find('.psg').val('1');
       }else{
         $(this).removeClass('fa-check-square-o');
         $(this).addClass('fa-square-o');
-      }
+        $(this).parent().find('.psg').prop("checked", false);
+        $(this).parent().find('.psg').val('0');
+        }
+      });
+
+      $('#datepicker3').datepicker({
+          orientation: 'bottom right',
+          autoclose: true,
+          format: 'yyyy-mm-dd'
+      }).datepicker("setDate", new Date());
+
     });
 
     $(function () {    
@@ -61,11 +75,6 @@
         })
 
         $('#datepicker2').datepicker({
-            orientation: 'bottom right',
-            autoclose: true
-        })
-
-        $('#datepicker3').datepicker({
             orientation: 'bottom right',
             autoclose: true
         })

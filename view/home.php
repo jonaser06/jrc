@@ -31,13 +31,14 @@ $app->get('/adminmt2010/','adminmt2010');
 $app->get('/reporteadmin/','reporteadmin');
 $app->get('/asignacion/','asignacion');
 $app->get('/pm/','pm');
+$app->notFound(function () use ($app) {
+    echo 'esta pagina no existe'; 
+});
 
 #insertar
 $app->post('/mantenimiento/','mantenimiento');
 
-$app->notFound(function () use ($app) {
-    echo 'esta pagina no existe'; 
-});
+
 
 function mantenimiento(){
     $data = array(
@@ -50,7 +51,17 @@ function mantenimiento(){
         'data'=> $_POST['electricista']
     );
 
-    var_dump($data);
+    $seguridad = array (
+        "PSG_1"=>($_POST['PSG_1']==NULL)?'0':'1',
+        "PSG_2"=>($_POST['PSG_2']==NULL)?'0':'1',
+        "PSG_3"=>($_POST['PSG_3']==NULL)?'0':'1',
+        "PSG_4"=>($_POST['PSG_4']==NULL)?'0':'1',
+        "PSG_5"=>($_POST['PSG_5']==NULL)?'0':'1',
+        "PSG_6"=>($_POST['PSG_6']==NULL)?'0':'1',
+        "PSG_7"=>($_POST['PSG_7']==NULL)?'0':'1',
+    );
+
+    var_dump($seguridad);
 }
 
 function pm(){
@@ -238,6 +249,8 @@ function r1600g(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        $user = meClassController::meController($_SESSION['id_usuarios']);
+        $maquina = meClassController::maquinaController($user->id_maquina);
         include 'modules/head.php';
         include 'modules/menu.php';
         include 'modules/r1600g.php';

@@ -6,7 +6,7 @@
     </section>
 
     <section class="content" id="capture">
-        <form class="form-horizontal" method="POST" action="mantenimiento">
+        <form class="form-horizontal" method="POST" action="mantenimiento" autocomplete="off">
             <div class="row">
                 <div class="col-md-12">                
                     <div class="box">
@@ -68,15 +68,43 @@
                                     <label> SEGURIDAD:</label>
                                     <tbody class="table-body">
                                         <tr>
-                                            <td><span class="checked fa fa-square-o"></span> Utilizar los EPP's respectivos </td>
-                                            <td><span class="checked fa fa-square-o"></span> Apagar el motor, aplicar freno de parqueo </td>
-                                            <td><span class="checked fa fa-square-o"></span> Desactivar el master switch </td>
-                                            <td><span class="checked fa fa-square-o"></span> Colocar tacos para evitar movimientos </td>
+                                            <td>
+                                                <span class="checked fa fa-square-o">
+                                                    <input type="checkbox" style="display:none;" name="PSG_1" class="psg">
+                                                </span> Utilizar los EPP's respectivos
+                                            </td>
+                                            <td>
+                                                <span class="checked fa fa-square-o">
+                                                <input type="checkbox" style="display:none;" name="PSG_2" class="psg">
+                                                </span> Apagar el motor, aplicar freno de parqueo
+                                            </td>
+                                            <td>
+                                                <span class="checked fa fa-square-o">
+                                                <input type="checkbox" style="display:none;" name="PSG_3" class="psg">
+                                                </span> Desactivar el master switch
+                                            </td>
+                                            <td>
+                                                <span class="checked fa fa-square-o">
+                                                <input type="checkbox" style="display:none;" name="PSG_4" class="psg">
+                                                </span> Colocar tacos para evitar movimientos
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td><span class="checked fa fa-square-o"></span> Revisar la alarma de retroceso </td>
-                                            <td><span class="checked fa fa-square-o"></span> Revisar estado de correa de seguridad </td>
-                                            <td><span class="checked fa fa-square-o"></span> Extintor, cinta reflectiva y cono </td>
+                                            <td>
+                                                <span class="checked fa fa-square-o">
+                                                <input type="checkbox" style="display:none;" name="PSG_5" class="psg">
+                                                </span> Revisar la alarma de retroceso
+                                            </td>
+                                            <td>
+                                                <span class="checked fa fa-square-o">
+                                                <input type="checkbox" style="display:none;" name="PSG_6" class="psg">
+                                                </span> Revisar estado de correa de seguridad
+                                            </td>
+                                            <td>
+                                                <span class="checked fa fa-square-o">
+                                                <input type="checkbox" style="display:none;" name="PSG_7" class="psg">
+                                                </span> Extintor, cinta reflectiva y cono
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
