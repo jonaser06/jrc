@@ -6,55 +6,63 @@
     </section>
 
     <section class="content" id="capture">
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="POST" action="mantenimiento">
             <div class="row">
                 <div class="col-md-12">                
                     <div class="box">
                         <div class="box-body">
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">EQUIPO:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control">
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="equipo" value="<?php echo $user->maquina; ?>">
                                 </div>
 
                                 <label class="col-sm-1 control-label">FECHA:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="datepicker3">
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="fecha" id="datepicker3">
+                                </div>
+
+                                <label class="col-sm-1 control-label">TURNO:</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="turno">
+                                        <option>DIA</option>
+                                        <option>NOCHE</option>
+                                    </select>
                                 </div>
 
                                 <label class="col-sm-1 control-label">HOROMETRO:</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control">
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="horometro" value="<?php echo $maquina->horas_acumuladas; ?>">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-1 control-label">MAN Nº:</label>
+                                <label class="col-sm-1 control-label">MANT Nº:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="datepicker3">
+                                    <?php
+                                        $n = (int)$pm->id_mantenimiento;
+                                        $n++;
+                                        $val = sprintf('%08d', $n);
+                                        echo '<input type="text" class="form-control" name="mant" value="MAN'.$val.'">';
+                                    ?>
                                 </div>
 
-                                <label class="col-sm-1 control-label">TURNO:</label>
+                                <label class="col-sm-1 control-label">CHECKLIST:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control">
+                                    <?php
+                                        $n = (int)$pm->id_mantenimiento;
+                                        $n++;
+                                        $val = sprintf('%08d', $n);
+                                        echo '<input type="text" class="form-control" name="checklist" value="'.$val.'">';
+                                    ?>
                                 </div>
 
                                 <label class="col-sm-1 control-label">ELECTRICISTA:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="datepicker3">
+                                    <input type="text" name="electricista" class="form-control">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">CHECK LIST Nº:</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control">
-                                </div>
-                                <label class="col-sm-2 control-label">% COMPLETADO:</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="datepicker3">
-                                </div>
-                            </div>
                             <div class="col-sm-12">
                                 <table class="table table-bordered table-hover dataTable">
                                     <label> SEGURIDAD:</label>

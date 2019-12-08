@@ -38,7 +38,7 @@
         onrendered (canvas) {
           var img = canvas.toDataURL();
           var doc = new jsPDF();
-          doc.addImage(img,'JPEG', 0, 0, 200, 300);
+          doc.addImage(img,'JPEG', 0, 0, 210, 300);
           doc.save("reportepm.pdf");
         }
       });

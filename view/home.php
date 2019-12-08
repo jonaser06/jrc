@@ -32,15 +32,34 @@ $app->get('/reporteadmin/','reporteadmin');
 $app->get('/asignacion/','asignacion');
 $app->get('/pm/','pm');
 
+#insertar
+$app->post('/mantenimiento/','mantenimiento');
+
 $app->notFound(function () use ($app) {
     echo 'esta pagina no existe'; 
 });
 
+function mantenimiento(){
+    $data = array(
+        'equipo'=> $_POST['equipo'],
+        'fecha'=> $_POST['fecha'],
+        'turno'=> $_POST['turno'],
+        'horometro'=> $_POST['horometro'],
+        'mant'=> $_POST['mant'],
+        'checklist'=> $_POST['checklist'],
+        'data'=> $_POST['electricista']
+    );
+
+    var_dump($data);
+}
 
 function pm(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        $user = meClassController::meController($_SESSION['id_usuarios']);
+        $maquina = meClassController::maquinaController($user->id_maquina);
+        $pm = meClassController::pmController();
         include 'modules/head.php';
         include 'modules/menu.php';
         include 'modules/pm.php';
