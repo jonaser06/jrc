@@ -1,8 +1,8 @@
 <?php
 class scoopsClassController{
 
-    public static function scoopsController(){
-        $getdata = scoopsClassModel::scoopsClassModel();
+    public static function mantenimientoController($data){
+        $getdata = scoopsClassModel::mantenimientoClassModel($data);
         return $getdata;
 
     }
