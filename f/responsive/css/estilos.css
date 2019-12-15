@@ -29,6 +29,13 @@
 .table-body{
     font-weight: bold;
 }
+td, label{
+    font-size: 10px;
+    font-weight: 600 !important;
+}
+.active a{
+    padding: 5px 10px !important;
+}
 /* cheked */
 .checked{
     cursor: pointer;
