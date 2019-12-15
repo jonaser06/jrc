@@ -336,10 +336,16 @@ function superadministrador(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
-        include 'modules/head.php';
-        include 'modules/menu.php';
-        include 'modules/superadministrador.php';
-        include 'modules/footer.php';
+        if($_SESSION['id_usuarios']== 1){ 
+            include 'modules/head.php';
+            include 'modules/menu.php';
+            include 'modules/superadministrador.php';
+            include 'modules/footer.php';
+         }else{
+            echo '<script type="text/javascript">
+                    window.location = "login";
+                </script>';
+         }
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";
@@ -351,10 +357,16 @@ function administrador(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
-        include 'modules/head.php';
-        include 'modules/menu.php';
-        include 'modules/administrador.php';
-        include 'modules/footer.php';
+        if($_SESSION['id_usuarios']== 2){
+            include 'modules/head.php';
+            include 'modules/menu.php';
+            include 'modules/administrador.php';
+            include 'modules/footer.php';
+        }else{
+            echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';      
+        }
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";
@@ -411,8 +423,13 @@ function r1600g(){
 function index(){
     session_start();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+
+        if($_SESSION['id_usuarios'] == 1 ){ $url = 'superadministrador'; }
+        if($_SESSION['id_usuarios'] == 2 ){ $url = 'administrador'; }
+        if($_SESSION['id_usuarios'] == 3 ){ $url = 'mecanico'; }
+
         echo '<script type="text/javascript">
-                  window.location = "inicio";
+                  window.location = "'.$url.'";
               </script>';
     }else{
     echo '<script type="text/javascript">
@@ -425,8 +442,12 @@ function login(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        if($_SESSION['id_usuarios'] == 1 ){ $url = 'superadministrador'; }
+        if($_SESSION['id_usuarios'] == 2 ){ $url = 'administrador'; }
+        if($_SESSION['id_usuarios'] == 3 ){ $url = 'mecanico'; }
+
         echo '<script type="text/javascript">
-                  window.location = "inicio";
+                  window.location = "'.$url.'";
               </script>';
     }else{
         include 'modules/login.php';
@@ -437,10 +458,16 @@ function mecanico(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
-        include 'modules/head.php';
-        include 'modules/menu.php';
-        include 'modules/mecanico.php';
-        include 'modules/footer.php';
+        if($_SESSION['id_usuarios'] == 3 ){
+            include 'modules/head.php';
+            include 'modules/menu.php';
+            include 'modules/mecanico.php';
+            include 'modules/footer.php';
+        }else{
+            echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+        }
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";
