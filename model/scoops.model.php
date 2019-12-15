@@ -33,7 +33,7 @@ class scoopsClassModel{
             $stmt1->execute();
             $db = null;
             
-            return 'Mantenimiento realizado';
+            return true;
 
         } catch (PDOException $e) {
             echo $e;

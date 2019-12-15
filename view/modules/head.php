@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="<?php echo $dir; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" href="<?php echo $dir; ?>css/estilos.css?v2">
+  <link rel="stylesheet" href="<?php echo $dir; ?>css/toast.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

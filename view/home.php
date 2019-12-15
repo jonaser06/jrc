@@ -206,7 +206,16 @@ function mantenimiento(){
 
     $mantenimiento = scoopsClassController::mantenimientoController($data);
 
-    echo $mantenimiento;
+    if($mantenimiento){
+        echo '<script type="text/javascript">
+                    window.location = "r1600g?status=true&message=Parada de mantenimiento realizado correctamente";
+                </script>';
+    }else{
+        echo '<script type="text/javascript">
+                    window.location = "r1600g?status=false&message=Ocurrio un error";
+                </script>';
+    }
+
     
 }
 
@@ -413,6 +422,17 @@ function r1600g(){
         include 'modules/menu.php';
         include 'modules/r1600g.php';
         include 'modules/footer.php';
+        #notificacion
+        if($_GET['status']=='true'){
+            echo '<script>
+                    toastr.success("'.$_GET['message'].'", "Estado");
+                  </script>';
+        }
+        if($_GET['status']=='false'){
+        echo '<script>
+                toastr.error("'.$_GET['message'].'", "Estado");
+                </script>';
+        }
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";

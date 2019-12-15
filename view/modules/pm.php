@@ -5,9 +5,9 @@
         </h1>
     </section>
 
-    <section class="content" id="capture">
+    <section class="content">
         <form class="form-horizontal" method="POST" action="mantenimiento" autocomplete="off">
-            <div class="row">
+            <div class="row" id="capture">
                 <div class="col-md-12">
 
                     <div class="box">
@@ -983,35 +983,38 @@
                         </div>
                     </div>
 
-                    <div class="box">
-                        <div class="box-body">
-                            <br>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">TRABAJOS DE REPARACION :</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="trabajos_R">
-                                </div>
-
-                                <label class="col-sm-2 control-label">PENDIENTES DE MANTENIMIENTO :</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="pendientes_M">
-                                </div>
-                            </div>
-                            <div class="row" style="margin: 1px;">
-                                <div class="col-sm-6">
-                                    <a href="javascript:getPDF()">
-                                        <button type="button" class="btn btn-block  download btn-primary">EXPORTAR PDF</button>
-                                    </a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-block btn-primary">ENVIAR</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
+
+            <div class="box">
+                <div class="box-body">
+                    <br>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">TRABAJOS DE REPARACION :</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="trabajos_R">
+                        </div>
+        
+                        <label class="col-sm-2 control-label">PENDIENTES DE MANTENIMIENTO :</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="pendientes_M">
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 1px;">
+                        <div class="col-sm-6">
+                            <a href="javascript:getPDF()">
+                                <button type="button" class="btn btn-block  download btn-primary">EXPORTAR PDF</button>
+                            </a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-block btn-primary">ENVIAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </form>
+        
     </section>
+
 </div>

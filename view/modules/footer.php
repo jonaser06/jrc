@@ -31,6 +31,7 @@
 <script src="<?php echo $dir; ?>dist/js/pages/dashboard.js"></script>
 <script src="<?php echo $dir; ?>dist/js/demo.js"></script>
 <script src="<?php echo $dir; ?>js/jspdf.min.js"></script>
+<script src="<?php echo $dir; ?>js/toast.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script>
     function getPDF(){
