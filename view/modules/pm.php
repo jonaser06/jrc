@@ -996,7 +996,7 @@
                                     <input type="text" class="form-control" name="pendientes_M">
                                 </div>
                             </div>
-                            <br><br>
+                            <br>
                             <div class="row" style="margin: 1px;">
                                 <div class="col-sm-6">
                                     <a href="javascript:getPDF()">
