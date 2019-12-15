@@ -985,6 +985,7 @@
 
                     <div class="box">
                         <div class="box-body">
+                            <br>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">TRABAJOS DE REPARACION :</label>
                                 <div class="col-sm-4">
@@ -996,7 +997,6 @@
                                     <input type="text" class="form-control" name="pendientes_M">
                                 </div>
                             </div>
-                            <br>
                             <div class="row" style="margin: 1px;">
                                 <div class="col-sm-6">
                                     <a href="javascript:getPDF()">
