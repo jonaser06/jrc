@@ -8,9 +8,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-<script src="<?php echo $dir; ?>bower_components/jquery/dist/jquery.min.js"></script>
-<script src="<?php echo $dir; ?>bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
@@ -34,7 +31,9 @@
 <script src="<?php echo $dir; ?>js/toast.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script>
+  
     function getPDF(){
+
       html2canvas(document.querySelector("#capture"), {
         onrendered (canvas) {
           var img = canvas.toDataURL();
@@ -43,6 +42,7 @@
           doc.save("reportepm.pdf");
         }
       });
+
     }
 
     $(document).ready(function(){
@@ -61,25 +61,17 @@
         }
       });
 
-      $('#datepicker3').datepicker({
+      $('#datepicker, #datepicker2, #datepicker3').datepicker({
           orientation: 'bottom right',
           autoclose: true,
           format: 'yyyy-mm-dd'
       }).datepicker("setDate", new Date());
 
+      
+
     });
 
     $(function () {    
-        $('#datepicker').datepicker({
-            orientation: 'bottom right',
-            autoclose: true
-        })
-
-        $('#datepicker2').datepicker({
-            orientation: 'bottom right',
-            autoclose: true
-        })
-
         new Morris.Line({
 
         element: 'myfirstchart',

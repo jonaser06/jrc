@@ -1,6 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Reporte
@@ -12,93 +10,46 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=resumenequipos" class="btn btn-app">
                             <i class="fa fa-wrench"></i> RESUMEN DE EQUIPOS
                         </a>
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=resumenindicadores" class="btn btn-app">
                             <i class="fa fa-wrench"></i> RESUMEN DE INDICADORES
                         </a>
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=horasoperacion" class="btn btn-app">
                             <i class="fa fa-wrench"></i> HORAS DE OPERACIÓN
                         </a>
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=disponibilidad" class="btn btn-app">
                             <i class="fa fa-wrench"></i> DISPONIBILIDAD MECANICA 
                         </a>
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=utilizacion" class="btn btn-app">
                             <i class="fa fa-wrench"></i> UTILIZACION
                         </a>
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=mtbf" class="btn btn-app">
                             <i class="fa fa-wrench"></i> MTBF 
                         </a>
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=mttr" class="btn btn-app">
                             <i class="fa fa-wrench"></i> MTTR 
                         </a>
-                        <a class="btn btn-app">
+                        <a href="reporteadmin?consulta=reporte" class="btn btn-app">
                             <i class="fa fa-wrench"></i> REPORTE 
                         </a>
                     </div>
-                <!-- /.box-body -->
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="box">
-                    <div class="box-body">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-7 control-label">NOMBRE DEL REPORTE:</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">DE:</label>
-                                <div class="col-sm-5">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control" id="datepicker">
-                                    </div>
-                                </div>
-                                <label class="col-sm-1 control-label">HASTA:</label>
-                                <div class="col-sm-5">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control" id="datepicker2">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-md-offset-2">
-                              <button type="button" class="col-md-8 btn btn-block btn-primary">Consultar</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="box-footer">
-                        <section class="col-lg-12 connectedSortable">
-                            <!-- solid sales graph -->
-                            <div class="box box-solid">
-                                <div class="box-header">
-                                    <i class="fa fa-th"></i>
-                    
-                                    <h3 class="box-title">Performance</h3>
-                    
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="box-body border-radius-none">
-                                    <div id="myfirstchart" style="height: 250px;"></div>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                        <!-- /.box -->
-                        </section>
-                    </div>
-                </div>
+                <?php
+                    if($_GET['consulta']=='resumenequipos'){ include 'reportes/resumenequipos.php'; }
+                    if($_GET['consulta']=='resumenindicadores'){ include 'reportes/resumenindicadores.php'; }
+                    if($_GET['consulta']=='horasoperacion'){ include 'reportes/horasoperacion.php'; }
+                    if($_GET['consulta']=='disponibilidad'){ include 'reportes/disponibilidad.php'; }
+                    if($_GET['consulta']=='utilizacion'){ include 'reportes/utilizacion.php'; }
+                    if($_GET['consulta']=='mtbf'){ include 'reportes/mtbf.php'; }
+                    if($_GET['consulta']=='mttr'){ include 'reportes/mttr.php'; }
+                    if($_GET['consulta']=='reporte'){ include 'reportes/reporte.php'; }
+                ?>
             </div>
         </div>
     </section>

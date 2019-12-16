@@ -9,6 +9,7 @@ $app = new \Slim\Slim();
 #endpoints de servicios
 $app->post('/signup/','signup');
 $app->post('/signin/','signin');
+$app->get('/resumenequipos/','resumenequipos');
 
 #endpints de vistas
 $app->get('/','index');
@@ -37,6 +38,7 @@ $app->notFound(function () use ($app) {
 
 #insertar
 $app->post('/mantenimiento/','mantenimiento');
+$app->post('/updatereporte/','updatereporte');
 
 
 
@@ -219,6 +221,15 @@ function mantenimiento(){
     
 }
 
+function updatereporte(){
+
+    /* var_dump($_POST); */
+    $hora = (int)$_POST['horaacumulada']+(int)$_POST['hora'];
+    $equipotrabajo = $_POST['equipotrabajo'];
+    echo $hora;
+    consultasClassController::resumenequiposController($hora, $equipotrabajo);
+}
+
 function pm(){
     session_start();
     $dir = rutasClass::rutas();
@@ -251,7 +262,6 @@ function asignacion(){
               </script>';
     }
 }
-
 
 function reporteadmin(){
     session_start();
@@ -287,6 +297,8 @@ function reportediario(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        $user = meClassController::meController($_SESSION['id_usuarios']);
+        $maquina = meClassController::maquinaController($user->id_maquina);
         include 'modules/head.php';
         include 'modules/menu.php';
         include 'modules/reportediario.php';
@@ -312,6 +324,7 @@ function registros(){
               </script>';
     }
 }
+
 function registro(){
     session_start();
     $dir = rutasClass::rutas();
@@ -326,6 +339,7 @@ function registro(){
               </script>';
     }
 }
+
 function scoops(){
     session_start();
     $dir = rutasClass::rutas();
@@ -382,6 +396,7 @@ function administrador(){
               </script>';
     }
 }
+
 function requerimientos(){
     session_start();
     $dir = rutasClass::rutas();
@@ -537,6 +552,7 @@ function logout(){
                 </script>';
     }
 }
+
 function reporteproblema(){
     session_start();
     $dir = rutasClass::rutas();
@@ -553,6 +569,12 @@ function reporteproblema(){
 }
 
 #servicios
+function resumenequipos(){
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+    
+}
+
 function signup(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
@@ -564,9 +586,6 @@ function signin(){
     $getbody = json_decode($request->getBody());
     authClassController::signinController($getbody);
 }
-
-#vistas
-
 
 $app->run();
 
