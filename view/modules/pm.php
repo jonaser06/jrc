@@ -117,7 +117,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="nav-tabs-custom" style="padding-bottom: 20px;">
+                            <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">MOTOR DIESEL</a></li>
                                 </ul>
@@ -348,7 +348,7 @@
 
                             </div>
 
-                            <div class="nav-tabs-custom" style="padding-bottom: 20px;">
+                            <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_7" data-toggle="tab" aria-expanded="false">ENGRASE</a></li>
                                 </ul>
@@ -412,7 +412,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="nav-tabs-custom" style="padding-bottom: 20px;">
+                            <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_2" data-toggle="tab" aria-expanded="false">SISTEMA DE TRANSMISION</a></li>
                                 </ul>
@@ -602,7 +602,7 @@
                                 </div>
                             </div>
 
-                            <div class="nav-tabs-custom" style="padding-bottom: 20px;">
+                            <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_4" data-toggle="tab" aria-expanded="false">SISTEMA DE FRENOS</a></li>
                                 </ul>
@@ -698,7 +698,7 @@
                         </div>
                         
                         <div class="col-md-4">
-                            <div class="nav-tabs-custom" style="padding-bottom: 20px;">
+                            <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_3" data-toggle="tab" aria-expanded="false">SISTEMA HIDRAULICO</a></li>
                                 </ul>
@@ -848,7 +848,7 @@
                                 </div>
                             </div>
                             
-                            <div class="nav-tabs-custom" style="padding-bottom: 20px;">
+                            <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_5" data-toggle="tab" aria-expanded="false">SISTEMA ELECTRICO</a></li>
                                 </ul>
@@ -918,7 +918,7 @@
                                 </div>
                             </div>
 
-                            <div class="nav-tabs-custom" style="padding-bottom: 20px;">
+                            <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_6" data-toggle="tab" aria-expanded="false">SCHASIS</a></li>
                                 </ul>

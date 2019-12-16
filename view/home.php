@@ -226,8 +226,10 @@ function updatereporte(){
     /* var_dump($_POST); */
     $hora = (int)$_POST['horaacumulada']+(int)$_POST['hora'];
     $equipotrabajo = $_POST['equipotrabajo'];
-    echo $hora;
     consultasClassController::resumenequiposController($hora, $equipotrabajo);
+    $reporte = consultasClassController::reporteController();
+    
+    echo $reporte;
 }
 
 function pm(){

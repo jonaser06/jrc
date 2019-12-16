@@ -6,5 +6,13 @@ class consultasClassController{
         $update = consultasClassModel::resumenequiposModel($ho, $eq);
 
     }
+
+    public static function reporteController(){
+
+        $reporte = consultasClassModel::reporteModel();
+
+        return $reporte;
+
+    }
 }
 ?>
