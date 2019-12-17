@@ -30,8 +30,8 @@
 <script src="<?php echo $dir; ?>js/jspdf.min.js"></script>
 <script src="<?php echo $dir; ?>js/toast.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="<?php echo $dir; ?>js/main.js"></script>
 <script>
-  
     function getPDF(){
 
       html2canvas(document.querySelector("#capture"), {
@@ -42,34 +42,7 @@
           doc.save("reportepm.pdf");
         }
       });
-
     }
-
-    $(document).ready(function(){
-
-      $(".checked").click(function(){
-      if($(this).hasClass('fa-square-o')){
-        $(this).removeClass('fa-square-o');
-        $(this).addClass('fa-check-square-o');
-        $(this).parent().find('.psg').prop("checked", true);
-        $(this).parent().find('.psg').val('1');
-      }else{
-        $(this).removeClass('fa-check-square-o');
-        $(this).addClass('fa-square-o');
-        $(this).parent().find('.psg').prop("checked", false);
-        $(this).parent().find('.psg').val('0');
-        }
-      });
-
-      $('#datepicker, #datepicker2, #datepicker3').datepicker({
-          orientation: 'bottom right',
-          autoclose: true,
-          format: 'yyyy-mm-dd'
-      }).datepicker("setDate", new Date());
-
-      
-
-    });
 
     $(function () {    
         new Morris.Line({
@@ -91,17 +64,6 @@
         });
     
     })
-</script>
-<script>
-  /* html2canvas(document.body, {
-    onrendered (canvas) {
-      var link = document.getElementById('download');;
-      var image = canvas.toDataURL();
-      link.href = image;
-      link.download = 'screenshot.png';
-    }
-  }); */
-  
 </script>
 </body>
 </html>
