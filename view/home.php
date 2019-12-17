@@ -33,7 +33,9 @@ $app->get('/reporteadmin/','reporteadmin');
 $app->get('/asignacion/','asignacion');
 $app->get('/pm/','pm');
 $app->notFound(function () use ($app) {
-    echo 'esta pagina no existe'; 
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
 });
 
 #insertar
@@ -223,13 +225,26 @@ function mantenimiento(){
 
 function updatereporte(){
 
-    /* var_dump($_POST); */
     $hora = (int)$_POST['horaacumulada']+(int)$_POST['hora'];
     $equipotrabajo = $_POST['equipotrabajo'];
     consultasClassController::resumenequiposController($hora, $equipotrabajo);
-    $reporte = consultasClassController::reporteController();
+    $data = array(
+        "iniciojornada"=>$_POST['iniciojornada'],
+        "horaacumulada"=>$_POST['horaacumulada'],
+        "finjornada"=>$_POST['finjornada'],
+        "hora"=>$_POST['hora'],
+        "equipotrabajo"=>$_POST['equipotrabajo'],
+        "descripcion"=>$_POST['descripcion'],
+        "nrofallas"=>$_POST['nrofallas'],
+        "paradatotal"=>$_POST['paradatotal']
+    );
+    $reporte = consultasClassController::setreporteController($data);
     
-    echo $reporte;
+    if($reporte){
+        echo '<script type="text/javascript">
+                window.location = "r1600g?status=true&message=Reporte Diario realizado correctamente";
+            </script>';
+    }
 }
 
 function pm(){

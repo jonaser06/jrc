@@ -7,11 +7,18 @@ class consultasClassController{
 
     }
 
-    public static function reporteController(){
+    public static function getreporteController(){
 
-        $reporte = consultasClassModel::reporteModel();
+        $get = consultasClassModel::getreporteModel();
 
-        return $reporte;
+        return $get;
+
+    }
+    public static function setreporteController($data){
+        
+        $set = consultasClassModel::setreporteModel($data);
+
+        return $set;
 
     }
 }

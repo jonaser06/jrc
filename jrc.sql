@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2019 a las 04:46:17
+-- Tiempo de generación: 17-12-2019 a las 06:23:08
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -65,7 +65,8 @@ INSERT INTO `mantenimiento` (`id_mantenimiento`, `id_usuarios`, `id_maquina`, `i
 (9, 3, 8, 30, 24, 15, 22, 23, 13, 20, 26, 'DIA', '2019-12-15', 'MAN00000009', '', '00000009', '', ''),
 (10, 3, 8, 31, 25, 16, 23, 24, 14, 21, 27, 'NOCHE', '2019-12-15', 'MAN00000010', '', '00000010', '', ''),
 (11, 3, 8, 32, 26, 17, 24, 25, 15, 22, 28, 'DIA', '2019-12-15', 'MAN00000011', '', '00000011', '', ''),
-(12, 3, 8, 33, 27, 18, 25, 26, 16, 23, 29, 'DIA', '2019-12-15', 'MAN00000012', '', '00000012', '', '');
+(12, 3, 8, 33, 27, 18, 25, 26, 16, 23, 29, 'DIA', '2019-12-15', 'MAN00000012', '', '00000012', '', ''),
+(13, 3, 1, 34, 28, 19, 26, 27, 17, 24, 30, 'DIA', '2019-12-17', 'MAN00000013', '', '00000013', '', '');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE `maquinas` (
 --
 
 INSERT INTO `maquinas` (`id_maquina`, `nombre`, `horas_acumuladas`) VALUES
-(1, '2SC019', 56),
+(1, '2SC019', 63),
 (2, '2SC022', 30),
 (3, '2SC029', 45),
 (4, '2SC035', 70),
@@ -92,6 +93,37 @@ INSERT INTO `maquinas` (`id_maquina`, `nombre`, `horas_acumuladas`) VALUES
 (6, '2JL003', 55),
 (7, '2JL015', 30),
 (8, '2JL016', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reporte`
+--
+
+CREATE TABLE `reporte` (
+  `id_reporte` int(11) NOT NULL,
+  `inicio_jornada` date NOT NULL,
+  `fin_jornada` date NOT NULL,
+  `hora_acumulada` text NOT NULL,
+  `hora` text NOT NULL,
+  `equipo_trabajo` text NOT NULL,
+  `descripcion` text NOT NULL,
+  `fallas_equipo` text NOT NULL,
+  `tiempo_parada` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reporte`
+--
+
+INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acumulada`, `hora`, `equipo_trabajo`, `descripcion`, `fallas_equipo`, `tiempo_parada`) VALUES
+(1, '2019-12-17', '2019-12-17', '107', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(2, '2019-12-17', '2019-12-17', '112', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(3, '2019-12-17', '2019-12-17', '50', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(4, '2019-12-17', '2019-12-17', '55', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(5, '2019-12-17', '2019-12-18', '60', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(6, '2019-12-17', '2019-12-17', '61', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(7, '2019-12-17', '2019-12-17', '62', '1', '2SC019', 'descripcion', 'fallas', 'tiempo');
 
 -- --------------------------------------------------------
 
@@ -156,7 +188,8 @@ INSERT INTO `tablech` (`id_CH`, `PCH_1`, `PCH_2`, `PCH_3`, `PCH_4`, `PCH_5`, `PC
 (20, 0, 0, 0, 0, 0, 0),
 (21, 0, 0, 0, 0, 0, 1),
 (22, 0, 0, 0, 0, 0, 0),
-(23, 0, 0, 0, 0, 0, 0);
+(23, 0, 0, 0, 0, 0, 0),
+(24, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -207,7 +240,8 @@ INSERT INTO `tableen` (`id_EN`, `PEN_1`, `PEN_2`, `PEN_3`, `PEN_4`, `PEN_5`, `PE
 (26, 0, 0, 0, 0, 0, 0),
 (27, 0, 0, 0, 0, 0, 0),
 (28, 0, 1, 1, 1, 1, 1),
-(29, 1, 1, 1, 1, 1, 1);
+(29, 1, 1, 1, 1, 1, 1),
+(30, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -277,7 +311,8 @@ INSERT INTO `tablemd` (`id_MD`, `PMD_1`, `PMD_2`, `PMD_3`, `PMD_4`, `PMD_5`, `PM
 (24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -326,7 +361,8 @@ INSERT INTO `tablese` (`id_SE`, `PSE_1`, `PSE_2`, `PSE_3`, `PSE_4`, `PSE_5`, `PS
 (23, 0, 0, 0, 0, 0, 0, 0),
 (24, 0, 0, 0, 0, 0, 0, 0),
 (25, 0, 0, 0, 0, 0, 0, 0),
-(26, 0, 0, 0, 0, 0, 0, 0);
+(26, 0, 0, 0, 0, 0, 0, 0),
+(27, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -377,7 +413,8 @@ INSERT INTO `tablesf` (`id_SF`, `PSF_1`, `PSF_2`, `PSF_3`, `PSF_4`, `PSF_5`, `PS
 (22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -433,7 +470,8 @@ INSERT INTO `tablesg` (`id_SG`, `PSG_1`, `PSG_2`, `PSG_3`, `PSG_4`, `PSG_5`, `PS
 (30, 0, 0, 0, 0, 0, 0, 0),
 (31, 0, 0, 0, 0, 0, 0, 0),
 (32, 0, 0, 0, 0, 0, 0, 0),
-(33, 0, 0, 0, 0, 0, 0, 0);
+(33, 0, 0, 0, 0, 0, 0, 0),
+(34, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -484,7 +522,8 @@ INSERT INTO `tablesh` (`id_SH`, `PSH_1`, `PSH_2`, `PSH_3`, `PSH_4`, `PSH_5`, `PS
 (15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -538,7 +577,8 @@ INSERT INTO `tablest` (`id_ST`, `PST_1`, `PST_2`, `PST_3`, `PST_4`, `PST_5`, `PS
 (13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -591,6 +631,12 @@ ALTER TABLE `mantenimiento`
 --
 ALTER TABLE `maquinas`
   ADD PRIMARY KEY (`id_maquina`);
+
+--
+-- Indices de la tabla `reporte`
+--
+ALTER TABLE `reporte`
+  ADD PRIMARY KEY (`id_reporte`);
 
 --
 -- Indices de la tabla `roles`
@@ -663,13 +709,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `mantenimiento`
 --
 ALTER TABLE `mantenimiento`
-  MODIFY `id_mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `maquinas`
 --
 ALTER TABLE `maquinas`
   MODIFY `id_maquina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `reporte`
+--
+ALTER TABLE `reporte`
+  MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -681,49 +733,49 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tablech`
 --
 ALTER TABLE `tablech`
-  MODIFY `id_CH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_CH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `tableen`
 --
 ALTER TABLE `tableen`
-  MODIFY `id_EN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_EN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `tablemd`
 --
 ALTER TABLE `tablemd`
-  MODIFY `id_MD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_MD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `tablese`
 --
 ALTER TABLE `tablese`
-  MODIFY `id_SE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_SE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `tablesf`
 --
 ALTER TABLE `tablesf`
-  MODIFY `id_SF` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_SF` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `tablesg`
 --
 ALTER TABLE `tablesg`
-  MODIFY `id_SG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_SG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `tablesh`
 --
 ALTER TABLE `tablesh`
-  MODIFY `id_SH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_SH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tablest`
 --
 ALTER TABLE `tablest`
-  MODIFY `id_ST` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_ST` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
