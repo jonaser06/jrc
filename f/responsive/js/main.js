@@ -3,7 +3,7 @@ var objJrc = {
     init: function(){
         objJrc.checked();
         objJrc.DatePicker();
-        objJrc.ResumenEquipos();
+        objJrc.Consulta();
     },
 
     checked: function(){
@@ -30,13 +30,64 @@ var objJrc = {
         }).datepicker("setDate", new Date());
     },
 
+    Consulta: function(){
+        var consulta = objJrc.$_GET('consulta');
+        
+        if(consulta=='resumenequipos'){
+            objJrc.ResumenEquipos();
+        }
+        if(consulta=='resumenindicadores'){
+            objJrc.ResumenIndicadores();
+        }
+        if(consulta=='horasoperacion'){
+            objJrc.HorasOperacion();
+        }
+        if(consulta=='disponibilidad'){
+            objJrc.Disponibilidad();
+        }
+        if(consulta=='utilizacion'){
+            objJrc.Utilizacion();
+        }
+        if(consulta=='mtbf'){
+            objJrc.Mtbf();
+        }
+        if(consulta=='mttr'){
+            objJrc.Mttr();
+        }
+        if(consulta=='reporte'){
+            objJrc.Report();
+        }
+    },
     ResumenEquipos: function(){
-        var id = objJrc.$_GET('consulta');
-        $.ajax({}).done(function( data ){
-            console.log("Correcto");
+
+    },
+    ResumenIndicadores: function(){
+
+    },
+    HorasOperacion: function(){
+
+    },
+    Disponibilidad: function(){
+
+    },
+    Utilizacion: function(){
+
+    },
+    Mtbf: function(){
+
+    },
+    Mttr: function(){
+
+    },
+    Report: function(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://blackapp.xyz/reporteservice',
+            dataType: 'json'
+        }).done(function( data ){
+            console.log(data);
         });
     },
-
     $_GET:function(param){
         var vars = {};
         window.location.href.replace(location.hash, '').replace(

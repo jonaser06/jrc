@@ -9,7 +9,7 @@ $app = new \Slim\Slim();
 #endpoints de servicios
 $app->post('/signup/','signup');
 $app->post('/signin/','signin');
-$app->get('/resumenequipos/','resumenequipos');
+$app->get('/reporteservice/','reporteService');
 
 #endpints de vistas
 $app->get('/','index');
@@ -586,7 +586,7 @@ function reporteproblema(){
 }
 
 #servicios
-function resumenequipos(){
+function reporteService(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
     consultasClassController::reporteController();
