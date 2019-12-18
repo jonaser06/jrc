@@ -4,7 +4,7 @@ require_once 'config.php';
 
 class consultasClassModel{
 
-    public static function resumenequiposModel($ho, $eq){
+    public static function reportediarioModel($ho, $eq){
         try {
             $db        =   getDB();
             $sql       =   "UPDATE maquinas
@@ -19,7 +19,20 @@ class consultasClassModel{
             //throw $th;
         }
     }
-
+    public static function reporteModel(){
+        try {
+            $db        =   getDB();
+            $sql       =   "SELECT * FROM reporte";
+            $stmt      =    $db->prepare($sql);
+            $stmt->execute();
+            $mainCount =    $stmt->rowCount();
+            $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+            return '{"status":"true", "message":"Find One", "data": '.json_encode($userData).'}';
+            
+        } catch (PDOException $e) {
+            return '{"status":false, "message":'.$e.'}';
+        }
+    }
     public static function getreporteModel(){
         try {
             $db        =   getDB();

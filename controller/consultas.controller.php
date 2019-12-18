@@ -1,9 +1,9 @@
 <?php
 class consultasClassController{
 
-    public static function resumenequiposController($ho, $eq){
+    public static function reporteDiarioController($ho, $eq){
 
-        $update = consultasClassModel::resumenequiposModel($ho, $eq);
+        $update = consultasClassModel::reportediarioModel($ho, $eq);
 
     }
 
@@ -21,5 +21,19 @@ class consultasClassController{
         return $set;
 
     }
+    public static function reporteController(){
+
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = consultasClassModel::reporteModel();
+        # respuesta
+        echo $response;
+        exit;
+
+    }
+    public static function reporteFechaController(){
+
+    }
+
 }
 ?>

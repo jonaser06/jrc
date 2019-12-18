@@ -227,7 +227,7 @@ function updatereporte(){
 
     $hora = (int)$_POST['horaacumulada']+(int)$_POST['hora'];
     $equipotrabajo = $_POST['equipotrabajo'];
-    consultasClassController::resumenequiposController($hora, $equipotrabajo);
+    consultasClassController::reporteDiarioController($hora, $equipotrabajo);
     $data = array(
         "iniciojornada"=>$_POST['iniciojornada'],
         "horaacumulada"=>$_POST['horaacumulada'],
@@ -589,7 +589,7 @@ function reporteproblema(){
 function resumenequipos(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-    
+    consultasClassController::reporteController();
 }
 
 function signup(){

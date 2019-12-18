@@ -32,7 +32,9 @@ var objJrc = {
 
     ResumenEquipos: function(){
         var id = objJrc.$_GET('consulta');
-        alert(id);
+        $.ajax({}).done(function( data ){
+            console.log("Correcto");
+        });
     },
 
     $_GET:function(param){
