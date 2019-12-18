@@ -88,17 +88,24 @@ var objJrc = {
         }).done(function( data ){
             console.log(data);
             data.data.forEach(function( element, index ){
+                var hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
                 var content = "";
                     content += '<tr>';
                     content += '<td>'+ element.id_reporte +'</td>';
+                    content += '<td>'+ element.equipo_trabajo +'</td>';
+                    content += '<td>Caterpillar</td>';
+                    content += '<td>R-1600G</td>';
+                    content += '<td>Motor Diesel</td>';
+                    content += '<td>'+ hora +'</td>';
+                    content += '<td></td>';
+                    content += '<td>91%</td>';
+                    content += '<td>'+ element.descripcion +'</td>';
+                    content += '<td>'+ element.fallas_equipo +'</td>';
+                    /*
                     content += '<td>'+ element.inicio_jornada +'</td>';
                     content += '<td>'+ element.fin_jornada +'</td>';
-                    content += '<td>'+ element.hora +'</td>';
                     content += '<td>'+ element.hora_acumulada +'</td>';
-                    content += '<td>'+ element.descripcion +'</td>';
-                    content += '<td>'+ element.equipo_trabajo +'</td>';
-                    content += '<td>'+ element.fallas_equipo +'</td>';
-                    content += '<td>'+ element.tiempo_parada +'</td>';
+                    content += '<td>'+ element.tiempo_parada +'</td>';*/
                     content += '</tr> ';
 
                 $('#tbl').append(content);
@@ -120,17 +127,19 @@ var objJrc = {
                 console.log(data);
                 $(".consulta").val("Consultar");
                 data.data.forEach(function( element, index ){
+                    var hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
                     var content = "";
                         content += '<tr>';
                         content += '<td>'+ element.id_reporte +'</td>';
-                        content += '<td>'+ element.inicio_jornada +'</td>';
-                        content += '<td>'+ element.fin_jornada +'</td>';
-                        content += '<td>'+ element.hora +'</td>';
-                        content += '<td>'+ element.hora_acumulada +'</td>';
-                        content += '<td>'+ element.descripcion +'</td>';
                         content += '<td>'+ element.equipo_trabajo +'</td>';
+                        content += '<td>Caterpillar</td>';
+                        content += '<td>R-1600G</td>';
+                        content += '<td>Motor Diesel</td>';
+                        content += '<td>'+ hora +'</td>';
+                        content += '<td></td>';
+                        content += '<td>91%</td>';
+                        content += '<td>'+ element.descripcion +'</td>';
                         content += '<td>'+ element.fallas_equipo +'</td>';
-                        content += '<td>'+ element.tiempo_parada +'</td>';
                         content += '</tr> ';
 
                     $('#tbl').append(content);

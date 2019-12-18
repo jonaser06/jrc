@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2019 a las 06:28:22
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Tiempo de generación: 18-12-2019 a las 22:31:25
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,7 +85,7 @@ CREATE TABLE `maquinas` (
 --
 
 INSERT INTO `maquinas` (`id_maquina`, `nombre`, `horas_acumuladas`) VALUES
-(1, '2SC019', 63),
+(1, '2SC019', 64),
 (2, '2SC022', 30),
 (3, '2SC029', 45),
 (4, '2SC035', 70),
@@ -117,13 +117,15 @@ CREATE TABLE `reporte` (
 --
 
 INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acumulada`, `hora`, `equipo_trabajo`, `descripcion`, `fallas_equipo`, `tiempo_parada`) VALUES
-(1, '2019-12-07', '2019-12-08', '107', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(2, '2019-12-08', '2019-12-09', '112', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(3, '2019-12-09', '2019-12-10', '50', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(4, '2019-12-10', '2019-12-11', '55', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(5, '2019-12-11', '2019-12-12', '60', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(6, '2019-12-12', '2019-12-13', '61', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(7, '2019-12-13', '2019-12-14', '62', '1', '2SC019', 'descripcion', 'fallas', 'tiempo');
+(1, '2019-12-07', '2019-12-08', '107', '5', '2SC019', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 'Operativo', 'tiempo'),
+(2, '2019-12-08', '2019-12-09', '112', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 'Operativo', 'tiempo'),
+(3, '2019-12-09', '2019-12-10', '50', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 'Operativo', 'tiempo'),
+(4, '2019-12-10', '2019-12-11', '55', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 'Operativo', 'tiempo'),
+(5, '2019-12-11', '2019-12-12', '60', '1', '2SC019', 'G/D: se cambio filtro de admsión primario equipo operativo trabajo normal.  y G/N: Equipo operativo trabajó normal.', 'Operativo', 'tiempo'),
+(6, '2019-12-12', '2019-12-13', '61', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 'Operativo', 'tiempo'),
+(7, '2019-12-13', '2019-12-14', '62', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 'Operativo', 'tiempo'),
+(8, '2019-12-14', '2019-12-15', '63', '2', '2SC019', 'G/D mantenimiento programado PM1  de 1:00 a  8:00 pm.', 'Operativo', 'parada'),
+(9, '2019-12-15', '2019-12-16', '65', '1', '2SC019', 'parada de 4:20 hasta finde guardia por choquesale operativo a las 8:50 pm. .', 'Operativo', 'parada');
 
 -- --------------------------------------------------------
 
@@ -721,7 +723,7 @@ ALTER TABLE `maquinas`
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

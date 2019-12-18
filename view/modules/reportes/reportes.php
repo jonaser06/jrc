@@ -35,18 +35,26 @@
                 font-size: 14px;
             }
         </style>
-        <table class="table table-bordered table-hover dataTable">
+        <table class="table table-bordered table-hover dataTable" style="width: 100%;">
             <thead>
                 <tr>
-                    <th>ID Reporte</th>
-                    <th>Inicio de jornada</th>
+                    <th style="width: 5%;">Familia</th>
+                    <th style="width: 5%;">Equipo</th>
+                    <th style="width: 10%;">Marca</th>
+                    <th style="width: 10%;">Modelo</th>
+                    <th style="width: 10%;">Componente</th>
+                    <th style="width: 5%;">Horas de Trabajo Diario</th>
+                    <th style="width: 5%;">Matto Correc ( Hrs. ) </th>
+                    <th style="width: 10%;">Util. (Util) </th>
+                    <th style="width: 30%;">Comentarios</th>
+                    <th style="width: 10%;">Estado</th>
+
+                    <!-- <th>Inicio de jornada</th>
                     <th>Fin de jornada</th>
-                    <th>Hora</th>
                     <th>Hora Acumulada</th>
                     <th>Descripcion</th>
-                    <th>Equipo de Trabajo</th>
                     <th>Fallas de Equipo</th>
-                    <th>Tiempo de parada</th>
+                    <th>Tiempo de parada</th> -->
                 </tr>
             </thead>
             <tbody id="tbl"></tbody>

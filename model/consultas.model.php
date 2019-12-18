@@ -37,7 +37,7 @@ class consultasClassModel{
     public static function reporteFechaModel($de, $hasta){
         try {
             $db        =   getDB();
-            $sql       =   "SELECT * FROM reporte WHERE inicio_jornada BETWEEN :de AND :hasta ";
+            $sql       =   "SELECT * FROM reporte WHERE inicio_jornada >= :de  AND fin_jornada <= :hasta ";
             $stmt      =    $db->prepare($sql);
             $stmt->bindParam("de", $de,PDO::PARAM_STR);
             $stmt->bindParam("hasta", $hasta,PDO::PARAM_STR);
