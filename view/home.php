@@ -589,7 +589,14 @@ function reporteproblema(){
 function reporteService(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-    consultasClassController::reporteController();
+    if(isset($_GET['de']) && isset($_GET['hasta'])){
+        $de = $_GET['de'];
+        $hasta = $_GET['hasta'];
+        consultasClassController::reporteFechaController($de, $hasta);
+    }else{
+        consultasClassController::reporteController();
+    }
+
 }
 
 function signup(){

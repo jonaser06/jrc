@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2019 a las 06:23:08
+-- Tiempo de generación: 18-12-2019 a las 06:28:22
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -117,13 +117,13 @@ CREATE TABLE `reporte` (
 --
 
 INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acumulada`, `hora`, `equipo_trabajo`, `descripcion`, `fallas_equipo`, `tiempo_parada`) VALUES
-(1, '2019-12-17', '2019-12-17', '107', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(2, '2019-12-17', '2019-12-17', '112', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(3, '2019-12-17', '2019-12-17', '50', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(4, '2019-12-17', '2019-12-17', '55', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(5, '2019-12-17', '2019-12-18', '60', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(6, '2019-12-17', '2019-12-17', '61', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
-(7, '2019-12-17', '2019-12-17', '62', '1', '2SC019', 'descripcion', 'fallas', 'tiempo');
+(1, '2019-12-07', '2019-12-08', '107', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(2, '2019-12-08', '2019-12-09', '112', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(3, '2019-12-09', '2019-12-10', '50', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(4, '2019-12-10', '2019-12-11', '55', '5', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(5, '2019-12-11', '2019-12-12', '60', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(6, '2019-12-12', '2019-12-13', '61', '1', '2SC019', 'descripcion', 'fallas', 'tiempo'),
+(7, '2019-12-13', '2019-12-14', '62', '1', '2SC019', 'descripcion', 'fallas', 'tiempo');
 
 -- --------------------------------------------------------
 

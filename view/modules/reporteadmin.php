@@ -48,7 +48,7 @@
                     if($_GET['consulta']=='utilizacion'){ include 'reportes/utilizacion.php'; }
                     if($_GET['consulta']=='mtbf'){ include 'reportes/mtbf.php'; }
                     if($_GET['consulta']=='mttr'){ include 'reportes/mttr.php'; }
-                    if($_GET['consulta']=='reporte'){ include 'reportes/reporte.php'; }
+                    if($_GET['consulta']=='reporte'){ include 'reportes/reportes.php'; }
                 ?>
             </div>
         </div>

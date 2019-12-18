@@ -82,11 +82,62 @@ var objJrc = {
     Report: function(){
         $.ajax({
             type: 'GET',
+            //url: 'http://localhost/jrc/reporteservice',
             url: 'http://blackapp.xyz/reporteservice',
             dataType: 'json'
         }).done(function( data ){
             console.log(data);
+            data.data.forEach(function( element, index ){
+                var content = "";
+                    content += '<tr>';
+                    content += '<td>'+ element.id_reporte +'</td>';
+                    content += '<td>'+ element.inicio_jornada +'</td>';
+                    content += '<td>'+ element.fin_jornada +'</td>';
+                    content += '<td>'+ element.hora +'</td>';
+                    content += '<td>'+ element.hora_acumulada +'</td>';
+                    content += '<td>'+ element.descripcion +'</td>';
+                    content += '<td>'+ element.equipo_trabajo +'</td>';
+                    content += '<td>'+ element.fallas_equipo +'</td>';
+                    content += '<td>'+ element.tiempo_parada +'</td>';
+                    content += '</tr> ';
+
+                $('#tbl').append(content);
+            });
         });
+
+        //si se busca por fechas
+        $(".consulta").on('click',function(){
+            $('#tbl').html('');
+            $(this).val("Cargando...");
+            var de = $('.de').val();
+            var hasta = $('.hasta').val();
+            $.ajax({
+                type: 'GET',
+                //url: 'http://localhost/jrc/reporteservice?de='+de+'&hasta='+hasta,
+                url: 'http://blackapp.xyz/reporteservice?de='+de+'&hasta='+hasta,
+                dataType: 'json'
+            }).done(function( data ){
+                console.log(data);
+                $(".consulta").val("Consultar");
+                data.data.forEach(function( element, index ){
+                    var content = "";
+                        content += '<tr>';
+                        content += '<td>'+ element.id_reporte +'</td>';
+                        content += '<td>'+ element.inicio_jornada +'</td>';
+                        content += '<td>'+ element.fin_jornada +'</td>';
+                        content += '<td>'+ element.hora +'</td>';
+                        content += '<td>'+ element.hora_acumulada +'</td>';
+                        content += '<td>'+ element.descripcion +'</td>';
+                        content += '<td>'+ element.equipo_trabajo +'</td>';
+                        content += '<td>'+ element.fallas_equipo +'</td>';
+                        content += '<td>'+ element.tiempo_parada +'</td>';
+                        content += '</tr> ';
+
+                    $('#tbl').append(content);
+                });
+            });
+        });
+
     },
     $_GET:function(param){
         var vars = {};

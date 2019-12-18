@@ -33,6 +33,24 @@ class consultasClassModel{
             return '{"status":false, "message":'.$e.'}';
         }
     }
+
+    public static function reporteFechaModel($de, $hasta){
+        try {
+            $db        =   getDB();
+            $sql       =   "SELECT * FROM reporte WHERE inicio_jornada BETWEEN :de AND :hasta ";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("de", $de,PDO::PARAM_STR);
+            $stmt->bindParam("hasta", $hasta,PDO::PARAM_STR);
+            $stmt->execute();
+            $mainCount =    $stmt->rowCount();
+            $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+            return '{"status":"true", "message":"Find One", "data": '.json_encode($userData).'}';
+            
+        } catch (PDOException $e) {
+            return '{"status":false, "message":'.$e.'}';
+        }
+    }
+
     public static function getreporteModel(){
         try {
             $db        =   getDB();

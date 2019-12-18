@@ -31,8 +31,13 @@ class consultasClassController{
         exit;
 
     }
-    public static function reporteFechaController(){
-
+    public static function reporteFechaController($de, $hasta){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = consultasClassModel::reporteFechaModel($de, $hasta);
+        # respuesta
+        echo $response;
+        exit;
     }
 
 }
