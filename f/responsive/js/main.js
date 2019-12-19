@@ -80,15 +80,19 @@ var objJrc = {
 
     },
     Report: function(){
+        var hora, _mtbf, _mttr, Ao;
         $.ajax({
             type: 'GET',
-            //url: 'http://localhost/jrc/reporteservice',
-            url: 'http://blackapp.xyz/reporteservice',
+            url: 'http://localhost/jrc/reporteservice',
+            //url: 'http://blackapp.xyz/reporteservice',
             dataType: 'json'
         }).done(function( data ){
             console.log(data);
             data.data.forEach(function( element, index ){
-                var hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = parseFloat(element.hora) / parseFloat(element.fallas_equipo);
+                _mttr = ( parseFloat(element.homp) + parseFloat(element.tiempo_parada) )/ parseFloat(element.fallas_equipo);
+                Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                 var content = "";
                     content += '<tr>';
                     content += '<td>'+ element.id_reporte +'</td>';
@@ -98,10 +102,12 @@ var objJrc = {
                     content += '<td>Motor Diesel</td>';
                     content += '<td>'+ hora +'</td>';
                     content += '<td></td>';
-                    content += '<td>91%</td>';
+                    content += '<td>'+Ao+'%</td>';
                     content += '<td>'+ element.descripcion +'</td>';
-                    content += '<td>'+ element.fallas_equipo +'</td>';
+                    content += '<td>Operativo</td>';
+
                     /*
+                    content += '<td>'+ element.fallas_equipo +'</td>';
                     content += '<td>'+ element.inicio_jornada +'</td>';
                     content += '<td>'+ element.fin_jornada +'</td>';
                     content += '<td>'+ element.hora_acumulada +'</td>';
@@ -120,14 +126,17 @@ var objJrc = {
             var hasta = $('.hasta').val();
             $.ajax({
                 type: 'GET',
-                //url: 'http://localhost/jrc/reporteservice?de='+de+'&hasta='+hasta,
-                url: 'http://blackapp.xyz/reporteservice?de='+de+'&hasta='+hasta,
+                url: 'http://localhost/jrc/reporteservice?de='+de+'&hasta='+hasta,
+                //url: 'http://blackapp.xyz/reporteservice?de='+de+'&hasta='+hasta,
                 dataType: 'json'
             }).done(function( data ){
                 console.log(data);
                 $(".consulta").val("Consultar");
                 data.data.forEach(function( element, index ){
-                    var hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    _mtbf = parseFloat(element.hora) / parseFloat(element.fallas_equipo);
+                    _mttr = ( parseFloat(element.homp) + parseFloat(element.tiempo_parada) )/ parseFloat(element.fallas_equipo);
+                    Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                     var content = "";
                         content += '<tr>';
                         content += '<td>'+ element.id_reporte +'</td>';
@@ -137,9 +146,9 @@ var objJrc = {
                         content += '<td>Motor Diesel</td>';
                         content += '<td>'+ hora +'</td>';
                         content += '<td></td>';
-                        content += '<td>91%</td>';
+                        content += '<td>'+Ao+'%</td>';
                         content += '<td>'+ element.descripcion +'</td>';
-                        content += '<td>'+ element.fallas_equipo +'</td>';
+                        content += '<td>Operativo</td>';
                         content += '</tr> ';
 
                     $('#tbl').append(content);

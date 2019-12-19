@@ -2,7 +2,7 @@
     <div class="box-body">
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-7 control-label">NOMBRE DEL REPORTE:</label>
+                <label class="col-sm-6 control-label">REPORTE:</label>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label">DE:</label>
@@ -38,16 +38,16 @@
         <table class="table table-bordered table-hover dataTable" style="width: 100%;">
             <thead>
                 <tr>
-                    <th style="width: 5%;">Familia</th>
-                    <th style="width: 5%;">Equipo</th>
-                    <th style="width: 10%;">Marca</th>
-                    <th style="width: 10%;">Modelo</th>
-                    <th style="width: 10%;">Componente</th>
-                    <th style="width: 5%;">Horas de Trabajo Diario</th>
-                    <th style="width: 5%;">Matto Correc ( Hrs. ) </th>
-                    <th style="width: 10%;">Util. (Util) </th>
-                    <th style="width: 30%;">Comentarios</th>
-                    <th style="width: 10%;">Estado</th>
+                    <th style="text-align:center; width: 5%;">Familia</th>
+                    <th style="text-align:center; width: 5%;">Equipo</th>
+                    <th style="text-align:center; width: 10%;">Marca</th>
+                    <th style="text-align:center; width: 10%;">Modelo</th>
+                    <th style="text-align:center; width: 10%;">Componente</th>
+                    <th style="text-align:center; width: 5%;">Horas de Trabajo Diario</th>
+                    <th style="text-align:center; width: 5%;">Matto. Correc. ( Hrs. ) </th>
+                    <th style="text-align:center; width: 10%;">Ao </th>
+                    <th style="text-align:center; width: 30%;">Comentarios</th>
+                    <th style="text-align:center; width: 10%;">Estado</th>
 
                     <!-- <th>Inicio de jornada</th>
                     <th>Fin de jornada</th>

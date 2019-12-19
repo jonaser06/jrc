@@ -236,7 +236,8 @@ function updatereporte(){
         "equipotrabajo"=>$_POST['equipotrabajo'],
         "descripcion"=>$_POST['descripcion'],
         "nrofallas"=>$_POST['nrofallas'],
-        "paradatotal"=>$_POST['paradatotal']
+        "paradatotal"=>$_POST['paradatotal'],
+        "homp"=>$_POST['homp'],
     );
     $reporte = consultasClassController::setreporteController($data);
     

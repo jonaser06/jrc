@@ -75,10 +75,11 @@ class consultasClassModel{
         $descripcion = $data['descripcion'];
         $nrofallas = $data['nrofallas'];
         $paradatotal = $data['paradatotal'];
+        $homp = $data['homp'];
         try {
             $db        =   getDB();
-            $sql       =   "INSERT INTO reporte (inicio_jornada, fin_jornada, hora_acumulada, hora, equipo_trabajo, descripcion, fallas_equipo, tiempo_parada)
-                            VALUES (:inicio_jornada, :fin_jornada, :hora_acumulada, :hora, :equipo_trabajo, :descripcion, :fallas_equipo, :tiempo_parada)";
+            $sql       =   "INSERT INTO reporte (inicio_jornada, fin_jornada, hora_acumulada, hora, equipo_trabajo, descripcion, fallas_equipo, tiempo_parada, homp)
+                            VALUES (:inicio_jornada, :fin_jornada, :hora_acumulada, :hora, :equipo_trabajo, :descripcion, :fallas_equipo, :tiempo_parada, :homp)";
             $stmt      =    $db->prepare($sql);
             $stmt->bindParam("inicio_jornada", $iniciojornada,PDO::PARAM_STR);
             $stmt->bindParam("fin_jornada", $finjornada,PDO::PARAM_STR);
@@ -88,6 +89,7 @@ class consultasClassModel{
             $stmt->bindParam("descripcion", $descripcion,PDO::PARAM_STR);
             $stmt->bindParam("fallas_equipo", $nrofallas,PDO::PARAM_STR);
             $stmt->bindParam("tiempo_parada", $paradatotal,PDO::PARAM_STR);
+            $stmt->bindParam("homp", $homp,PDO::PARAM_STR);
             $stmt->execute();
             $db = null;
             return true;

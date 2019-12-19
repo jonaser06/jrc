@@ -35,7 +35,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <form action="updatereporte" method="POST" class="form-horizontal">
+                        <form action="updatereporte" method="POST" class="form-horizontal" autocomplete="off">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">INICIO JORNADA:</label>
@@ -67,7 +67,7 @@
                                             <input type="text" class="form-control" id="datepicker2" name="finjornada">
                                         </div>
                                     </div>
-                                    <label class="col-sm-2 control-label">HORAS:</label>
+                                    <label class="col-sm-2 control-label">HORAS TRABAJADAS:</label>
                                     <div class="col-sm-4">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
@@ -90,15 +90,19 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">NRO DE FALLAS DEL EQUIPO:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="nrofallas">
+                                    <label class="col-sm-1 control-label">NRO DE FALLAS DEL EQUIPO:</label>
+                                    <div class="col-sm-3">
+                                        <input type="number" class="form-control" name="nrofallas">
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">TIEMPO DE PARADA TOTAL:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="paradatotal">
+
+                                    <label class="col-sm-1 control-label">TIEMPO DE PARADA TOTAL:</label>
+                                    <div class="col-sm-3">
+                                        <input type="number" class="form-control" name="paradatotal">
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">HORAS de MANTENIMIENTO PROGRAMADO:</label>
+                                    <div class="col-sm-2">
+                                        <input type="number" class="form-control" name="homp">
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-block btn-primary" value="Enviar">
