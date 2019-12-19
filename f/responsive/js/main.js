@@ -83,8 +83,8 @@ var objJrc = {
         var hora, _mtbf, _mttr, Ao;
         $.ajax({
             type: 'GET',
-            url: 'http://localhost/jrc/reporteservice',
-            //url: 'http://blackapp.xyz/reporteservice',
+            //url: 'http://localhost/jrc/reporteservice',
+            url: 'http://blackapp.xyz/reporteservice',
             dataType: 'json'
         }).done(function( data ){
             console.log(data);
@@ -126,8 +126,8 @@ var objJrc = {
             var hasta = $('.hasta').val();
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost/jrc/reporteservice?de='+de+'&hasta='+hasta,
-                //url: 'http://blackapp.xyz/reporteservice?de='+de+'&hasta='+hasta,
+                //url: 'http://localhost/jrc/reporteservice?de='+de+'&hasta='+hasta,
+                url: 'http://blackapp.xyz/reporteservice?de='+de+'&hasta='+hasta,
                 dataType: 'json'
             }).done(function( data ){
                 console.log(data);
