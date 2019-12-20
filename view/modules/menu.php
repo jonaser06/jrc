@@ -26,12 +26,12 @@
       </ul>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MÓDULOS</li>
-        <li class="treeview <?php echo ($base=='r1600g')?'active':''; ?>">
+        <li class="treeview <?php echo ($base=='r1600g')?'active':''; echo ($base=='scoops')?'active':''; ?>">
           <a href="#"><i class="fa fa-dashboard"></i> <span>SCOOPS</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
-          <ul class="treeview-menu" style="display: <?php echo ($base=='r1600g')?'block':''; ?>;">
-            <li class ="<?php echo ($base=='r1600g')?'active':''; ?>">
+          <ul class="treeview-menu" style="display: <?php echo ($base=='r1600g')?'block':''; echo ($base=='scoops')?'block':''; ?>;">
+            <li class ="<?php echo ($base=='r1600g')?'active':''; echo ($base=='scoops')?'active':''; ?>">
               <?php
                 if($_SESSION['rol']=='mecanico'){
                   echo '<a href="r1600g"><i class="fa fa-circle-o"></i> R1600G</a>';

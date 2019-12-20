@@ -90,8 +90,9 @@ var objJrc = {
             console.log(data);
             data.data.forEach(function( element, index ){
                 hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
-                _mtbf = parseFloat(element.hora) / parseFloat(element.fallas_equipo);
-                _mttr = ( parseFloat(element.homp) + parseFloat(element.tiempo_parada) )/ parseFloat(element.fallas_equipo);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+
                 Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                 var content = "";
                     content += '<tr>';
@@ -105,13 +106,6 @@ var objJrc = {
                     content += '<td>'+Ao+'%</td>';
                     content += '<td>'+ element.descripcion +'</td>';
                     content += '<td>Operativo</td>';
-
-                    /*
-                    content += '<td>'+ element.fallas_equipo +'</td>';
-                    content += '<td>'+ element.inicio_jornada +'</td>';
-                    content += '<td>'+ element.fin_jornada +'</td>';
-                    content += '<td>'+ element.hora_acumulada +'</td>';
-                    content += '<td>'+ element.tiempo_parada +'</td>';*/
                     content += '</tr> ';
 
                 $('#tbl').append(content);
@@ -134,8 +128,9 @@ var objJrc = {
                 $(".consulta").val("Consultar");
                 data.data.forEach(function( element, index ){
                     hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
-                    _mtbf = parseFloat(element.hora) / parseFloat(element.fallas_equipo);
-                    _mttr = ( parseFloat(element.homp) + parseFloat(element.tiempo_parada) )/ parseFloat(element.fallas_equipo);
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+
                     Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                     var content = "";
                         content += '<tr>';
@@ -156,6 +151,12 @@ var objJrc = {
             });
         });
 
+    },
+    calcmtbf:function(hora, fallas){
+        return parseFloat(hora) / parseFloat(fallas);
+    },
+    calcmttr:function(homp, parada, fallas){
+        return ( parseFloat(homp) + parseFloat(parada) )/ parseFloat(fallas);
     },
     $_GET:function(param){
         var vars = {};
