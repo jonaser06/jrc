@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-12-2019 a las 20:45:28
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.7
+-- Tiempo de generación: 21-12-2019 a las 06:57:09
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,8 +85,8 @@ CREATE TABLE `maquinas` (
 --
 
 INSERT INTO `maquinas` (`id_maquina`, `nombre`, `horas_acumuladas`) VALUES
-(1, '2SC019', 66),
-(2, '2SC022', 30),
+(1, '2SC019', 63),
+(2, '2SC022', 38),
 (3, '2SC029', 45),
 (4, '2SC035', 70),
 (5, '2SC037', 65),
@@ -110,24 +110,35 @@ CREATE TABLE `reporte` (
   `descripcion` text NOT NULL,
   `fallas_equipo` int(11) NOT NULL,
   `tiempo_parada` int(11) NOT NULL,
-  `homp` int(11) NOT NULL
+  `homp` int(11) NOT NULL,
+  `inspecc` int(11) NOT NULL,
+  `mantto_prev` int(11) NOT NULL,
+  `horas_calend` int(11) NOT NULL,
+  `horas_prog` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `reporte`
 --
 
-INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acumulada`, `hora`, `equipo_trabajo`, `descripcion`, `fallas_equipo`, `tiempo_parada`, `homp`) VALUES
-(1, '2019-12-07', '2019-12-08', '107', '5', '2SC019', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 3, 2, 2),
-(2, '2019-12-08', '2019-12-09', '112', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 4, 3, 3),
-(3, '2019-12-09', '2019-12-10', '50', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 1, 1, 2),
-(4, '2019-12-10', '2019-12-11', '55', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 3),
-(5, '2019-12-11', '2019-12-12', '60', '1', '2SC019', 'G/D: se cambio filtro de admsión primario equipo operativo trabajo normal.  y G/N: Equipo operativo trabajó normal.', 3, 4, 2),
-(6, '2019-12-12', '2019-12-13', '61', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 1),
-(7, '2019-12-13', '2019-12-14', '62', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 3, 4),
-(8, '2019-12-14', '2019-12-15', '63', '2', '2SC019', 'G/D mantenimiento programado PM1  de 1:00 a  8:00 pm.', 4, 2, 1),
-(9, '2019-12-15', '2019-12-16', '65', '1', '2SC019', 'parada de 4:20 hasta finde guardia por choquesale operativo a las 8:50 pm. .', 3, 2, 2),
-(10, '2019-12-19', '2019-12-19', '64', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 3, 3);
+INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acumulada`, `hora`, `equipo_trabajo`, `descripcion`, `fallas_equipo`, `tiempo_parada`, `homp`, `inspecc`, `mantto_prev`, `horas_calend`, `horas_prog`) VALUES
+(1, '2019-12-07', '2019-12-08', '20', '5', '2SC019', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 3, 2, 2, 1, 10, 24, 20),
+(2, '2019-12-08', '2019-12-09', '25', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 4, 3, 3, 1, 12, 24, 20),
+(3, '2019-12-09', '2019-12-10', '30', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 1, 1, 2, 1, 7, 24, 20),
+(4, '2019-12-10', '2019-12-11', '35', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 3, 1, 5, 24, 20),
+(5, '2019-12-11', '2019-12-12', '40', '1', '2SC019', 'G/D: se cambio filtro de admsión primario equipo operativo trabajo normal.  y G/N: Equipo operativo trabajó normal.', 3, 4, 2, 1, 8, 24, 20),
+(6, '2019-12-12', '2019-12-13', '41', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 1, 1, 9, 24, 20),
+(7, '2019-12-13', '2019-12-14', '42', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 3, 4, 1, 7, 24, 20),
+(8, '2019-12-14', '2019-12-15', '43', '2', '2SC019', 'G/D mantenimiento programado PM1  de 1:00 a  8:00 pm.', 4, 2, 1, 1, 8, 24, 20),
+(9, '2019-12-15', '2019-12-16', '45', '1', '2SC019', 'parada de 4:20 hasta finde guardia por choquesale operativo a las 8:50 pm. .', 3, 2, 2, 1, 10, 24, 20),
+(10, '2019-12-16', '2019-12-17', '46', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 3, 3, 1, 9, 24, 20),
+(11, '2019-12-17', '2019-12-18', '48', '5', '2SC019', 'parada de 4:20 hasta finde guardia por choquesale operativo a las 8:50 pm. .', 1, 3, 2, 1, 11, 24, 20),
+(12, '2019-12-18', '2019-12-19', '53', '5', '2SC019', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 1, 2, 3, 4, 5, 24, 20),
+(13, '2019-12-19', '2019-12-20', '58', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 3, 2, 2, 1, 3, 24, 20),
+(14, '2019-12-20', '2019-12-21', '61', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 3, 1, 2, 24, 20),
+(15, '2019-12-19', '2019-12-20', '30', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal.', 1, 2, 2, 1, 1, 24, 20),
+(16, '2019-12-20', '2019-12-20', '33', '3', '2SC022', 'G/D mantenimiento programado PM1  de 1:00 a  8:00 pm.', 1, 2, 2, 2, 3, 24, 20),
+(17, '2019-12-20', '2019-12-20', '36', '2', '2SC022', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 2, 5, 2, 1, 2, 24, 20);
 
 -- --------------------------------------------------------
 
@@ -607,7 +618,11 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuarios`, `nombres`, `dni`, `usuario`, `password`, `rol`, `id_maquina`) VALUES
 (1, 'test superadmin', '47793117', 'superadmin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 3, 1),
 (2, 'test admin', '47793118', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 2, 1),
-(3, 'test mecanico', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1);
+(3, 'test mecanico', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1),
+(7, 'test2', '47793120', 'mecanico2', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 2),
+(8, 'test2', '47793121', 'mecanico3', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1),
+(9, 'test2', '47793122', 'mecanico4', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1),
+(10, 'test2', '47793123', 'mecanico5', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -725,7 +740,7 @@ ALTER TABLE `maquinas`
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -785,7 +800,7 @@ ALTER TABLE `tablest`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

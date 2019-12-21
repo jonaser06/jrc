@@ -31,8 +31,8 @@ class authClassModel{
                 }
 
                 if($mainCount == 0 ){
-                    $sql1       =  "INSERT INTO usuarios (nombres, dni, usuario, password, rol)
-                                    VALUES (:nombres, :dni, :usuario, :password, :rol )";
+                    $sql1       =  "INSERT INTO usuarios (nombres, dni, usuario, password, rol, id_maquina)
+                                    VALUES (:nombres, :dni, :usuario, :password, :rol, '1' )";
                     $stmt1      =   $db->prepare($sql1);
                     $stmt1->bindParam("nombres", $nombre,PDO::PARAM_STR);
                     $stmt1->bindParam("dni", $dni,PDO::PARAM_STR);

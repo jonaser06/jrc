@@ -43,9 +43,9 @@
                     <th style="text-align:center; width: 10%;">Marca</th>
                     <th style="text-align:center; width: 10%;">Modelo</th>
                     <th style="text-align:center; width: 10%;">Componente</th>
-                    <th style="text-align:center; width: 5%;">Horas de Trabajo Diario</th>
-                    <th style="text-align:center; width: 5%;">Matto. Correc. ( Hrs. ) </th>
-                    <th style="text-align:center; width: 10%;">Ao </th>
+                    <th style="text-align:center; width: 6%;">Horas de Trabajo Diario</th>
+                    <th style="text-align:center; width: 9%;">Matto. Correc. ( Hrs. ) </th>
+                    <th style="text-align:center; width: 5%;">Ao </th>
                     <th style="text-align:center; width: 30%;">Comentarios</th>
                     <th style="text-align:center; width: 10%;">Estado</th>
 

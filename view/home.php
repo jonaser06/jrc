@@ -10,6 +10,7 @@ $app = new \Slim\Slim();
 $app->post('/signup/','signup');
 $app->post('/signin/','signin');
 $app->get('/reporteservice/','reporteService');
+$app->get('/reportescoops/','reportescoops');
 
 #endpints de vistas
 $app->get('/','index');
@@ -238,6 +239,8 @@ function updatereporte(){
         "nrofallas"=>$_POST['nrofallas'],
         "paradatotal"=>$_POST['paradatotal'],
         "homp"=>$_POST['homp'],
+        "inspect"=>$_POST['inspect'],
+        "prevent"=>$_POST['prevent']
     );
     $reporte = consultasClassController::setreporteController($data);
     
@@ -377,7 +380,7 @@ function superadministrador(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
-        if($_SESSION['id_usuarios']== 1){ 
+        if($_SESSION['rol']== 'super administrador'){ 
             include 'modules/head.php';
             include 'modules/menu.php';
             include 'modules/superadministrador.php';
@@ -398,7 +401,7 @@ function administrador(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
-        if($_SESSION['id_usuarios']== 2){
+        if($_SESSION['rol']== 'administrador'){
             include 'modules/head.php';
             include 'modules/menu.php';
             include 'modules/administrador.php';
@@ -511,7 +514,7 @@ function mecanico(){
     session_start();
     $dir = rutasClass::rutas();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
-        if($_SESSION['id_usuarios'] == 3 ){
+        if($_SESSION['rol'] == 'mecanico' ){
             include 'modules/head.php';
             include 'modules/menu.php';
             include 'modules/mecanico.php';
@@ -587,6 +590,18 @@ function reporteproblema(){
 }
 
 #servicios
+function reportescoops(){
+    if(isset($_GET['de']) && isset($_GET['hasta'])){
+        $de = $_GET['de'];
+        $hasta = $_GET['hasta'];
+        $equipo = $_GET['equipo'];
+        consultasClassController::reporteFechaScoops($de, $hasta, $equipo);
+    }else{
+        $equipo = $_GET['equipo'];
+        consultasClassController::reporteScoopsController($equipo);
+    }
+}
+
 function reporteService(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());

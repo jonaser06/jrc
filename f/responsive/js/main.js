@@ -1,9 +1,13 @@
+var urlProd = 'http://blackapp.xyz/';
+var urlDev = 'http://localhost/jrc/';
+
 var objJrc = {
 
     init: function(){
         objJrc.checked();
         objJrc.DatePicker();
         objJrc.Consulta();
+        objJrc.ReportScoops();
     },
 
     checked: function(){
@@ -79,12 +83,84 @@ var objJrc = {
     Mttr: function(){
 
     },
+    ReportScoops:function(){
+        var equipo = $('.equipo').val();
+        var de = $('.de').val();
+        var hasta = $('.hasta').val();
+        $.ajax({
+            type: 'GET',
+            url: urlProd+'reportescoops?equipo='+equipo,
+            dataType: 'json'
+        }).done(function( data ){
+            console.log(data);
+            data.data.forEach(function( element, index ){
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                var content = "";
+                    content += '<tr>';
+                    content += '<td>'+element.inicio_jornada+'</td>';
+                    content += '<td>'+element.hora_acumulada+'</td>';
+                    content += '<td>'+hora+'</td>';
+                    content += '<td>'+element.hora+'</td>';
+                    content += '<td>'+hora+'</td>';
+                    content += '<td>'+element.inspecc+'</td>';
+                    content += '<td>'+element.mantto_prev+'</td>';
+                    content += '<td>'+element.horas_prog+'</td>';
+                    content += '<td>'+element.tiempo_parada+'</td>';
+                    content += '<td>'+element.horas_calend+'</td>';
+                    content += '<td>'+element.horas_prog+'</td>';
+                    content += '<td></td>';
+                    content += '<td></td>';
+                    content += '<td></td>';
+                    content += '<td>'+element.fallas_equipo+'</td>';
+                    content += '<td>'+element.descripcion+'</td>';
+                    content += '/<tr>';
+                $('#tbl_scoops').append(content);
+            });
+        });
+        //busca por fechas
+        $(".consulta_scoops").on('click',function(){
+            var equipo = $('.equipo').val();
+            var de = $('.de').val();
+            var hasta = $('.hasta').val();
+            console.log("de: "+de+" equipo:"+equipo);
+            $.ajax({
+                type: 'GET',
+                url: urlProd+'reportescoops?equipo='+equipo+'&de='+de+'&hasta='+hasta,
+                dataType: 'json'
+            }).done(function( data ){
+                console.log(data);
+                data.data.forEach(function( element, index ){
+                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    var content = "";
+                        content += '<tr>';
+                        content += '<td>'+element.inicio_jornada+'</td>';
+                        content += '<td>'+element.hora_acumulada+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.hora+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.inspecc+'</td>';
+                        content += '<td>'+element.mantto_prev+'</td>';
+                        content += '<td>'+element.horas_prog+'</td>';
+                        content += '<td>'+element.tiempo_parada+'</td>';
+                        content += '<td>'+element.horas_calend+'</td>';
+                        content += '<td>'+element.horas_prog+'</td>';
+                        content += '<td></td>';
+                        content += '<td></td>';
+                        content += '<td></td>';
+                        content += '<td>'+element.fallas_equipo+'</td>';
+                        content += '<td>'+element.descripcion+'</td>';
+                        content += '/<tr>';
+                    $('#tbl_scoops').append(content);
+                });
+            });
+        });
+        
+    },
     Report: function(){
         var hora, _mtbf, _mttr, Ao;
         $.ajax({
             type: 'GET',
-            //url: 'http://localhost/jrc/reporteservice',
-            url: 'http://blackapp.xyz/reporteservice',
+            url: urlProd+'reporteservice',
             dataType: 'json'
         }).done(function( data ){
             console.log(data);
@@ -120,8 +196,7 @@ var objJrc = {
             var hasta = $('.hasta').val();
             $.ajax({
                 type: 'GET',
-                //url: 'http://localhost/jrc/reporteservice?de='+de+'&hasta='+hasta,
-                url: 'http://blackapp.xyz/reporteservice?de='+de+'&hasta='+hasta,
+                url: urlProd+'reporteservice?de='+de+'&hasta='+hasta,
                 dataType: 'json'
             }).done(function( data ){
                 console.log(data);

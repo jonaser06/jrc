@@ -40,5 +40,22 @@ class consultasClassController{
         exit;
     }
 
+    public static function reporteScoopsController($equipo){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = consultasClassModel::reporteScoopsModel($equipo);
+        # respuesta
+        echo $response;
+        exit;
+    }
+    public static function reporteFechaScoops($de, $hasta, $equipo){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = consultasClassModel::reporteScoopsFechaModel($de, $hasta, $equipo);
+        # respuesta
+        echo $response;
+        exit;
+    }
+
 }
 ?>

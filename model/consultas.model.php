@@ -76,10 +76,12 @@ class consultasClassModel{
         $nrofallas = $data['nrofallas'];
         $paradatotal = $data['paradatotal'];
         $homp = $data['homp'];
+        $inspect = $data['inspect'];
+        $prevent = $data['prevent'];
         try {
             $db        =   getDB();
-            $sql       =   "INSERT INTO reporte (inicio_jornada, fin_jornada, hora_acumulada, hora, equipo_trabajo, descripcion, fallas_equipo, tiempo_parada, homp)
-                            VALUES (:inicio_jornada, :fin_jornada, :hora_acumulada, :hora, :equipo_trabajo, :descripcion, :fallas_equipo, :tiempo_parada, :homp)";
+            $sql       =   "INSERT INTO reporte (inicio_jornada, fin_jornada, hora_acumulada, hora, equipo_trabajo, descripcion, fallas_equipo, tiempo_parada, homp, inspecc, mantto_prev, horas_calend, horas_prog)
+                            VALUES (:inicio_jornada, :fin_jornada, :hora_acumulada, :hora, :equipo_trabajo, :descripcion, :fallas_equipo, :tiempo_parada, :homp, :inspecc, :mantto_prev, '24', '20')";
             $stmt      =    $db->prepare($sql);
             $stmt->bindParam("inicio_jornada", $iniciojornada,PDO::PARAM_STR);
             $stmt->bindParam("fin_jornada", $finjornada,PDO::PARAM_STR);
@@ -90,12 +92,48 @@ class consultasClassModel{
             $stmt->bindParam("fallas_equipo", $nrofallas,PDO::PARAM_STR);
             $stmt->bindParam("tiempo_parada", $paradatotal,PDO::PARAM_STR);
             $stmt->bindParam("homp", $homp,PDO::PARAM_STR);
+            $stmt->bindParam("inspecc", $inspect,PDO::PARAM_STR);
+            $stmt->bindParam("mantto_prev", $prevent,PDO::PARAM_STR);
             $stmt->execute();
             $db = null;
             return true;
             
         } catch (PDOException $e) {
             return false;
+        }
+    }
+
+    public static function reporteScoopsFechaModel($de, $hasta, $equipo){
+        try {
+            $db        =   getDB();
+            $sql       =   "SELECT * FROM reporte WHERE inicio_jornada >= :de  AND fin_jornada <= :hasta AND equipo_trabajo = :equipo ";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("de", $de,PDO::PARAM_STR);
+            $stmt->bindParam("hasta", $hasta,PDO::PARAM_STR);
+            $stmt->bindParam("equipo", $equipo,PDO::PARAM_STR);
+            $stmt->execute();
+            $mainCount =    $stmt->rowCount();
+            $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+            return '{"status":"true", "message":"Find One", "data": '.json_encode($userData).'}';
+            
+        } catch (PDOException $e) {
+            return '{"status":false, "message":'.$e.'}';
+        }
+    }
+    
+    public static function reporteScoopsModel($equipo){
+        try {
+            $db        =   getDB();
+            $sql       =   "SELECT * FROM reporte WHERE equipo_trabajo = :equipo ";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("equipo", $equipo,PDO::PARAM_STR);
+            $stmt->execute();
+            $mainCount =    $stmt->rowCount();
+            $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+            return '{"status":"true", "message":"Find One", "data": '.json_encode($userData).'}';
+            
+        } catch (PDOException $e) {
+            return '{"status":false, "message":'.$e.'}';
         }
     }
 }

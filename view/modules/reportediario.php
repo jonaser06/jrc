@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">EQUIPO DE TRABAJO:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="equipotrabajo" value="<?php echo $maquina->nombre; ?>">
+                                        <input type="text" class="form-control" name="equipotrabajo" value="<?php echo $maquina->nombre; ?>" readonly="readonly">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -89,14 +89,15 @@
                                         <input type="text" class="form-control" name="descripcion">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">NRO DE FALLAS DEL EQUIPO:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-1">
                                         <input type="number" class="form-control" name="nrofallas">
                                     </div>
 
                                     <label class="col-sm-1 control-label">TIEMPO DE PARADA TOTAL:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-1">
                                         <input type="number" class="form-control" name="paradatotal">
                                     </div>
 
@@ -104,8 +105,18 @@
                                     <div class="col-sm-2">
                                         <input type="number" class="form-control" name="homp">
                                     </div>
+
+                                    <label class="col-sm-1 control-label">INSPECCIÓN:</label>
+                                    <div class="col-sm-1">
+                                        <input type="number" class="form-control" name="inspect">
+                                    </div>
+
+                                    <label class="col-sm-1 control-label">MANTENIMIENTO PREVENTIVO:</label>
+                                    <div class="col-sm-1">
+                                        <input type="number" class="form-control" name="prevent">
+                                    </div>
                                 </div>
-                                <input type="submit" class="btn btn-block btn-primary" value="Enviar">
+                                <input type="submit" class="btn btn-block btn-primary" value="Consultar">
                             </div>
                         </form>
                     </div>
