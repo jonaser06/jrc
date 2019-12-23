@@ -169,7 +169,14 @@ var objJrc = {
                 _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
                 _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
 
-                Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                
+                if(isNaN(Ao)){
+                    Ao = '-';
+                }else{
+                    Ao = Ao.toString()+'%';
+                }
+                
                 var content = "";
                     content += '<tr>';
                     content += '<td>'+ element.id_reporte +'</td>';
@@ -179,7 +186,7 @@ var objJrc = {
                     content += '<td>Motor Diesel</td>';
                     content += '<td>'+ hora +'</td>';
                     content += '<td>'+ element.tiempo_parada +'</td>';
-                    content += '<td>'+Ao+'%</td>';
+                    content += '<td>'+Ao+'</td>';
                     content += '<td>'+ element.descripcion +'</td>';
                     content += '<td>Operativo</td>';
                     content += '</tr> ';
@@ -207,6 +214,12 @@ var objJrc = {
                     _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
 
                     Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                    
+                    if(isNaN(Ao)){
+                        Ao = '-';
+                    }else{
+                        Ao = Ao.toString()+'%';
+                    }
                     var content = "";
                         content += '<tr>';
                         content += '<td>'+ element.id_reporte +'</td>';
