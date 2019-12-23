@@ -116,7 +116,7 @@
                                         <input type="number" class="form-control" name="prevent" value="0">
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-block btn-primary" value="Consultar">
+                                <input type="submit" class="btn btn-block btn-primary" value="Consultar"> 
                             </div>
                         </form>
                     </div>
