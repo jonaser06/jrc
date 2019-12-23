@@ -73,7 +73,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
                                             </div>
-                                            <input type="number" class="form-control" name="hora">
+                                            <input type="number" class="form-control" name="hora" required>
                                         </div>
                                     </div>
                                 </div>
@@ -86,34 +86,34 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">DESCRIPCION:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="descripcion">
+                                        <input type="text" class="form-control" name="descripcion" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">NRO DE FALLAS DEL EQUIPO:</label>
                                     <div class="col-sm-1">
-                                        <input type="number" class="form-control" name="nrofallas">
+                                        <input type="number" class="form-control" name="nrofallas" value="0">
                                     </div>
 
                                     <label class="col-sm-1 control-label">TIEMPO DE PARADA TOTAL:</label>
                                     <div class="col-sm-1">
-                                        <input type="number" class="form-control" name="paradatotal">
+                                        <input type="number" class="form-control" name="paradatotal" value="0">
                                     </div>
 
                                     <label class="col-sm-2 control-label">HORAS de MANTENIMIENTO PROGRAMADO:</label>
                                     <div class="col-sm-2">
-                                        <input type="number" class="form-control" name="homp">
+                                        <input type="number" class="form-control" name="homp" value="0">
                                     </div>
 
                                     <label class="col-sm-1 control-label">INSPECCIÓN:</label>
                                     <div class="col-sm-1">
-                                        <input type="number" class="form-control" name="inspect">
+                                        <input type="number" class="form-control" name="inspect" value="0">
                                     </div>
 
                                     <label class="col-sm-1 control-label">MANTENIMIENTO PREVENTIVO:</label>
                                     <div class="col-sm-1">
-                                        <input type="number" class="form-control" name="prevent">
+                                        <input type="number" class="form-control" name="prevent" value="0">
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-block btn-primary" value="Consultar">
