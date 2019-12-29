@@ -58,7 +58,7 @@
                         <table class="table table-bordered table-hover dataTable" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="text-align:center; width: 5%;">Fecha</th>
+                                    <th style="text-align:center; width: 15%;">Fecha</th>
                                     <th style="text-align:center; width: 5%;">Horometro Inicial</th>
                                     <th style="text-align:center; width: 5%;">Horometro Final</th>
                                     <th style="text-align:center; width: 5%;">Horas Trab</th>
@@ -70,8 +70,6 @@
                                     <th style="text-align:center; width: 5%;">Horas Calend</th>
                                     <th style="text-align:center; width: 5%;">Horas Prog</th>
                                     <th style="text-align:center; width: 5%;">D.M.</th>
-                                    <th style="text-align:center; width: 5%;">D.F.</th>
-                                    <th style="text-align:center; width: 5%;">% Util.</th>
                                     <th style="text-align:center; width: 5%;">N° Fallas</th>
                                     <th style="text-align:center; width: 25%;">Descripcion</th>
                                 </tr>

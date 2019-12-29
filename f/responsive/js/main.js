@@ -1,5 +1,6 @@
 var urlProd = 'http://blackapp.xyz/';
-var urlDev = 'http://localhost/jrc/';
+//var urlProd = 'http://localhost/jrc/';
+//var urlDev = 'http://localhost/jrc/';
 
 var objJrc = {
 
@@ -95,6 +96,16 @@ var objJrc = {
             console.log(data);
             data.data.forEach(function( element, index ){
                 hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+
+                Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                
+                if(isNaN(Ao)){
+                    Ao = '-';
+                }else{
+                    Ao = Ao.toString()+'%';
+                }
                 var content = "";
                     content += '<tr>';
                     content += '<td>'+element.inicio_jornada+'</td>';
@@ -108,9 +119,7 @@ var objJrc = {
                     content += '<td>'+element.tiempo_parada+'</td>';
                     content += '<td>'+element.horas_calend+'</td>';
                     content += '<td>'+element.horas_prog+'</td>';
-                    content += '<td></td>';
-                    content += '<td></td>';
-                    content += '<td></td>';
+                    content += '<td>'+Ao+'</td>';
                     content += '<td>'+element.fallas_equipo+'</td>';
                     content += '<td>'+element.descripcion+'</td>';
                     content += '/<tr>';
@@ -131,6 +140,16 @@ var objJrc = {
                 console.log(data);
                 data.data.forEach(function( element, index ){
                     hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                    
+                    if(isNaN(Ao)){
+                        Ao = '-';
+                    }else{
+                        Ao = Ao.toString()+'%';
+                    }
                     var content = "";
                         content += '<tr>';
                         content += '<td>'+element.inicio_jornada+'</td>';
@@ -144,9 +163,7 @@ var objJrc = {
                         content += '<td>'+element.tiempo_parada+'</td>';
                         content += '<td>'+element.horas_calend+'</td>';
                         content += '<td>'+element.horas_prog+'</td>';
-                        content += '<td></td>';
-                        content += '<td></td>';
-                        content += '<td></td>';
+                        content += '<td>'+Ao+'</td>';
                         content += '<td>'+element.fallas_equipo+'</td>';
                         content += '<td>'+element.descripcion+'</td>';
                         content += '/<tr>';
