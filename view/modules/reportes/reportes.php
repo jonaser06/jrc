@@ -36,6 +36,7 @@
             }
         </style>
         <ul class="pagination pagination-sm no-margin pull-right"></ul>
+        <br><br>
         <table class="table table-bordered table-hover dataTable" style="width: 100%;">
             <thead>
                 <tr>
