@@ -213,8 +213,9 @@ class consultasClassModel{
         try {
             #obtener total de paginas
             $db        =   getDB();
-            $sql       =   "SELECT * FROM reporte";
+            $sql       =   "SELECT * FROM reporte WHERE equipo_trabajo = :equipo";
             $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("equipo", $equipo,PDO::PARAM_STR);
             $stmt->execute();
             $total     =   $stmt->rowCount();
             $forPage   = 10;
