@@ -68,6 +68,8 @@ class consultasClassModel{
             $db        =   getDB();
             $sql       =   "SELECT * FROM reporte WHERE inicio_jornada >= :de  AND fin_jornada <= :hasta";
             $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("de", $de,PDO::PARAM_STR);
+            $stmt->bindParam("hasta", $hasta,PDO::PARAM_STR);
             $stmt->execute();
             $total     =   $stmt->rowCount();
             $forPage   = 10;

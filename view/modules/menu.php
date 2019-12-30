@@ -36,7 +36,7 @@
                 if($_SESSION['rol']=='mecanico'){
                   echo '<a href="r1600g"><i class="fa fa-circle-o"></i> R1600G</a>';
                 }else{
-                  echo '<a href="scoops"><i class="fa fa-circle-o"></i> R1600G</a>';
+                  echo '<a href="scoops?consulta=scoops"><i class="fa fa-circle-o"></i> R1600G</a>';
                 }
               ?>
             </li>

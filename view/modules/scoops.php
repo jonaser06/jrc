@@ -54,9 +54,6 @@
                             td{
                                 font-size: 14px;
                             }
-                            .activepage{
-                                background-color: #eee !important;
-                            }
                         </style>
                         <ul class="pagination pagination-sm no-margin pull-right"></ul>
                         <br><br>

@@ -40,3 +40,6 @@ td, label{
 .checked{
     cursor: pointer;
 }
+.activepage{
+    background-color: #eee !important;
+}

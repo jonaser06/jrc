@@ -11,7 +11,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" class="form-control de" id="datepicker">
+                        <input type="text" class="form-control de" id="datepicker" value="2018-12-29">
                     </div>
                 </div>
                 <label class="col-sm-1 control-label">HASTA:</label>
@@ -35,6 +35,7 @@
                 font-size: 14px;
             }
         </style>
+        <ul class="pagination pagination-sm no-margin pull-right"></ul>
         <table class="table table-bordered table-hover dataTable" style="width: 100%;">
             <thead>
                 <tr>

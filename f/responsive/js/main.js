@@ -1,5 +1,5 @@
-//var urlProd = 'http://blackapp.xyz/';
-var urlProd = 'http://localhost/jrc/';
+var urlProd = 'http://blackapp.xyz/';
+//var urlProd = 'http://localhost/jrc/';
 //var urlDev = 'http://localhost/jrc/';
 
 var objJrc = {
@@ -8,7 +8,6 @@ var objJrc = {
         objJrc.checked();
         objJrc.DatePicker();
         objJrc.Consulta();
-        objJrc.ReportScoops();
         objJrc.tools();
     },
     checked: function(){
@@ -64,6 +63,9 @@ var objJrc = {
         }
         if(consulta=='reporte'){
             objJrc.Report();
+        }
+        if(consulta=='scoops'){
+            objJrc.ReportScoops();
         }
     },
     ResumenEquipos: function(){
@@ -200,7 +202,18 @@ var objJrc = {
             url: urlProd+'reporteservice',
             dataType: 'json'
         }).done(function( data ){
-            console.log(data);
+            //print pagination
+            var pag = "";
+                pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' data-previus='"+data.previus_page+"' >«</a></li>": '';
+            
+            for(var i = 1; i <= data.pagination; i++ ){
+                var active = (data.current_page == i) ? 'activepage' : '';
+                pag += "<li><a href='#' class='go_page "+active+"' data-page='"+i+"'>"+i+"</a></li>";
+            }
+                pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' data-next='"+data.next_page+"'>»</a></li>": '';
+            
+            $('.pagination').append(pag);
+            //print table
             data.data.forEach(function( element, index ){
                 hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
                 _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
@@ -231,6 +244,7 @@ var objJrc = {
         //si se busca por fechas
         $(".consulta").on('click',function(){
             $('#tbl').html('');
+            $('.pagination').html('');
             $(this).val("Cargando...");
             var de = $('.de').val();
             var hasta = $('.hasta').val();
@@ -239,7 +253,18 @@ var objJrc = {
                 url: urlProd+'reporteservice?de='+de+'&hasta='+hasta,
                 dataType: 'json'
             }).done(function( data ){
-                console.log(data);
+                //print pagination
+                    var pag = "";
+                    pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' data-previus='"+data.previus_page+"' >«</a></li>": '';
+                
+                for(var i = 1; i <= data.pagination; i++ ){
+                    var active = (data.current_page == i) ? 'activepage' : '';
+                    pag += "<li><a href='#' class='go_page "+active+"' data-page='"+i+"'>"+i+"</a></li>";
+                }
+                    pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' data-next='"+data.next_page+"'>»</a></li>": '';
+                
+                $('.pagination').append(pag);
+                //print table
                 $(".consulta").val("Consultar");
                 data.data.forEach(function( element, index ){
                     hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
@@ -291,16 +316,28 @@ var objJrc = {
     tools:function(){
         $("body").on('click',".previus_page",function(e){
             e.preventDefault();
+            //identificando pagina para la consulta
+            var consulta = objJrc.$_GET('consulta');
+            var endpoint;
+            if(consulta=='scoops'){
+                endpoint = 'reportescoops';
+            }
+            if(consulta=='reporte'){
+                endpoint = 'reporteservice';
+            }
+            //obteniendo datos
             var page = $(this).data("previus");
-            var de = $(this).data("de");
-            var hasta = $(this).data("hasta");
-            var fecha = (de === undefined && hasta === undefined)?'':('&de='+de+'&hasta='+hasta);
+            var de = $(".de").val();
+            var hasta = $(".hasta").val();
+            var fecha = (de === undefined && hasta === undefined)?'':('de='+de+'&hasta='+hasta);
             var param = 'data-de='+de+' data-hasta='+hasta;
             var equipo = $('.equipo').val();
+                equipo = (equipo===undefined)?'':('equipo='+equipo+'&');
+            $('#tbl').html('');
             $('#tbl_scoops').html('');
             $.ajax({
                 type: 'GET',
-                url: urlProd+'reportescoops?equipo='+equipo+fecha+'&page='+page,
+                url: urlProd+endpoint+'?'+equipo+fecha+'&page='+page,
                 dataType: 'json'
             }).done(function( data ){
                 //print pagination
@@ -315,47 +352,88 @@ var objJrc = {
             
                 $('.pagination').html(pag);
                 //print table
-                data.data.forEach(function( element, index ){
-                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
-                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
-                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
-    
-                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
-                    
-                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
-                    var content = "";
-                        content += '<tr>';
-                        content += '<td>'+element.inicio_jornada+'</td>';
-                        content += '<td>'+element.hora_acumulada+'</td>';
-                        content += '<td>'+hora+'</td>';
-                        content += '<td>'+element.hora+'</td>';
-                        content += '<td>'+hora+'</td>';
-                        content += '<td>'+element.inspecc+'</td>';
-                        content += '<td>'+element.mantto_prev+'</td>';
-                        content += '<td>'+element.homp+'</td>';
-                        content += '<td>'+element.tiempo_parada+'</td>';
-                        content += '<td>'+element.horas_calend+'</td>';
-                        content += '<td>'+element.horas_prog+'</td>';
-                        content += '<td>'+Ao+'</td>';
-                        content += '<td>'+element.fallas_equipo+'</td>';
-                        content += '<td>'+element.descripcion+'</td>';
-                        content += '/<tr>';
-                    $('#tbl_scoops').append(content);
-                });
+                if(consulta=='scoops'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+        
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                        var content = "";
+                            content += '<tr>';
+                            content += '<td>'+element.inicio_jornada+'</td>';
+                            content += '<td>'+element.hora_acumulada+'</td>';
+                            content += '<td>'+hora+'</td>';
+                            content += '<td>'+element.hora+'</td>';
+                            content += '<td>'+hora+'</td>';
+                            content += '<td>'+element.inspecc+'</td>';
+                            content += '<td>'+element.mantto_prev+'</td>';
+                            content += '<td>'+element.homp+'</td>';
+                            content += '<td>'+element.tiempo_parada+'</td>';
+                            content += '<td>'+element.horas_calend+'</td>';
+                            content += '<td>'+element.horas_prog+'</td>';
+                            content += '<td>'+Ao+'</td>';
+                            content += '<td>'+element.fallas_equipo+'</td>';
+                            content += '<td>'+element.descripcion+'</td>';
+                            content += '/<tr>';
+                        $('#tbl_scoops').append(content);
+                    });
+                }
+                if(consulta=='reporte'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+        
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                        
+                        var content = "";
+                            content += '<tr>';
+                            content += '<td>'+ element.id_reporte +'</td>';
+                            content += '<td>'+ element.equipo_trabajo +'</td>';
+                            content += '<td>Caterpillar</td>';
+                            content += '<td>R-1600G</td>';
+                            content += '<td>Motor Diesel</td>';
+                            content += '<td>'+ hora +'</td>';
+                            content += '<td>'+ element.tiempo_parada +'</td>';
+                            content += '<td>'+Ao+'</td>';
+                            content += '<td>'+ element.descripcion +'</td>';
+                            content += '<td>Operativo</td>';
+                            content += '</tr> ';
+        
+                        $('#tbl').append(content);
+                    });
+                }
             });
         });
         $("body").on('click',".next_page",function(e){
             e.preventDefault();
+            //identificando pagina para la consulta
+            var consulta = objJrc.$_GET('consulta');
+            var endpoint;
+            if(consulta=='scoops'){
+                endpoint = 'reportescoops';
+            }
+            if(consulta=='reporte'){
+                endpoint = 'reporteservice';
+            }
+            //obteniendo datos
             var page = $(this).data("next");
             var de = $(".de").val();
             var hasta = $(".hasta").val();
-            var fecha = (de === undefined && hasta === undefined )?'':('&de='+de+'&hasta='+hasta);
+            var fecha = (de === undefined && hasta === undefined )?'':('de='+de+'&hasta='+hasta);
             var param = 'data-de='+de+' data-hasta='+hasta;
             var equipo = $('.equipo').val();
+                equipo = (equipo===undefined)?'':('equipo='+equipo+'&');
+            $('#tbl').html('');
             $('#tbl_scoops').html('');
             $.ajax({
                 type: 'GET',
-                url: urlProd+'reportescoops?equipo='+equipo+fecha+'&page='+page, 
+                url: urlProd+endpoint+'?'+equipo+fecha+'&page='+page, 
                 dataType: 'json'
             }).done(function( data ){
                 //print pagination
@@ -370,48 +448,89 @@ var objJrc = {
             
                 $('.pagination').html(pag);
                 //print table
-                data.data.forEach(function( element, index ){
-                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
-                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
-                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                consulta = objJrc.$_GET('consulta');
+                if(consulta=='scoops'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+        
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                        var content = "";
+                            content += '<tr>';
+                            content += '<td>'+element.inicio_jornada+'</td>';
+                            content += '<td>'+element.hora_acumulada+'</td>';
+                            content += '<td>'+hora+'</td>';
+                            content += '<td>'+element.hora+'</td>';
+                            content += '<td>'+hora+'</td>';
+                            content += '<td>'+element.inspecc+'</td>';
+                            content += '<td>'+element.mantto_prev+'</td>';
+                            content += '<td>'+element.homp+'</td>';
+                            content += '<td>'+element.tiempo_parada+'</td>';
+                            content += '<td>'+element.horas_calend+'</td>';
+                            content += '<td>'+element.horas_prog+'</td>';
+                            content += '<td>'+Ao+'</td>';
+                            content += '<td>'+element.fallas_equipo+'</td>';
+                            content += '<td>'+element.descripcion+'</td>';
+                            content += '/<tr>';
+                        $('#tbl_scoops').append(content);
+                    });
+                }
+                if(consulta=='reporte'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
     
-                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
-                    
-                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
-                    var content = "";
-                        content += '<tr>';
-                        content += '<td>'+element.inicio_jornada+'</td>';
-                        content += '<td>'+element.hora_acumulada+'</td>';
-                        content += '<td>'+hora+'</td>';
-                        content += '<td>'+element.hora+'</td>';
-                        content += '<td>'+hora+'</td>';
-                        content += '<td>'+element.inspecc+'</td>';
-                        content += '<td>'+element.mantto_prev+'</td>';
-                        content += '<td>'+element.homp+'</td>';
-                        content += '<td>'+element.tiempo_parada+'</td>';
-                        content += '<td>'+element.horas_calend+'</td>';
-                        content += '<td>'+element.horas_prog+'</td>';
-                        content += '<td>'+Ao+'</td>';
-                        content += '<td>'+element.fallas_equipo+'</td>';
-                        content += '<td>'+element.descripcion+'</td>';
-                        content += '/<tr>';
-                    $('#tbl_scoops').append(content);
-                });
+                        Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                        var content = "";
+                            content += '<tr>';
+                            content += '<td>'+ element.id_reporte +'</td>';
+                            content += '<td>'+ element.equipo_trabajo +'</td>';
+                            content += '<td>Caterpillar</td>';
+                            content += '<td>R-1600G</td>';
+                            content += '<td>Motor Diesel</td>';
+                            content += '<td>'+ hora +'</td>';
+                            content += '<td>'+ element.tiempo_parada +'</td>';
+                            content += '<td>'+Ao+'%</td>';
+                            content += '<td>'+ element.descripcion +'</td>';
+                            content += '<td>Operativo</td>';
+                            content += '</tr> ';
+    
+                        $('#tbl').append(content);
+                    });
+                }
             });
 
         });
         $("body").on('click',".go_page",function(e){
             e.preventDefault();
+            //identificando pagina para la consulta
+            var consulta = objJrc.$_GET('consulta');
+            var endpoint;
+            if(consulta=='scoops'){
+                endpoint = 'reportescoops';
+            }
+            if(consulta=='reporte'){
+                endpoint = 'reporteservice';
+            }
+            //obteniendo datos
             var page = $(this).data("page");
             var de = $(".de").val();
             var hasta = $(".hasta").val();
-            var fecha = (de === undefined && hasta === undefined)?'':('&de='+de+'&hasta='+hasta);
+            var fecha = (de === undefined && hasta === undefined)?'':('de='+de+'&hasta='+hasta);
             var param = 'data-de='+de+' data-hasta='+hasta;
             var equipo = $('.equipo').val();
+                equipo = (equipo===undefined)?'':('equipo='+equipo+'&');
+            $('#tbl').html('');
             $('#tbl_scoops').html('');
             $.ajax({
                 type: 'GET',
-                url: urlProd+'reportescoops?equipo='+equipo+fecha+'&page='+page,
+                url: urlProd+endpoint+'?'+equipo+fecha+'&page='+page,
                 dataType: 'json'
             }).done(function( data ){
                 //print pagination
@@ -426,33 +545,62 @@ var objJrc = {
             
                 $('.pagination').html(pag);
                 //print table
-                data.data.forEach(function( element, index ){
-                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
-                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
-                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                consulta = objJrc.$_GET('consulta');
+                if(consulta=='scoops'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+        
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                        var content = "";
+                            content += '<tr>';
+                            content += '<td>'+element.inicio_jornada+'</td>';
+                            content += '<td>'+element.hora_acumulada+'</td>';
+                            content += '<td>'+hora+'</td>';
+                            content += '<td>'+element.hora+'</td>';
+                            content += '<td>'+hora+'</td>';
+                            content += '<td>'+element.inspecc+'</td>';
+                            content += '<td>'+element.mantto_prev+'</td>';
+                            content += '<td>'+element.homp+'</td>';
+                            content += '<td>'+element.tiempo_parada+'</td>';
+                            content += '<td>'+element.horas_calend+'</td>';
+                            content += '<td>'+element.horas_prog+'</td>';
+                            content += '<td>'+Ao+'</td>';
+                            content += '<td>'+element.fallas_equipo+'</td>';
+                            content += '<td>'+element.descripcion+'</td>';
+                            content += '/<tr>';
+                        $('#tbl_scoops').append(content);
+                    });
+                }
+                if(consulta=='reporte'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
     
-                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
-                    
-                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
-                    var content = "";
-                        content += '<tr>';
-                        content += '<td>'+element.inicio_jornada+'</td>';
-                        content += '<td>'+element.hora_acumulada+'</td>';
-                        content += '<td>'+hora+'</td>';
-                        content += '<td>'+element.hora+'</td>';
-                        content += '<td>'+hora+'</td>';
-                        content += '<td>'+element.inspecc+'</td>';
-                        content += '<td>'+element.mantto_prev+'</td>';
-                        content += '<td>'+element.homp+'</td>';
-                        content += '<td>'+element.tiempo_parada+'</td>';
-                        content += '<td>'+element.horas_calend+'</td>';
-                        content += '<td>'+element.horas_prog+'</td>';
-                        content += '<td>'+Ao+'</td>';
-                        content += '<td>'+element.fallas_equipo+'</td>';
-                        content += '<td>'+element.descripcion+'</td>';
-                        content += '/<tr>';
-                    $('#tbl_scoops').append(content);
-                });
+                        Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                        var content = "";
+                            content += '<tr>';
+                            content += '<td>'+ element.id_reporte +'</td>';
+                            content += '<td>'+ element.equipo_trabajo +'</td>';
+                            content += '<td>Caterpillar</td>';
+                            content += '<td>R-1600G</td>';
+                            content += '<td>Motor Diesel</td>';
+                            content += '<td>'+ hora +'</td>';
+                            content += '<td>'+ element.tiempo_parada +'</td>';
+                            content += '<td>'+Ao+'%</td>';
+                            content += '<td>'+ element.descripcion +'</td>';
+                            content += '<td>Operativo</td>';
+                            content += '</tr> ';
+    
+                        $('#tbl').append(content);
+                    });
+                }
             });
         });
     }
