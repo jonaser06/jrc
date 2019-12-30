@@ -192,7 +192,6 @@ class consultasClassModel{
                 $previus_page = ( (int)$page - 1 ) <= 0 ? 'false' : ( (int)$page - 1 ) ;
                 return '{
                             "status":"true", 
-                            "contar":"'.$total.'",
                             "message":"Find One",
                             "current_page":"'.$page.'", 
                             "next_page":"'.$next_page.'" ,
@@ -237,7 +236,6 @@ class consultasClassModel{
                 $previus_page = ( (int)$page - 1 ) <= 0 ? 'false' : ( (int)$page - 1 ) ;
                 return '{
                             "status":"true", 
-                            "contar":"'.$total.'",
                             "message":"Find One",
                             "current_page":"'.$page.'", 
                             "next_page":"'.$next_page.'" ,
