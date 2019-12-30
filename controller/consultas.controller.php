@@ -21,37 +21,37 @@ class consultasClassController{
         return $set;
 
     }
-    public static function reporteController(){
+    public static function reporteController($page){
 
         # definiendo el modo de respuesta
         header('Content-Type: application/json');
-        $response = consultasClassModel::reporteModel();
+        $response = consultasClassModel::reporteModel($page);
         # respuesta
         echo $response;
         exit;
 
     }
-    public static function reporteFechaController($de, $hasta){
+    public static function reporteFechaController($de, $hasta, $page){
         # definiendo el modo de respuesta
         header('Content-Type: application/json');
-        $response = consultasClassModel::reporteFechaModel($de, $hasta);
+        $response = consultasClassModel::reporteFechaModel($de, $hasta, $page);
         # respuesta
         echo $response;
         exit;
     }
 
-    public static function reporteScoopsController($equipo){
+    public static function reporteScoopsController($equipo, $page){
         # definiendo el modo de respuesta
         header('Content-Type: application/json');
-        $response = consultasClassModel::reporteScoopsModel($equipo);
+        $response = consultasClassModel::reporteScoopsModel($equipo, $page);
         # respuesta
         echo $response;
         exit;
     }
-    public static function reporteFechaScoops($de, $hasta, $equipo){
+    public static function reporteFechaScoops($de, $hasta, $equipo, $page){
         # definiendo el modo de respuesta
         header('Content-Type: application/json');
-        $response = consultasClassModel::reporteScoopsFechaModel($de, $hasta, $equipo);
+        $response = consultasClassModel::reporteScoopsFechaModel($de, $hasta, $equipo, $page);
         # respuesta
         echo $response;
         exit;

@@ -1,5 +1,5 @@
-var urlProd = 'http://blackapp.xyz/';
-//var urlProd = 'http://localhost/jrc/';
+//var urlProd = 'http://blackapp.xyz/';
+var urlProd = 'http://localhost/jrc/';
 //var urlDev = 'http://localhost/jrc/';
 
 var objJrc = {
@@ -9,8 +9,8 @@ var objJrc = {
         objJrc.DatePicker();
         objJrc.Consulta();
         objJrc.ReportScoops();
+        objJrc.tools();
     },
-
     checked: function(){
         $(".checked").click(function(){
             if($(this).hasClass('fa-square-o')){
@@ -26,15 +26,18 @@ var objJrc = {
                 }
         });
     },
-
     DatePicker:function(){
-        $('#datepicker, #datepicker2, #datepicker3').datepicker({
+        $('#datepicker').datepicker({
+            orientation: 'bottom right',
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        });
+        $(' #datepicker2, #datepicker3').datepicker({
             orientation: 'bottom right',
             autoclose: true,
             format: 'yyyy-mm-dd'
         }).datepicker("setDate", new Date());
     },
-
     Consulta: function(){
         var consulta = objJrc.$_GET('consulta');
         
@@ -86,14 +89,24 @@ var objJrc = {
     },
     ReportScoops:function(){
         var equipo = $('.equipo').val();
-        var de = $('.de').val();
-        var hasta = $('.hasta').val();
         $.ajax({
             type: 'GET',
-            url: urlProd+'reportescoops?equipo='+equipo,
+            url: urlProd+'reportescoops?equipo='+equipo+'&page=1',
             dataType: 'json'
         }).done(function( data ){
-            console.log(data);
+            
+            //print pagination
+            var pag = "";
+                pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' data-previus='"+data.previus_page+"' >«</a></li>": '';
+            
+            for(var i = 1; i <= data.pagination; i++ ){
+                var active = (data.current_page == i) ? 'activepage' : '';
+                pag += "<li><a href='#' class='go_page "+active+"' data-page='"+i+"'>"+i+"</a></li>";
+            }
+                pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' data-next='"+data.next_page+"'>»</a></li>": '';
+            
+            $('.pagination').append(pag);
+            //print table
             data.data.forEach(function( element, index ){
                 hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
                 _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
@@ -101,11 +114,8 @@ var objJrc = {
 
                 Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                 
-                if(isNaN(Ao)){
-                    Ao = '-';
-                }else{
-                    Ao = Ao.toString()+'%';
-                }
+                Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                
                 var content = "";
                     content += '<tr>';
                     content += '<td>'+element.inicio_jornada+'</td>';
@@ -128,16 +138,30 @@ var objJrc = {
         });
         //busca por fechas
         $(".consulta_scoops").on('click',function(){
+            $('#tbl_scoops').html('');
+            $('.pagination').html('');
+            $(this).val("Cargando...");
             var equipo = $('.equipo').val();
             var de = $('.de').val();
             var hasta = $('.hasta').val();
-            console.log("de: "+de+" equipo:"+equipo);
             $.ajax({
                 type: 'GET',
-                url: urlProd+'reportescoops?equipo='+equipo+'&de='+de+'&hasta='+hasta,
+                url: urlProd+'reportescoops?equipo='+equipo+'&de='+de+'&hasta='+hasta+'&page=1',
                 dataType: 'json'
             }).done(function( data ){
-                console.log(data);
+                $(".consulta_scoops").val("Consultar");
+                //print pagination
+                    var pag = "";
+                    pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' data-de='"+de+"' data-hasta='"+hasta+"' data-previus='"+data.previus_page+"' >«</a></li>": '';
+                
+                for(var i = 1; i <= data.pagination; i++ ){
+                    var active = (data.current_page == i) ? 'activepage' : '';
+                    pag += "<li><a href='#' class='go_page "+active+"' data-de='"+de+"' data-hasta='"+hasta+"' data-page='"+i+"'>"+i+"</a></li>";
+                }
+                    pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' data-de='"+de+"' data-hasta='"+hasta+"' data-next='"+data.next_page+"'>»</a></li>": '';
+                
+                $('.pagination').append(pag);
+                //print table
                 data.data.forEach(function( element, index ){
                     hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
                     _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
@@ -145,11 +169,7 @@ var objJrc = {
 
                     Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                     
-                    if(isNaN(Ao)){
-                        Ao = '-';
-                    }else{
-                        Ao = Ao.toString()+'%';
-                    }
+                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
                     var content = "";
                         content += '<tr>';
                         content += '<td>'+element.inicio_jornada+'</td>';
@@ -188,11 +208,7 @@ var objJrc = {
 
                 Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                 
-                if(isNaN(Ao)){
-                    Ao = '-';
-                }else{
-                    Ao = Ao.toString()+'%';
-                }
+                Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
                 
                 var content = "";
                     content += '<tr>';
@@ -232,11 +248,7 @@ var objJrc = {
 
                     Ao = ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
                     
-                    if(isNaN(Ao)){
-                        Ao = '-';
-                    }else{
-                        Ao = Ao.toString()+'%';
-                    }
+                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
                     var content = "";
                         content += '<tr>';
                         content += '<td>'+ element.id_reporte +'</td>';
@@ -275,6 +287,174 @@ var objJrc = {
             return vars[param] ? vars[param] : null;    
         }
         return vars;
+    },
+    tools:function(){
+        $("body").on('click',".previus_page",function(e){
+            e.preventDefault();
+            var page = $(this).data("previus");
+            var de = $(this).data("de");
+            var hasta = $(this).data("hasta");
+            var fecha = (de === undefined && hasta === undefined)?'':('&de='+de+'&hasta='+hasta);
+            var param = 'data-de='+de+' data-hasta='+hasta;
+            var equipo = $('.equipo').val();
+            $('#tbl_scoops').html('');
+            $.ajax({
+                type: 'GET',
+                url: urlProd+'reportescoops?equipo='+equipo+fecha+'&page='+page,
+                dataType: 'json'
+            }).done(function( data ){
+                //print pagination
+                var pag = "";
+                    pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' "+param+" data-previus='"+data.previus_page+"' >«</a></li>": '';
+                
+                for(var i = 1; i <= data.pagination; i++ ){
+                    var active = (data.current_page == i) ? 'activepage' : '';
+                    pag += "<li><a href='#' class='go_page "+active+"' "+param+" data-page='"+i+"'>"+i+"</a></li>";
+                }
+                    pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' "+param+" data-next='"+data.next_page+"'>»</a></li>": '';
+            
+                $('.pagination').html(pag);
+                //print table
+                data.data.forEach(function( element, index ){
+                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+    
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                    
+                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                    var content = "";
+                        content += '<tr>';
+                        content += '<td>'+element.inicio_jornada+'</td>';
+                        content += '<td>'+element.hora_acumulada+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.hora+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.inspecc+'</td>';
+                        content += '<td>'+element.mantto_prev+'</td>';
+                        content += '<td>'+element.homp+'</td>';
+                        content += '<td>'+element.tiempo_parada+'</td>';
+                        content += '<td>'+element.horas_calend+'</td>';
+                        content += '<td>'+element.horas_prog+'</td>';
+                        content += '<td>'+Ao+'</td>';
+                        content += '<td>'+element.fallas_equipo+'</td>';
+                        content += '<td>'+element.descripcion+'</td>';
+                        content += '/<tr>';
+                    $('#tbl_scoops').append(content);
+                });
+            });
+        });
+        $("body").on('click',".next_page",function(e){
+            e.preventDefault();
+            var page = $(this).data("next");
+            var de = $(".de").val();
+            var hasta = $(".hasta").val();
+            var fecha = (de === undefined && hasta === undefined )?'':('&de='+de+'&hasta='+hasta);
+            var param = 'data-de='+de+' data-hasta='+hasta;
+            var equipo = $('.equipo').val();
+            $('#tbl_scoops').html('');
+            $.ajax({
+                type: 'GET',
+                url: urlProd+'reportescoops?equipo='+equipo+fecha+'&page='+page, 
+                dataType: 'json'
+            }).done(function( data ){
+                //print pagination
+                var pag = "";
+                    pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' "+param+" data-previus='"+data.previus_page+"' >«</a></li>": '';
+            
+                for(var i = 1; i <= data.pagination; i++ ){
+                    var active = (data.current_page == i) ? 'activepage' : '';
+                    pag += "<li><a href='#' class='go_page "+active+"' data-page='"+i+"'>"+i+"</a></li>";
+                }
+                    pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' data-next='"+data.next_page+"'>»</a></li>": '';
+            
+                $('.pagination').html(pag);
+                //print table
+                data.data.forEach(function( element, index ){
+                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+    
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                    
+                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                    var content = "";
+                        content += '<tr>';
+                        content += '<td>'+element.inicio_jornada+'</td>';
+                        content += '<td>'+element.hora_acumulada+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.hora+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.inspecc+'</td>';
+                        content += '<td>'+element.mantto_prev+'</td>';
+                        content += '<td>'+element.homp+'</td>';
+                        content += '<td>'+element.tiempo_parada+'</td>';
+                        content += '<td>'+element.horas_calend+'</td>';
+                        content += '<td>'+element.horas_prog+'</td>';
+                        content += '<td>'+Ao+'</td>';
+                        content += '<td>'+element.fallas_equipo+'</td>';
+                        content += '<td>'+element.descripcion+'</td>';
+                        content += '/<tr>';
+                    $('#tbl_scoops').append(content);
+                });
+            });
+
+        });
+        $("body").on('click',".go_page",function(e){
+            e.preventDefault();
+            var page = $(this).data("page");
+            var de = $(".de").val();
+            var hasta = $(".hasta").val();
+            var fecha = (de === undefined && hasta === undefined)?'':('&de='+de+'&hasta='+hasta);
+            var param = 'data-de='+de+' data-hasta='+hasta;
+            var equipo = $('.equipo').val();
+            $('#tbl_scoops').html('');
+            $.ajax({
+                type: 'GET',
+                url: urlProd+'reportescoops?equipo='+equipo+fecha+'&page='+page,
+                dataType: 'json'
+            }).done(function( data ){
+                //print pagination
+                var pag = "";
+                    pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' "+param+" data-previus='"+data.previus_page+"' >«</a></li>": '';
+                
+                for(var i = 1; i <= data.pagination; i++ ){
+                    var active = (data.current_page == i) ? 'activepage' : '';
+                    pag += "<li><a href='#' class='go_page "+active+"' "+param+" data-page='"+i+"'>"+i+"</a></li>";
+                }
+                    pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' "+param+" data-next='"+data.next_page+"'>»</a></li>": '';
+            
+                $('.pagination').html(pag);
+                //print table
+                data.data.forEach(function( element, index ){
+                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+    
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                    
+                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+                    var content = "";
+                        content += '<tr>';
+                        content += '<td>'+element.inicio_jornada+'</td>';
+                        content += '<td>'+element.hora_acumulada+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.hora+'</td>';
+                        content += '<td>'+hora+'</td>';
+                        content += '<td>'+element.inspecc+'</td>';
+                        content += '<td>'+element.mantto_prev+'</td>';
+                        content += '<td>'+element.homp+'</td>';
+                        content += '<td>'+element.tiempo_parada+'</td>';
+                        content += '<td>'+element.horas_calend+'</td>';
+                        content += '<td>'+element.horas_prog+'</td>';
+                        content += '<td>'+Ao+'</td>';
+                        content += '<td>'+element.fallas_equipo+'</td>';
+                        content += '<td>'+element.descripcion+'</td>';
+                        content += '/<tr>';
+                    $('#tbl_scoops').append(content);
+                });
+            });
+        });
     }
 };
 

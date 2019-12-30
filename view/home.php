@@ -591,26 +591,30 @@ function reporteproblema(){
 
 #servicios
 function reportescoops(){
+    $page = $_GET['page']==NULL?'1':$_GET['page'];
+
     if(isset($_GET['de']) && isset($_GET['hasta'])){
         $de = $_GET['de'];
         $hasta = $_GET['hasta'];
         $equipo = $_GET['equipo'];
-        consultasClassController::reporteFechaScoops($de, $hasta, $equipo);
+        consultasClassController::reporteFechaScoops($de, $hasta, $equipo, $page);
     }else{
         $equipo = $_GET['equipo'];
-        consultasClassController::reporteScoopsController($equipo);
+        consultasClassController::reporteScoopsController($equipo, $page);
     }
 }
 
 function reporteService(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-    if(isset($_GET['de']) && isset($_GET['hasta'])){
+    $page = $_GET['page']==NULL?'1':$_GET['page'];
+
+    if(isset($_GET['de']) && isset($_GET['hasta']) ){
         $de = $_GET['de'];
         $hasta = $_GET['hasta'];
-        consultasClassController::reporteFechaController($de, $hasta);
+        consultasClassController::reporteFechaController($de, $hasta,$page);
     }else{
-        consultasClassController::reporteController();
+        consultasClassController::reporteController($page);
     }
 
 }

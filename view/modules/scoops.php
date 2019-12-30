@@ -31,7 +31,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input type="text" class="form-control de" id="datepicker" name="de">
+                                        <input type="text" class="form-control de" id="datepicker" name="de" value="2018-12-29">
                                     </div>
                                 </div>
 
@@ -54,7 +54,12 @@
                             td{
                                 font-size: 14px;
                             }
+                            .activepage{
+                                background-color: #eee !important;
+                            }
                         </style>
+                        <ul class="pagination pagination-sm no-margin pull-right"></ul>
+                        <br><br>
                         <table class="table table-bordered table-hover dataTable" style="width: 100%;">
                             <thead>
                                 <tr>
