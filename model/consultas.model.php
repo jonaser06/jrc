@@ -135,10 +135,12 @@ class consultasClassModel{
         $homp = $data['homp'];
         $inspect = $data['inspect'];
         $prevent = $data['prevent'];
+        $otrosacci = $data['otrosacci'];
+        $repcorrect = $data['repcorrect'];
         try {
             $db        =   getDB();
-            $sql       =   "INSERT INTO reporte (inicio_jornada, fin_jornada, hora_acumulada, hora, equipo_trabajo, descripcion, fallas_equipo, tiempo_parada, homp, inspecc, mantto_prev, horas_calend, horas_prog)
-                            VALUES (:inicio_jornada, :fin_jornada, :hora_acumulada, :hora, :equipo_trabajo, :descripcion, :fallas_equipo, :tiempo_parada, :homp, :inspecc, :mantto_prev, '24', '20')";
+            $sql       =   "INSERT INTO reporte (inicio_jornada, fin_jornada, hora_acumulada, hora, equipo_trabajo, descripcion, fallas_equipo, tiempo_parada, homp, inspecc, mantto_prev, horas_calend, horas_prog, otrosacci, repcorrect)
+                            VALUES (:inicio_jornada, :fin_jornada, :hora_acumulada, :hora, :equipo_trabajo, :descripcion, :fallas_equipo, :tiempo_parada, :homp, :inspecc, :mantto_prev, '24', '20', :otrosacci, :repcorrect)";
             $stmt      =    $db->prepare($sql);
             $stmt->bindParam("inicio_jornada", $iniciojornada,PDO::PARAM_STR);
             $stmt->bindParam("fin_jornada", $finjornada,PDO::PARAM_STR);
@@ -151,6 +153,8 @@ class consultasClassModel{
             $stmt->bindParam("homp", $homp,PDO::PARAM_STR);
             $stmt->bindParam("inspecc", $inspect,PDO::PARAM_STR);
             $stmt->bindParam("mantto_prev", $prevent,PDO::PARAM_STR);
+            $stmt->bindParam("otrosacci", $otrosacci,PDO::PARAM_STR);
+            $stmt->bindParam("repcorrect", $repcorrect,PDO::PARAM_STR);
             $stmt->execute();
             $db = null;
             return true;

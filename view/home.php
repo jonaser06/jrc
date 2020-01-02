@@ -240,7 +240,9 @@ function updatereporte(){
         "paradatotal"=>$_POST['paradatotal'],
         "homp"=>$_POST['homp'],
         "inspect"=>$_POST['inspect'],
-        "prevent"=>$_POST['prevent']
+        "prevent"=>$_POST['prevent'],
+        "otrosacci"=>$_POST['otrosacci'],
+        "repcorrect"=>$_POST['repcorrect']
     );
     $reporte = consultasClassController::setreporteController($data);
     

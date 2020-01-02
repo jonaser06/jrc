@@ -84,25 +84,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+
                                     <label class="col-sm-2 control-label">DESCRIPCION:</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" name="descripcion" required>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
                                     <label class="col-sm-1 control-label">NRO DE FALLAS DEL EQUIPO:</label>
                                     <div class="col-sm-1">
                                         <input type="number" class="form-control" name="nrofallas" value="0">
                                     </div>
+                                </div>
+
+                                <div class="form-group">
 
                                     <label class="col-sm-1 control-label">TIEMPO DE PARADA TOTAL:</label>
                                     <div class="col-sm-1">
                                         <input type="number" class="form-control" name="paradatotal" value="0">
                                     </div>
 
-                                    <label class="col-sm-2 control-label">HORAS de MANTENIMIENTO PROGRAMADO:</label>
-                                    <div class="col-sm-2">
+                                    <label class="col-sm-1 control-label">HORAS de MANTENIMIENTO PROGRAMADO:</label>
+                                    <div class="col-sm-1">
                                         <input type="number" class="form-control" name="homp" value="0">
                                     </div>
 
@@ -115,8 +117,18 @@
                                     <div class="col-sm-1">
                                         <input type="number" class="form-control" name="prevent" value="0">
                                     </div>
+
+                                    <label class="col-sm-1 control-label">OTROS ACCIDENTES:</label>
+                                    <div class="col-sm-1">
+                                        <input type="number" class="form-control" name="otrosacci" value="0">
+                                    </div>
+
+                                    <label class="col-sm-1 control-label">REPARACION  CORRECTIVA:</label>
+                                    <div class="col-sm-1">
+                                        <input type="number" class="form-control" name="repcorrect" value="0">
+                                    </div>
                                 </div>
-                                <input type="submit" class="btn btn-block btn-primary" value="Consultar"> 
+                                <input type="submit" class="btn btn-block btn-primary" value="Guardar"> 
                             </div>
                         </form>
                     </div>

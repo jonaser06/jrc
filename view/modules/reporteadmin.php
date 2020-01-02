@@ -22,9 +22,6 @@
                         <a href="reporteadmin?consulta=disponibilidad" class="btn btn-app">
                             <i class="fa fa-wrench"></i> DISPONIBILIDAD MECANICA 
                         </a>
-                        <a href="reporteadmin?consulta=utilizacion" class="btn btn-app">
-                            <i class="fa fa-wrench"></i> UTILIZACION
-                        </a>
                         <a href="reporteadmin?consulta=mtbf" class="btn btn-app">
                             <i class="fa fa-wrench"></i> MTBF 
                         </a>

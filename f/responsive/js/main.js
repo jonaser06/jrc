@@ -1,4 +1,4 @@
-var urlProd = 'http://blackapp.xyz/'; 
+var urlProd = 'http://blackapp.xyz/';
 //var urlProd = 'http://localhost/jrc/';
 //var urlDev = 'http://localhost/jrc/';
 
@@ -52,9 +52,6 @@ var objJrc = {
         if(consulta=='disponibilidad'){
             objJrc.Disponibilidad();
         }
-        if(consulta=='utilizacion'){
-            objJrc.Utilizacion();
-        }
         if(consulta=='mtbf'){
             objJrc.Mtbf();
         }
@@ -69,7 +66,52 @@ var objJrc = {
         }
     },
     ResumenEquipos: function(){
+        $.ajax({
+            type: 'GET',
+            url: urlProd+'reporteservice',
+            dataType: 'json'
+        }).done(function(data){
+            //print pagination
+            var pag = "";
+                pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' data-previus='"+data.previus_page+"' >«</a></li>": '';
+            
+            for(var i = 1; i <= data.pagination; i++ ){
+                var active = (data.current_page == i) ? 'activepage' : '';
+                pag += "<li><a href='#' class='go_page "+active+"' data-page='"+i+"'>"+i+"</a></li>";
+            }
+                pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' data-next='"+data.next_page+"'>»</a></li>": '';
+            
+            $('.pagination_resumen').append(pag);
+            data.data.forEach(function( element, index ){
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
 
+                Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                
+                Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+
+                var content = "";
+                    content += '<tr>';
+                    content += '<td>'+element.id_reporte+'</td>';
+                    content += '<td>'+element.equipo_trabajo+'</td>';
+                    content += '<td></td>';
+                    content += '<td>'+parseFloat(element.hora_acumulada).toFixed(1)+'</td>';
+                    content += '<td>'+parseFloat(hora).toFixed(1)+'</td>';
+                    content += '<td>'+parseFloat(element.hora).toFixed(1)+'</td>';
+                    content += '<td>'+element.inspecc+'</td>';
+                    content += '<td>'+element.mantto_prev+'</td>';
+                    content += '<td>'+element.homp+'</td>';
+                    content += '<td>'+element.repcorrect+'</td>';
+                    content += '<td>'+element.otrosacci+'</td>';
+                    content += '<td>'+Ao+'</td>';
+                    content += '<td>'+_mtbf.toFixed(1)+'</td>';
+                    content += '<td>'+_mttr.toFixed(1)+'</td>';
+                    content += '<td>15</td>';
+                    content += '</tr>';
+                $('#tbl_resumenequipos').append(content);
+            });
+        });
     },
     ResumenIndicadores: function(){
 
@@ -78,9 +120,6 @@ var objJrc = {
 
     },
     Disponibilidad: function(){
-
-    },
-    Utilizacion: function(){
 
     },
     Mtbf: function(){
@@ -325,6 +364,9 @@ var objJrc = {
             if(consulta=='reporte'){
                 endpoint = 'reporteservice';
             }
+            if(consulta=='resumenequipos'){
+                endpoint = 'reporteservice';
+            }
             //obteniendo datos
             var page = $(this).data("previus");
             var de = $(".de").val();
@@ -419,6 +461,9 @@ var objJrc = {
                 endpoint = 'reportescoops';
             }
             if(consulta=='reporte'){
+                endpoint = 'reporteservice';
+            }
+            if(consulta=='resumenequipos'){
                 endpoint = 'reporteservice';
             }
             //obteniendo datos
@@ -516,6 +561,9 @@ var objJrc = {
                 endpoint = 'reportescoops';
             }
             if(consulta=='reporte'){
+                endpoint = 'reporteservice';
+            }
+            if(consulta=='resumenequipos'){
                 endpoint = 'reporteservice';
             }
             //obteniendo datos
