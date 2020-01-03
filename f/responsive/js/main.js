@@ -1,5 +1,5 @@
-var urlProd = 'http://blackapp.xyz/';
-//var urlProd = 'http://localhost/jrc/';
+//var urlProd = 'http://blackapp.xyz/';
+var urlProd = 'http://localhost/jrc/';
 //var urlDev = 'http://localhost/jrc/';
 
 var objJrc = {
@@ -152,6 +152,7 @@ var objJrc = {
                 url: urlProd+'reporteservice?de='+de+'&hasta='+hasta,
                 dataType: 'json'
             }).done(function(data){
+                $(".consulta_resumen").val('Consultar');
                 //totales
                 var AcumHrs = 0.0, AcumInsp = 0.0, AcumPrev = 0.0, AcumProg = 0.0, AcumCorr = 0.0, AcumRepA = 0.0, AcumDM = 0.0, AcumMTBF = 0.0, AcumMTTR = 0.0;
                 //print pagination
