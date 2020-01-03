@@ -30,7 +30,7 @@
 <script src="<?php echo $dir; ?>js/jspdf.min.js"></script>
 <script src="<?php echo $dir; ?>js/toast.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-<script src="<?php echo $dir; ?>js/main.js?v8"></script>
+<script src="<?php echo $dir; ?>js/main.js?v9"></script>
 <script>
     function getPDF(){
 
