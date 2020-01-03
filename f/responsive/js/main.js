@@ -443,10 +443,18 @@ var objJrc = {
 
     },
     calcmtbf:function(hora, fallas){
-        return parseFloat(hora) / parseFloat(fallas);
+        if(fallas==0){
+            return 0;
+        }else{
+            return parseFloat(hora) / parseFloat(fallas);
+        }
     },
     calcmttr:function(homp, parada, fallas){
-        return ( parseFloat(homp) + parseFloat(parada) )/ parseFloat(fallas);
+        if(fallas==0){
+            return 0;
+        }else{
+            return ( parseFloat(homp) + parseFloat(parada) )/ parseFloat(fallas);
+        }
     },
     $_GET:function(param){
         var vars = {};
