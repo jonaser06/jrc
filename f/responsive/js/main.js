@@ -71,6 +71,8 @@ var objJrc = {
             url: urlProd+'reporteservice',
             dataType: 'json'
         }).done(function(data){
+            //totales
+            var AcumHrs = 0.0, AcumInsp = 0.0, AcumPrev = 0.0, AcumProg = 0.0, AcumCorr = 0.0, AcumRepA = 0.0, AcumDM = 0.0, AcumMTBF = 0.0, AcumMTTR = 0.0;
             //print pagination
             var pag = "";
                 pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' data-previus='"+data.previus_page+"' >«</a></li>": '';
@@ -91,14 +93,14 @@ var objJrc = {
                 
                 Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
 
-                var content = "";
+                var content = '';
                     content += '<tr>';
                     content += '<td>'+element.id_reporte+'</td>';
                     content += '<td>'+element.equipo_trabajo+'</td>';
                     content += '<td></td>';
                     content += '<td>'+parseFloat(element.hora_acumulada).toFixed(1)+'</td>';
                     content += '<td>'+parseFloat(hora).toFixed(1)+'</td>';
-                    content += '<td>'+parseFloat(element.hora).toFixed(1)+'</td>';
+                    content += '<td>'+parseFloat(element.hora).toFixed(1)+'</td>'; //sumarizar
                     content += '<td>'+element.inspecc+'</td>';
                     content += '<td>'+element.mantto_prev+'</td>';
                     content += '<td>'+element.homp+'</td>';
@@ -107,9 +109,116 @@ var objJrc = {
                     content += '<td>'+Ao+'</td>';
                     content += '<td>'+_mtbf.toFixed(1)+'</td>';
                     content += '<td>'+_mttr.toFixed(1)+'</td>';
-                    content += '<td>15</td>';
                     content += '</tr>';
                 $('#tbl_resumenequipos').append(content);
+
+                AcumHrs += parseFloat(element.hora);
+                AcumInsp += parseFloat(element.inspecc);
+                AcumPrev += parseFloat(element.mantto_prev);
+                AcumProg += parseFloat(element.homp);
+                AcumCorr += parseFloat(element.repcorrect);
+                AcumRepA += parseFloat(element.otrosacci);
+                AcumDM += parseFloat(Ao);
+                AcumMTBF += parseFloat(_mtbf);
+                AcumMTTR += parseFloat(_mttr);
+            });
+
+            var content2 = '';
+                content2 += '<tr>';
+                content2 += '<td colspan="5">TOTAL SCOOPTRAMS</td>';
+                content2 += '<td>'+AcumHrs.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumInsp.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumPrev.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumProg.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumCorr.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumRepA.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumDM.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumMTBF.toFixed(1)+'</td>';
+                content2 += '<td>'+AcumMTTR.toFixed(1)+'</td>';
+                content2 += '</tr>';
+            $('#tbl_resumenequipos_foot').append(content2);
+
+        });
+        //buscar por fechas
+        $(".consulta_resumen").on('click',function(){
+            $('#tbl_resumenequipos').html('');
+            $('#tbl_resumenequipos_foot').html('');
+            $('.pagination_resumen').html('');
+            $(this).val("Cargando...");
+            var de = $('.de').val();
+            var hasta = $('.hasta').val();
+            $.ajax({
+                type: 'GET',
+                url: urlProd+'reporteservice?de='+de+'&hasta='+hasta,
+                dataType: 'json'
+            }).done(function(data){
+                //totales
+                var AcumHrs = 0.0, AcumInsp = 0.0, AcumPrev = 0.0, AcumProg = 0.0, AcumCorr = 0.0, AcumRepA = 0.0, AcumDM = 0.0, AcumMTBF = 0.0, AcumMTTR = 0.0;
+                //print pagination
+                var pag = "";
+                    pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' data-previus='"+data.previus_page+"' >«</a></li>": '';
+                
+                for(var i = 1; i <= data.pagination; i++ ){
+                    var active = (data.current_page == i) ? 'activepage' : '';
+                    pag += "<li><a href='#' class='go_page "+active+"' data-page='"+i+"'>"+i+"</a></li>";
+                }
+                    pag += (data.next_page!='false') ? "<li><a href='#' class='next_page' data-next='"+data.next_page+"'>»</a></li>": '';
+                
+                $('.pagination_resumen').append(pag);
+                data.data.forEach(function( element, index ){
+                    hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+    
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                    
+                    Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+    
+                    var content = '';
+                        content += '<tr>';
+                        content += '<td>'+element.id_reporte+'</td>';
+                        content += '<td>'+element.equipo_trabajo+'</td>';
+                        content += '<td></td>';
+                        content += '<td>'+parseFloat(element.hora_acumulada).toFixed(1)+'</td>';
+                        content += '<td>'+parseFloat(hora).toFixed(1)+'</td>';
+                        content += '<td>'+parseFloat(element.hora).toFixed(1)+'</td>'; //sumarizar
+                        content += '<td>'+element.inspecc+'</td>';
+                        content += '<td>'+element.mantto_prev+'</td>';
+                        content += '<td>'+element.homp+'</td>';
+                        content += '<td>'+element.repcorrect+'</td>';
+                        content += '<td>'+element.otrosacci+'</td>';
+                        content += '<td>'+Ao+'</td>';
+                        content += '<td>'+_mtbf.toFixed(1)+'</td>';
+                        content += '<td>'+_mttr.toFixed(1)+'</td>';
+                        content += '</tr>';
+                    $('#tbl_resumenequipos').append(content);
+    
+                    AcumHrs += parseFloat(element.hora);
+                    AcumInsp += parseFloat(element.inspecc);
+                    AcumPrev += parseFloat(element.mantto_prev);
+                    AcumProg += parseFloat(element.homp);
+                    AcumCorr += parseFloat(element.repcorrect);
+                    AcumRepA += parseFloat(element.otrosacci);
+                    AcumDM += parseFloat(Ao);
+                    AcumMTBF += parseFloat(_mtbf);
+                    AcumMTTR += parseFloat(_mttr);
+                });
+    
+                var content2 = '';
+                    content2 += '<tr>';
+                    content2 += '<td colspan="5">TOTAL SCOOPTRAMS</td>';
+                    content2 += '<td>'+AcumHrs.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumInsp.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumPrev.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumProg.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumCorr.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumRepA.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumDM.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumMTBF.toFixed(1)+'</td>';
+                    content2 += '<td>'+AcumMTTR.toFixed(1)+'</td>';
+                    content2 += '</tr>';
+                $('#tbl_resumenequipos_foot').append(content2);
+    
             });
         });
     },
@@ -377,11 +486,15 @@ var objJrc = {
                 equipo = (equipo===undefined)?'':('equipo='+equipo+'&');
             $('#tbl').html('');
             $('#tbl_scoops').html('');
+            $('#tbl_resumenequipos').html('');
+            $('#tbl_resumenequipos_foot').html('');
             $.ajax({
                 type: 'GET',
                 url: urlProd+endpoint+'?'+equipo+fecha+'&page='+page,
                 dataType: 'json'
             }).done(function( data ){
+                //totales
+                var AcumHrs = 0.0, AcumInsp = 0.0, AcumPrev = 0.0, AcumProg = 0.0, AcumCorr = 0.0, AcumRepA = 0.0, AcumDM = 0.0, AcumMTBF = 0.0, AcumMTTR = 0.0;
                 //print pagination
                 var pag = "";
                     pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' "+param+" data-previus='"+data.previus_page+"' >«</a></li>": '';
@@ -450,6 +563,61 @@ var objJrc = {
                         $('#tbl').append(content);
                     });
                 }
+                if(consulta=='resumenequipos'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+        
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+        
+                        var content = '';
+                            content += '<tr>';
+                            content += '<td>'+element.id_reporte+'</td>';
+                            content += '<td>'+element.equipo_trabajo+'</td>';
+                            content += '<td></td>';
+                            content += '<td>'+parseFloat(element.hora_acumulada).toFixed(1)+'</td>';
+                            content += '<td>'+parseFloat(hora).toFixed(1)+'</td>';
+                            content += '<td>'+parseFloat(element.hora).toFixed(1)+'</td>'; //sumarizar
+                            content += '<td>'+element.inspecc+'</td>';
+                            content += '<td>'+element.mantto_prev+'</td>';
+                            content += '<td>'+element.homp+'</td>';
+                            content += '<td>'+element.repcorrect+'</td>';
+                            content += '<td>'+element.otrosacci+'</td>';
+                            content += '<td>'+Ao+'</td>';
+                            content += '<td>'+_mtbf.toFixed(1)+'</td>';
+                            content += '<td>'+_mttr.toFixed(1)+'</td>';
+                            content += '</tr>';
+                        $('#tbl_resumenequipos').append(content);
+        
+                        AcumHrs += parseFloat(element.hora);
+                        AcumInsp += parseFloat(element.inspecc);
+                        AcumPrev += parseFloat(element.mantto_prev);
+                        AcumProg += parseFloat(element.homp);
+                        AcumCorr += parseFloat(element.repcorrect);
+                        AcumRepA += parseFloat(element.otrosacci);
+                        AcumDM += parseFloat(Ao);
+                        AcumMTBF += parseFloat(_mtbf);
+                        AcumMTTR += parseFloat(_mttr);
+                    });
+        
+                    var content2 = '';
+                        content2 += '<tr>';
+                        content2 += '<td colspan="5">TOTAL SCOOPTRAMS</td>';
+                        content2 += '<td>'+AcumHrs.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumInsp.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumPrev.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumProg.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumCorr.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumRepA.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumDM.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumMTBF.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumMTTR.toFixed(1)+'</td>';
+                        content2 += '</tr>';
+                    $('#tbl_resumenequipos_foot').append(content2);
+                }
             });
         });
         $("body").on('click',".next_page",function(e){
@@ -476,11 +644,15 @@ var objJrc = {
                 equipo = (equipo===undefined)?'':('equipo='+equipo+'&');
             $('#tbl').html('');
             $('#tbl_scoops').html('');
+            $('#tbl_resumenequipos').html('');
+            $('#tbl_resumenequipos_foot').html('');
             $.ajax({
                 type: 'GET',
                 url: urlProd+endpoint+'?'+equipo+fecha+'&page='+page, 
                 dataType: 'json'
             }).done(function( data ){
+                //totales
+                var AcumHrs = 0.0, AcumInsp = 0.0, AcumPrev = 0.0, AcumProg = 0.0, AcumCorr = 0.0, AcumRepA = 0.0, AcumDM = 0.0, AcumMTBF = 0.0, AcumMTTR = 0.0;
                 //print pagination
                 var pag = "";
                     pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' "+param+" data-previus='"+data.previus_page+"' >«</a></li>": '';
@@ -549,6 +721,60 @@ var objJrc = {
                         $('#tbl').append(content);
                     });
                 }
+                if(consulta=='resumenequipos'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+        
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+        
+                        var content = '';
+                            content += '<tr>';
+                            content += '<td>'+element.id_reporte+'</td>';
+                            content += '<td>'+element.equipo_trabajo+'</td>';
+                            content += '<td></td>';
+                            content += '<td>'+parseFloat(element.hora_acumulada).toFixed(1)+'</td>';
+                            content += '<td>'+parseFloat(hora).toFixed(1)+'</td>';
+                            content += '<td>'+parseFloat(element.hora).toFixed(1)+'</td>'; //sumarizar
+                            content += '<td>'+element.inspecc+'</td>';
+                            content += '<td>'+element.mantto_prev+'</td>';
+                            content += '<td>'+element.homp+'</td>';
+                            content += '<td>'+element.repcorrect+'</td>';
+                            content += '<td>'+element.otrosacci+'</td>';
+                            content += '<td>'+Ao+'</td>';
+                            content += '<td>'+_mtbf.toFixed(1)+'</td>';
+                            content += '<td>'+_mttr.toFixed(1)+'</td>';
+                            content += '</tr>';
+                        $('#tbl_resumenequipos').append(content);
+                        AcumHrs += parseFloat(element.hora);
+                        AcumInsp += parseFloat(element.inspecc);
+                        AcumPrev += parseFloat(element.mantto_prev);
+                        AcumProg += parseFloat(element.homp);
+                        AcumCorr += parseFloat(element.repcorrect);
+                        AcumRepA += parseFloat(element.otrosacci);
+                        AcumDM += parseFloat(Ao);
+                        AcumMTBF += parseFloat(_mtbf);
+                        AcumMTTR += parseFloat(_mttr);
+                    });
+        
+                    var content2 = '';
+                        content2 += '<tr>';
+                        content2 += '<td colspan="5">TOTAL SCOOPTRAMS</td>';
+                        content2 += '<td>'+AcumHrs.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumInsp.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumPrev.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumProg.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumCorr.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumRepA.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumDM.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumMTBF.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumMTTR.toFixed(1)+'</td>';
+                        content2 += '</tr>';
+                    $('#tbl_resumenequipos_foot').append(content2);
+                }
             });
 
         });
@@ -576,11 +802,15 @@ var objJrc = {
                 equipo = (equipo===undefined)?'':('equipo='+equipo+'&');
             $('#tbl').html('');
             $('#tbl_scoops').html('');
+            $('#tbl_resumenequipos').html('');
+            $('#tbl_resumenequipos_foot').html('');
             $.ajax({
                 type: 'GET',
                 url: urlProd+endpoint+'?'+equipo+fecha+'&page='+page,
                 dataType: 'json'
             }).done(function( data ){
+                //totales
+                var AcumHrs = 0.0, AcumInsp = 0.0, AcumPrev = 0.0, AcumProg = 0.0, AcumCorr = 0.0, AcumRepA = 0.0, AcumDM = 0.0, AcumMTBF = 0.0, AcumMTTR = 0.0;
                 //print pagination
                 var pag = "";
                     pag += (data.previus_page!='false') ? "<li><a href='#' class='previus_page' "+param+" data-previus='"+data.previus_page+"' >«</a></li>": '';
@@ -648,6 +878,61 @@ var objJrc = {
     
                         $('#tbl').append(content);
                     });
+                }
+                if(consulta=='resumenequipos'){
+                    data.data.forEach(function( element, index ){
+                        hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                        _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                        _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+        
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100).toFixed(1);
+                        
+                        Ao = (isNaN(Ao))?'-':Ao.toString()+'%';
+        
+                        var content = '';
+                            content += '<tr>';
+                            content += '<td>'+element.id_reporte+'</td>';
+                            content += '<td>'+element.equipo_trabajo+'</td>';
+                            content += '<td></td>';
+                            content += '<td>'+parseFloat(element.hora_acumulada).toFixed(1)+'</td>';
+                            content += '<td>'+parseFloat(hora).toFixed(1)+'</td>';
+                            content += '<td>'+parseFloat(element.hora).toFixed(1)+'</td>'; //sumarizar
+                            content += '<td>'+element.inspecc+'</td>';
+                            content += '<td>'+element.mantto_prev+'</td>';
+                            content += '<td>'+element.homp+'</td>';
+                            content += '<td>'+element.repcorrect+'</td>';
+                            content += '<td>'+element.otrosacci+'</td>';
+                            content += '<td>'+Ao+'</td>';
+                            content += '<td>'+_mtbf.toFixed(1)+'</td>';
+                            content += '<td>'+_mttr.toFixed(1)+'</td>';
+                            content += '</tr>';
+                        $('#tbl_resumenequipos').append(content);
+        
+                        AcumHrs += parseFloat(element.hora);
+                        AcumInsp += parseFloat(element.inspecc);
+                        AcumPrev += parseFloat(element.mantto_prev);
+                        AcumProg += parseFloat(element.homp);
+                        AcumCorr += parseFloat(element.repcorrect);
+                        AcumRepA += parseFloat(element.otrosacci);
+                        AcumDM += parseFloat(Ao);
+                        AcumMTBF += parseFloat(_mtbf);
+                        AcumMTTR += parseFloat(_mttr);
+                    });
+        
+                    var content2 = '';
+                        content2 += '<tr>';
+                        content2 += '<td colspan="5">TOTAL SCOOPTRAMS</td>';
+                        content2 += '<td>'+AcumHrs.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumInsp.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumPrev.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumProg.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumCorr.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumRepA.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumDM.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumMTBF.toFixed(1)+'</td>';
+                        content2 += '<td>'+AcumMTTR.toFixed(1)+'</td>';
+                        content2 += '</tr>';
+                    $('#tbl_resumenequipos_foot').append(content2);
                 }
             });
         });
