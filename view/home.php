@@ -484,7 +484,7 @@ function index(){
 
         if($_SESSION['id_usuarios'] == 1 ){ $url = 'superadministrador'; }
         if($_SESSION['id_usuarios'] == 2 ){ $url = 'administrador'; }
-        if($_SESSION['id_usuarios'] == 3 ){ $url = 'mecanico'; }
+        if($_SESSION['id_usuarios'] >= 3 ){ $url = 'mecanico'; }
 
         echo '<script type="text/javascript">
                   window.location = "'.$url.'";
@@ -502,7 +502,7 @@ function login(){
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
         if($_SESSION['id_usuarios'] == 1 ){ $url = 'superadministrador'; }
         if($_SESSION['id_usuarios'] == 2 ){ $url = 'administrador'; }
-        if($_SESSION['id_usuarios'] == 3 ){ $url = 'mecanico'; }
+        if($_SESSION['id_usuarios'] >= 3 ){ $url = 'mecanico'; }
 
         echo '<script type="text/javascript">
                   window.location = "'.$url.'";
