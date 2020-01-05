@@ -2,7 +2,7 @@
     <div class="box-body">
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-7 control-label">NOMBRE DEL REPORTE:</label>
+                <label class="col-sm-7 control-label">RESUMEN DE EQUIPOS</label>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label">DE:</label>

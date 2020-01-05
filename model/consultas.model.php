@@ -19,6 +19,7 @@ class consultasClassModel{
             //throw $th;
         }
     }
+
     public static function reporteModel($page){
         
         try {
@@ -251,6 +252,58 @@ class consultasClassModel{
                 return '{"status":false, "message":"No found","data":[]}';
             }
             
+        } catch (PDOException $e) {
+            return '{"status":false, "message":'.$e.'}';
+        }
+    }
+
+    public static function indicadorModel($month, $years, $page){
+        try {
+            #obtener total de paginas
+            $db        =   getDB();
+            $sql       =   "SELECT * FROM reporte WHERE MONTH(inicio_jornada) = :mes AND YEAR(inicio_jornada) = :years ";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("mes", $month,PDO::PARAM_STR);
+            $stmt->bindParam("years", $years,PDO::PARAM_STR);
+            $stmt->execute();
+            $total     =   $stmt->rowCount();
+            $forPage   = 10;
+            $pagination =   ceil($total/$forPage);
+            $current   = ((int)$page-1)*$forPage;
+            if($page <= $pagination){
+                #resultados por paginas
+                $db        =   getDB();
+                $sql       =   "SELECT * FROM reporte WHERE MONTH(inicio_jornada) = :mes AND YEAR(inicio_jornada) = :years ";
+                $stmt      =    $db->prepare($sql);
+                $stmt->bindParam("mes", $month,PDO::PARAM_STR);
+                $stmt->bindParam("years", $years,PDO::PARAM_STR);
+                $stmt->execute();
+                $mainCount =    $stmt->rowCount();
+                $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+                #controls
+                $next_page    = ( (int)$page + 1 ) <= ( $pagination ) ? ( (int)$page + 1 ) : 'false';
+                $previus_page = ( (int)$page - 1 ) <= 0 ? 'false' : ( (int)$page - 1 ) ;
+
+                #fecha hacia atras
+                $db        =   getDB();
+                $sql       =   "SELECT * FROM reporte WHERE YEAR(inicio_jornada) <= :years ";
+                $stmt      =    $db->prepare($sql);
+                $stmt->bindParam("years", $years,PDO::PARAM_STR);
+                $stmt->execute();
+                $acumYears =    $stmt->fetchAll(PDO::FETCH_OBJ);
+                return '{
+                            "status":"true", 
+                            "message":"Find One",
+                            "current_page":"'.$page.'", 
+                            "next_page":"'.$next_page.'" ,
+                            "previus_page":"'.$previus_page.'" ,
+                            "pagination":"'.$pagination.'" ,
+                            "data": '.json_encode($userData).',
+                            "year": '.json_encode($acumYears).'
+                        }';
+            }else{
+                return '{"status":false, "message":"No found","data":[]}';
+            }
         } catch (PDOException $e) {
             return '{"status":false, "message":'.$e.'}';
         }

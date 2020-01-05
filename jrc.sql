@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 02-01-2020 a las 05:06:25
--- Versión del servidor: 5.7.28-0ubuntu0.18.04.4
--- Versión de PHP: 7.2.24-0ubuntu0.18.04.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-01-2020 a las 01:20:25
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,14 +85,15 @@ CREATE TABLE `maquinas` (
 --
 
 INSERT INTO `maquinas` (`id_maquina`, `nombre`, `horas_acumuladas`) VALUES
-(1, '2SC019', 90),
-(2, '2SC022', 65),
-(3, '2SC029', 57),
-(4, '2SC035', 120),
-(5, '2SC037', 90),
-(6, '2JL003', 55),
-(7, '2JL015', 30),
-(8, '2JL016', 16);
+(1, '2SC019', 170),
+(2, '2SC022', 177),
+(3, '2SC026', 0),
+(4, '2SC029', 100),
+(5, '2SC035', 84),
+(6, '2SC037', 70),
+(7, '2JL003', 66),
+(8, '2JL015', 88),
+(9, '2JL016', 76);
 
 -- --------------------------------------------------------
 
@@ -124,33 +125,149 @@ CREATE TABLE `reporte` (
 --
 
 INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acumulada`, `hora`, `equipo_trabajo`, `descripcion`, `fallas_equipo`, `tiempo_parada`, `homp`, `inspecc`, `mantto_prev`, `horas_calend`, `horas_prog`, `otrosacci`, `repcorrect`) VALUES
-(1, '2019-12-07', '2019-12-08', '20', '5', '2SC019', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 3, 2, 2, 1, 10, 24, 20, '1', '2'),
-(2, '2019-12-08', '2019-12-09', '25', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 4, 3, 3, 1, 12, 24, 20, '1', '2'),
-(3, '2019-12-09', '2019-12-10', '30', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 1, 1, 2, 1, 7, 24, 20, '1', '2'),
-(4, '2019-12-10', '2019-12-11', '35', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 3, 1, 5, 24, 20, '1', '2'),
-(5, '2019-12-11', '2019-12-12', '40', '1', '2SC019', 'G/D: se cambio filtro de admsión primario equipo operativo trabajo normal.  y G/N: Equipo operativo trabajó normal.', 3, 4, 2, 1, 8, 24, 20, '1', '2'),
-(6, '2019-12-12', '2019-12-13', '41', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 1, 1, 9, 24, 20, '1', '2'),
-(7, '2019-12-13', '2019-12-14', '42', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 3, 4, 1, 7, 24, 20, '1', '2'),
-(8, '2019-12-14', '2019-12-15', '43', '2', '2SC019', 'G/D mantenimiento programado PM1  de 1:00 a  8:00 pm.', 4, 2, 1, 1, 8, 24, 20, '1', '2'),
-(9, '2019-12-15', '2019-12-16', '45', '1', '2SC019', 'parada de 4:20 hasta finde guardia por choquesale operativo a las 8:50 pm. .', 3, 2, 2, 1, 10, 24, 20, '1', '2'),
-(10, '2019-12-16', '2019-12-17', '46', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 3, 3, 1, 9, 24, 20, '1', '2'),
-(11, '2019-12-17', '2019-12-18', '48', '5', '2SC019', 'parada de 4:20 hasta finde guardia por choquesale operativo a las 8:50 pm. .', 1, 3, 2, 1, 11, 24, 20, '1', '2'),
-(12, '2019-12-18', '2019-12-19', '53', '5', '2SC019', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 1, 2, 3, 4, 5, 24, 20, '1', '2'),
-(13, '2019-12-19', '2019-12-20', '58', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 3, 2, 2, 1, 3, 24, 20, '1', '2'),
-(14, '2019-12-20', '2019-12-21', '61', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal.', 2, 2, 3, 1, 2, 24, 20, '1', '2'),
-(15, '2019-12-19', '2019-12-20', '30', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal.', 1, 2, 2, 1, 1, 24, 20, '1', '2'),
-(16, '2019-12-20', '2019-12-20', '33', '3', '2SC022', 'G/D mantenimiento programado PM1  de 1:00 a  8:00 pm.', 1, 2, 2, 2, 3, 24, 20, '1', '2'),
-(17, '2019-12-20', '2019-12-20', '36', '2', '2SC022', 'G/D: Equipo operativo trabajó normal. y G/N: A inicio de guradia se cambio filtros de admisión primario y secundario, Equipo operativo trabajó normal.', 2, 5, 2, 1, 2, 24, 20, '1', '2'),
-(18, '2019-12-22', '2019-12-22', '38', '12', '2SC022', 'sascw', 0, 0, 0, 1, 2, 24, 20, '1', '2'),
-(19, '2019-12-02', '2019-12-02', '70', '10', '2SC035', 'nlml', 1, 1, 0, 1, 0, 24, 20, '1', '2'),
-(20, '2019-12-03', '2019-12-03', '80', '15', '2SC035', 'nlmkl', 0, 0, 0, 1, 1, 24, 20, '1', '2'),
-(21, '2019-12-05', '2019-12-05', '95', '12', '2SC035', 'bjnkj', 0, 0, 0, 1, 1, 24, 20, '1', '2'),
-(22, '2019-12-22', '2019-12-22', '107', '13', '2SC035', 'bvhanzk', 1, 1, 0, 1, 0, 24, 20, '1', '2'),
-(23, '2019-12-03', '2019-12-03', '65', '12', '2SC037', 'bjknnjinml', 0, 0, 0, 0, 0, 24, 20, '1', '2'),
-(24, '2019-12-04', '2019-12-04', '77', '13', '2SC037', 'bjnlkm', 1, 2, 0, 1, 1, 24, 20, '1', '2'),
-(25, '2019-12-23', '2019-12-23', '50', '15', '2SC022', 'vxhjxnkzmxm', 2, 3, 0, 1, 0, 24, 20, '1', '2'),
-(26, '2019-12-23', '2019-12-23', '63', '12', '2SC019', 'cvbn nm ', 0, 0, 0, 0, 0, 24, 20, '1', '2'),
-(27, '2019-12-23', '2019-12-23', '75', '15', '2SC019', 'v m m', 0, 0, 0, 0, 0, 24, 20, '1', '2');
+(1, '2019-01-01', '2019-01-01', '0', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 0, 1, 0, 24, 20, '1', '0'),
+(2, '2019-01-02', '2019-01-02', '5', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 0, 1, 0, 1, 24, 20, '0', '1'),
+(3, '2019-02-03', '2019-02-03', '8', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 0, 2, 0, 2, 24, 20, '0', '0'),
+(4, '2019-12-04', '2019-12-04', '11', '10', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 1, 1, 1, 24, 20, '1', '1'),
+(5, '2019-12-05', '2019-12-05', '21', '12', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 0, 0, 2, 24, 20, '0', '1'),
+(6, '2019-12-06', '2019-12-06', '33', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 0, 0, 1, 24, 20, '0', '1'),
+(7, '2019-12-07', '2019-12-07', '35', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 1, 2, 1, 24, 20, '1', '2'),
+(8, '2019-12-08', '2019-12-08', '37', '12', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 1, 1, 1, 24, 20, '1', '1'),
+(9, '2019-12-09', '2019-12-09', '49', '20', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 3, 1, 4, 2, 24, 20, '1', '1'),
+(10, '2019-12-10', '2019-12-10', '69', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 4, 4, 2, 2, 24, 20, '1', '1'),
+(11, '2019-12-11', '2019-12-11', '72', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 2, 1, 1, 1, 24, 20, '0', '0'),
+(12, '2019-12-12', '2019-12-12', '75', '4', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 1, 0, 1, 24, 20, '0', '0'),
+(13, '2019-12-13', '2019-12-13', '79', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 0, 0, 0, 24, 20, '0', '1'),
+(14, '2019-12-14', '2019-12-14', '84', '6', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 0, 0, 0, 24, 20, '1', '1'),
+(15, '2019-12-15', '2019-12-15', '90', '6', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 1, 1, 1, 24, 20, '1', '1'),
+(16, '2019-12-16', '2019-12-16', '96', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 0, 0, 0, 1, 24, 20, '1', '0'),
+(17, '2019-12-17', '2019-12-17', '99', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 0, 0, 0, 24, 20, '0', '0'),
+(18, '2019-12-17', '2019-12-17', '101', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 0, 1, 0, 0, 24, 20, '0', '0'),
+(19, '2019-12-18', '2019-12-18', '106', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 0, 1, 0, 0, 24, 20, '0', '0'),
+(20, '2019-12-20', '2019-12-20', '109', '4', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 0, 0, 0, 0, 24, 20, '1', '0'),
+(21, '2019-12-21', '2019-12-21', '113', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 0, 0, 1, 0, 24, 20, '0', '0'),
+(22, '2019-12-22', '2019-12-22', '114', '6', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 0, 1, 2, 1, 24, 20, '0', '1'),
+(23, '2019-12-23', '2019-12-23', '120', '6', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 0, 0, 1, 0, 24, 20, '1', '0'),
+(24, '2019-12-24', '2019-12-24', '126', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 0, 1, 0, 1, 24, 20, '1', '1'),
+(25, '2019-12-25', '2019-12-25', '129', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 0, 0, 0, 24, 20, '0', '0'),
+(26, '2019-12-26', '2019-12-26', '132', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 2, 2, 1, 24, 20, '2', '0'),
+(27, '2019-12-27', '2019-12-27', '133', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 5, 2, 3, 24, 20, '1', '0'),
+(28, '2019-12-28', '2019-12-28', '135', '2', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 1, 1, 0, 24, 20, '0', '0'),
+(29, '2019-12-29', '2019-12-29', '137', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 2, 2, 1, 24, 20, '0', '0'),
+(30, '2019-12-30', '2019-12-30', '140', '3', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 4, 2, 1, 1, 24, 20, '2', '0'),
+(31, '2019-12-31', '2019-12-31', '143', '1', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 2, 1, 24, 20, '1', '1'),
+(32, '2019-01-01', '2019-01-01', '0', '2', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 2, 2, 24, 20, '1', '1'),
+(33, '2019-01-02', '2019-01-02', '2', '10', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 1, 1, 2, 24, 20, '3', '2'),
+(34, '2019-01-03', '2019-01-03', '12', '5', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 1, 1, 1, 24, 20, '1', '1'),
+(35, '2019-01-04', '2019-01-04', '17', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 1, 1, 1, 24, 20, '1', '1'),
+(36, '2019-01-05', '2019-01-05', '23', '4', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 0, 5, 1, 24, 20, '1', '1'),
+(37, '2019-01-06', '2019-01-06', '27', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 3, 2, 4, 24, 20, '8', '1'),
+(38, '2019-01-07', '2019-01-07', '33', '4', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 5, 4, 24, 20, '9', '0'),
+(39, '2019-01-08', '2019-01-08', '37', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 5, 4, 8, 24, 20, '3', '1'),
+(40, '2019-01-09', '2019-01-09', '43', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 4, 8, 24, 20, '9', '5'),
+(41, '2019-01-10', '2019-01-10', '49', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 1, 7, 6, 24, 20, '1', '2'),
+(42, '2019-01-11', '2019-01-11', '52', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 6, 4, 24, 20, '1', '2'),
+(43, '2019-01-12', '2019-01-12', '58', '4', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 4, 3, 1, 9, 6, 24, 20, '5', '1'),
+(44, '2019-01-13', '2019-01-13', '62', '10', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 4, 9, 1, 2, 24, 20, '3', '0'),
+(45, '2019-01-14', '2019-01-14', '72', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 4, 4, 24, 20, '4', '3'),
+(46, '2019-01-15', '2019-01-15', '75', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 4, 6, 4, 24, 20, '1', '2'),
+(47, '2019-01-16', '2019-01-16', '81', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 4, 6, 5, 8, 24, 20, '5', '5'),
+(48, '2019-01-17', '2019-01-17', '87', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 6, 4, 3, 5, 24, 20, '2', '2'),
+(49, '2019-01-18', '2019-01-18', '93', '4', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 5, 6, 1, 2, 5, 24, 20, '1', '1'),
+(50, '2019-01-19', '2019-01-19', '97', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 0, 4, 5, 2, 24, 20, '2', '2'),
+(51, '2019-01-20', '2019-01-20', '103', '1', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 2, 2, 2, 3, 24, 20, '6', '6'),
+(52, '2019-01-21', '2019-01-21', '104', '4', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 4, 5, 4, 24, 20, '5', '5'),
+(53, '2019-01-22', '2019-01-22', '108', '7', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 5, 4, 4, 24, 20, '4', '1'),
+(54, '2019-01-23', '2019-01-23', '115', '10', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 1, 1, 5, 24, 20, '2', '3'),
+(55, '2019-01-24', '2019-01-24', '137', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 1, 1, 1, 24, 20, '2', '3'),
+(56, '2019-01-25', '2019-01-25', '140', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 1, 1, 0, 24, 20, '2', '3'),
+(57, '2019-01-26', '2019-01-26', '143', '5', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 2, 2, 2, 24, 20, '2', '1'),
+(58, '2019-01-27', '2019-01-27', '148', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 3, 2, 1, 24, 20, '2', '3'),
+(59, '2019-01-28', '2019-01-28', '154', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 2, 1, 24, 20, '5', '3'),
+(60, '2019-01-29', '2019-01-29', '160', '10', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 2, 1, 1, 1, 24, 20, '1', '2'),
+(61, '2019-01-30', '2019-01-30', '170', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 1, 1, 2, 24, 20, '2', '1'),
+(62, '2019-01-31', '2019-01-31', '176', '1', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 3, 3, 2, 24, 20, '1', '1'),
+(63, '2019-02-01', '2019-02-01', '0', '10', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 1, 1, 24, 20, '1', '2'),
+(64, '2019-02-02', '2019-02-02', '10', '3', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 1, 1, 24, 20, '4', '2'),
+(65, '2019-02-03', '2019-02-03', '13', '12', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 5, 1, 2, 24, 20, '4', '1'),
+(66, '2019-02-04', '2019-02-04', '25', '5', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 1, 1, 2, 24, 20, '2', '3'),
+(67, '2019-02-05', '2019-02-05', '30', '3', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 2, 3, 3, 3, 24, 20, '2', '1'),
+(68, '2019-02-06', '2020-01-03', '33', '6', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 5, 1, 1, 2, 3, 24, 20, '0', '0'),
+(69, '2019-02-07', '2019-02-07', '39', '1', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 1, 1, 0, 24, 20, '0', '0'),
+(70, '2019-03-08', '2019-03-08', '40', '2', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 21, 1, 24, 20, '0', '1'),
+(71, '2019-04-08', '2019-04-08', '42', '1', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 2, 54, 1, 24, 20, '2', '1'),
+(72, '2019-05-08', '2019-05-08', '43', '6', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 3, 56, 1, 3, 24, 20, '1', '0'),
+(73, '2019-06-08', '2019-06-08', '49', '20', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 5, 2, 1, 24, 20, '5', '2'),
+(74, '2019-07-08', '2019-07-08', '69', '3', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 5, 2, 24, 20, '3', '1'),
+(75, '2019-08-08', '2019-08-08', '72', '6', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 5, 1, 24, 20, '23', '6'),
+(76, '2019-09-08', '2019-09-08', '78', '5', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 6, 5, 1, 24, 20, '32', '6'),
+(77, '2019-10-08', '2019-10-08', '83', '3', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 6, 3, 2, 24, 20, '3', '6'),
+(78, '2019-11-08', '2019-11-08', '86', '10', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 6, 3, 5, 24, 20, '2', '6'),
+(79, '2019-12-08', '2019-12-08', '96', '1', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 6, 3, 5, 24, 20, '2', '0'),
+(80, '2019-12-11', '2019-12-11', '97', '3', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 4, 2, 5, 24, 20, '6', '3'),
+(81, '2019-01-11', '2019-01-11', '0', '20', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 2, 2, 3, 24, 20, '6', '3'),
+(82, '2019-02-11', '2019-02-11', '20', '3', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 6, 3, 24, 20, '5', '2'),
+(83, '2019-03-11', '2019-03-11', '23', '3', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 0, 1, 2, 1, 24, 20, '4', '0'),
+(84, '2019-04-11', '2019-04-11', '26', '10', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 2, 3, 3, 6, 24, 20, '3', '0'),
+(85, '2019-05-11', '2019-05-11', '36', '5', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 5, 3, 2, 3, 6, 24, 20, '3', '2'),
+(86, '2019-06-11', '2019-06-11', '41', '2', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 3, 3, 24, 20, '6', '2'),
+(87, '2019-07-11', '2019-07-11', '43', '10', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 32, 3, 6, 3, 24, 20, '3', '3'),
+(88, '2019-08-11', '2019-08-11', '53', '2', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 2, 3, 6, 24, 20, '3', '3'),
+(89, '2019-09-11', '2019-09-11', '55', '12', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 3, 3, 24, 20, '2', '1'),
+(90, '2019-10-11', '2019-10-11', '67', '10', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 23, 3, 3, 3, 24, 20, '2', '1'),
+(91, '2019-11-11', '2019-11-11', '77', '2', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 12, 1, 2, 24, 20, '0', '0'),
+(92, '2019-12-11', '2019-12-11', '79', '5', '2SC035', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 3, 3, 24, 20, '3', '0'),
+(93, '2019-01-10', '2019-01-10', '0', '5', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 6, 3, 24, 20, '2', '5'),
+(94, '2019-02-10', '2019-02-10', '5', '3', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 1, 2, 5, 24, 20, '2', '3'),
+(95, '2019-03-10', '2019-03-10', '8', '6', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 3, 0, 2, 1, 24, 20, '1', '0'),
+(96, '2019-04-10', '2019-04-10', '14', '5', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 6, 3, 2, 24, 20, '2', '0'),
+(97, '2019-05-10', '2019-05-10', '19', '6', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 1, 2, 2, 24, 20, '2', '0'),
+(98, '2019-06-10', '2019-06-10', '25', '3', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 1, 54, 2, 24, 20, '3', '0'),
+(99, '2019-07-10', '2019-07-10', '28', '6', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 23, 3, 6, 3, 24, 20, '3', '0'),
+(100, '2019-08-10', '2019-08-10', '34', '3', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 3, 3, 6, 5, 24, 20, '2', '3'),
+(101, '2019-09-10', '2019-09-10', '37', '8', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 6, 5, 8, 2, 24, 20, '3', '0'),
+(102, '2019-10-10', '2019-10-10', '45', '12', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 2, 3, 6, 24, 20, '3', '3'),
+(103, '2019-11-10', '2019-11-10', '57', '3', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 5, 2, 3, 24, 20, '3', '3'),
+(104, '2019-12-10', '2019-12-10', '60', '10', '2SC037', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 23, 3, 6, 3, 3, 24, 20, '2', '1'),
+(105, '2019-01-08', '2019-01-08', '0', '10', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 5, 2, 3, 24, 20, '6', '2'),
+(106, '2019-02-08', '2019-02-08', '10', '2', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 5, 3, 24, 20, '6', '2'),
+(107, '2019-03-08', '2019-03-08', '12', '1', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 5, 6, 24, 20, '8', '0'),
+(108, '2019-04-08', '2019-04-08', '13', '10', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 2, 1, 24, 20, '1', '0'),
+(109, '2019-05-08', '2019-05-08', '23', '10', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 32, 3, 6, 6, 24, 20, '6', '3'),
+(110, '2019-06-08', '2019-06-08', '33', '5', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 3, 2, 0, 4, 24, 20, '1', '0'),
+(111, '2019-07-08', '2019-07-08', '38', '10', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 3, 6, 5, 2, 24, 20, '3', '0'),
+(112, '2019-08-08', '2019-08-08', '48', '3', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 2, 1, 24, 20, '1', '0'),
+(113, '2019-09-08', '2019-09-08', '51', '3', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 3, 6, 2, 24, 20, '3', '3'),
+(114, '2019-10-08', '2019-10-08', '54', '6', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 6, 3, 24, 20, '3', '3'),
+(115, '2019-11-08', '2019-11-08', '60', '3', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 6, 3, 2, 5, 24, 20, '2', '3'),
+(116, '2019-12-08', '2019-12-08', '63', '3', '2JL003', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 3, 2, 5, 2, 24, 20, '3', '3'),
+(117, '2019-01-22', '2019-01-22', '0', '2', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 1, 5, 2, 24, 20, '3', '3'),
+(118, '2019-02-22', '2019-02-22', '2', '3', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 3, 3, 6, 24, 20, '2', '0'),
+(119, '2019-03-22', '2019-03-22', '5', '10', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 23, 3, 6, 3, 24, 20, '2', '1'),
+(120, '2019-04-22', '2019-04-22', '15', '22', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 6, 3, 24, 20, '2', '2'),
+(121, '2019-05-22', '2019-05-22', '37', '10', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 6, 3, 24, 20, '3', '0'),
+(122, '2019-06-22', '2019-06-22', '47', '10', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 3, 6, 3, 0, 24, 20, '2', '0'),
+(123, '2019-07-22', '2019-07-22', '57', '2', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 3, 3, 3, 24, 20, '0', '1'),
+(124, '2019-08-22', '2019-08-22', '59', '6', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 3, 3, 2, 24, 20, '1', '0'),
+(125, '2019-09-22', '2019-09-22', '65', '11', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 6, 3, 1, 24, 20, '1', '1'),
+(126, '2019-10-22', '2019-10-22', '76', '3', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 5, 6, 3, 24, 20, '3', '1'),
+(127, '2019-11-22', '2019-11-22', '79', '4', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 5, 6, 3, 6, 3, 24, 20, '2', '5'),
+(128, '2019-12-22', '2019-12-22', '83', '5', '2JL015', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 3, 3, 3, 2, 24, 20, '2', '1'),
+(129, '2019-01-14', '2019-01-14', '0', '9', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 9, 6, 69, 6, 24, 20, '5', '1'),
+(130, '2019-02-14', '2019-02-14', '9', '4', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 3, 6, 3, 24, 20, '3', '2'),
+(131, '2019-03-14', '2019-03-14', '13', '5', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 3, 6, 3, 24, 20, '2', '5'),
+(132, '2019-04-14', '2019-04-14', '18', '5', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 3, 6, 3, 6, 24, 20, '3', '2'),
+(133, '2019-05-14', '2019-05-14', '23', '6', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 3, 6, 3, 2, 24, 20, '1', '0'),
+(134, '2019-06-14', '2019-06-14', '29', '6', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 3, 2, 5, 21, 24, 20, '1', '3'),
+(135, '2019-07-14', '2019-07-14', '35', '6', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 3, 6, 3, 24, 20, '2', '5'),
+(136, '2019-08-14', '2019-08-14', '41', '6', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 3, 2, 1, 24, 20, '4', '5'),
+(137, '2019-09-14', '2019-09-14', '47', '10', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 6, 3, 6, 24, 20, '3', '2'),
+(138, '2019-10-14', '2019-10-14', '57', '6', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 6, 3, 6, 3, 24, 20, '2', '5'),
+(139, '2019-11-14', '2019-11-14', '63', '7', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 2, 6, 3, 24, 20, '5', '4'),
+(140, '2019-12-14', '2019-12-14', '70', '6', '2JL016', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 6, 3, 6, 3, 6, 24, 20, '9', '5'),
+(141, '2020-01-02', '2020-01-03', '144', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 0, 2, 1, 24, 20, '1', '2'),
+(142, '2020-02-03', '2020-02-03', '149', '11', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 3, 2, 24, 20, '1', '2'),
+(143, '2021-01-04', '2021-01-04', '160', '10', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 0, 0, 0, 0, 24, 20, '0', '0');
 
 -- --------------------------------------------------------
 
@@ -630,11 +747,14 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuarios`, `nombres`, `dni`, `usuario`, `password`, `rol`, `id_maquina`) VALUES
 (1, 'test superadmin', '47793117', 'superadmin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 3, 1),
 (2, 'test admin', '47793118', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 2, 1),
-(3, 'test mecanico', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1),
+(3, 'test1', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1),
 (7, 'test2', '47793120', 'mecanico2', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 2),
-(8, 'test2', '47793121', 'mecanico3', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 3),
-(9, 'test2', '47793122', 'mecanico4', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 4),
-(10, 'test2', '47793123', 'mecanico5', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 5);
+(8, 'test3', '47793121', 'mecanico3', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 3),
+(9, 'test4', '47793122', 'mecanico4', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 4),
+(10, 'test5', '47793123', 'mecanico5', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 5),
+(11, 'test6', '47793124', 'mecanico6', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 6),
+(12, 'test7', '47793125', 'mecanico7', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 7),
+(13, 'test8', '47793126', 'mecanico8', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 8);
 
 --
 -- Índices para tablas volcadas
@@ -746,13 +866,13 @@ ALTER TABLE `mantenimiento`
 -- AUTO_INCREMENT de la tabla `maquinas`
 --
 ALTER TABLE `maquinas`
-  MODIFY `id_maquina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_maquina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -812,7 +932,7 @@ ALTER TABLE `tablest`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_usuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas

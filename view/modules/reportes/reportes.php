@@ -2,7 +2,7 @@
     <div class="box-body">
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-6 control-label">REPORTE:</label>
+                <label class="col-sm-6 control-label">REPORTE</label>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label">DE:</label>

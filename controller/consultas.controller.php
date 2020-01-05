@@ -14,6 +14,7 @@ class consultasClassController{
         return $get;
 
     }
+
     public static function setreporteController($data){
         
         $set = consultasClassModel::setreporteModel($data);
@@ -21,6 +22,7 @@ class consultasClassController{
         return $set;
 
     }
+
     public static function reporteController($page){
 
         # definiendo el modo de respuesta
@@ -31,6 +33,7 @@ class consultasClassController{
         exit;
 
     }
+
     public static function reporteFechaController($de, $hasta, $page){
         # definiendo el modo de respuesta
         header('Content-Type: application/json');
@@ -48,6 +51,7 @@ class consultasClassController{
         echo $response;
         exit;
     }
+
     public static function reporteFechaScoops($de, $hasta, $equipo, $page){
         # definiendo el modo de respuesta
         header('Content-Type: application/json');
@@ -57,5 +61,13 @@ class consultasClassController{
         exit;
     }
 
+    public static function indicadorController($month, $years, $page){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = consultasClassModel::indicadorModel($month, $years, $page);
+        # respuesta
+        echo $response;
+        exit;
+    }
 }
 ?>

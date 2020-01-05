@@ -26,15 +26,20 @@ var objJrc = {
         });
     },
     DatePicker:function(){
+        var fecha = new Date();
+        var finfecha = new Date();
         $('#datepicker').datepicker({
             orientation: 'bottom right',
             autoclose: true,
-            format: 'yyyy-mm-dd'
+            format: 'yyyy-mm-dd'/* ,
+            startDate: fecha,
+            endDate: finfecha */
         });
         $(' #datepicker2, #datepicker3').datepicker({
             orientation: 'bottom right',
             autoclose: true,
-            format: 'yyyy-mm-dd'
+            format: 'yyyy-mm-dd'/* ,
+            startDate: fecha, */
         }).datepicker("setDate", new Date());
     },
     Consulta: function(){
@@ -224,6 +229,28 @@ var objJrc = {
         });
     },
     ResumenIndicadores: function(){
+        var month  = $("#month").val();
+        var years  = $("#years").val();
+        $.ajax({
+            type: 'GET',
+            url: urlProd+'resumenindicadores?month='+month+'&years='+years,
+            dataType: 'json'
+        }).done(function(data){
+            objJrc.formachine(data);
+        });
+        $(".consulta_indicador").on('click',function(){
+            var month  = $("#month").val();
+            var years  = $("#years").val();
+            $('#tbl_resumenindicadores').html('');
+            $('#tbl_resumenindicadores_foot').html('');
+            $.ajax({
+                type: 'GET',
+                url: urlProd+'resumenindicadores?month='+month+'&years='+years,
+                dataType: 'json'
+            }).done(function(data){
+                objJrc.formachine(data);
+            });
+        });
 
     },
     HorasOperacion: function(){
@@ -945,6 +972,366 @@ var objJrc = {
                 }
             });
         });
+    },
+    formachine: function(m){
+        var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0, m_2JL003=0, m_2JL015=0, m_2JL016=0;
+        var a_2SC019=0, a_2SC022=0, a_2SC026=0, a_2SC029=0, a_2SC035=0, a_2SC037=0, a_2JL003=0, a_2JL015=0, a_2JL016=0;
+
+        var i_2SC019=0, i_2SC022=0, i_2SC026=0, i_2SC029=0, i_2SC035=0, i_2SC037=0, i_2JL003=0, i_2JL015=0, i_2JL016=0;
+        var pv_2SC019=0, pv_2SC022=0, pv_2SC026=0, pv_2SC029=0, pv_2SC035=0, pv_2SC037=0, pv_2JL003=0, pv_2JL015=0, pv_2JL016=0;
+        var pg_2SC019=0, pg_2SC022=0, pg_2SC026=0, pg_2SC029=0, pg_2SC035=0, pg_2SC037=0, pg_2JL003=0, pg_2JL015=0, pg_2JL016=0;
+        var cr_2SC019=0, cr_2SC022=0, cr_2SC026=0, cr_2SC029=0, cr_2SC035=0, cr_2SC037=0, cr_2JL003=0, cr_2JL015=0, cr_2JL016=0;
+        var ra_2SC019=0, ra_2SC022=0, ra_2SC026=0, ra_2SC029=0, ra_2SC035=0, ra_2SC037=0, ra_2JL003=0, ra_2JL015=0, ra_2JL016=0;
+        var dm_2SC019=0, dm_2SC022=0, dm_2SC026=0, dm_2SC029=0, dm_2SC035=0, dm_2SC037=0, dm_2JL003=0, dm_2JL015=0, dm_2JL016=0;
+        var mtbf_2SC019=0.0, mtbf_2SC022=0.0, mtbf_2SC026=0.0, mtbf_2SC029=0.0, mtbf_2SC035=0.0, mtbf_2SC037=0.0, mtbf_2JL003=0.0, mtbf_2JL015=0.0, mtbf_2JL016=0.0;
+        var mttr_2SC019=0.0, mttr_2SC022=0.0, mttr_2SC026=0.0, mttr_2SC029=0.0, mttr_2SC035=0.0, mttr_2SC037=0.0, mttr_2JL003=0.0, mttr_2JL015=0.0, mttr_2JL016=0.0;
+        //suma en el mes
+        m.data.forEach(function( element, index ){
+            if(element.equipo_trabajo=='2SC019'){
+                m_2SC019 = m_2SC019 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2SC019 = i_2SC019 + parseInt(element.inspecc);
+                pv_2SC019 = pv_2SC019 + parseInt(element.mantto_prev);
+                pg_2SC019 = pg_2SC019 + parseInt(element.homp);
+                cr_2SC019 = cr_2SC019 + parseInt(element.repcorrect);
+                ra_2SC019 = ra_2SC019 + parseInt(element.otrosacci);
+                dm_2SC019 = dm_2SC019 + Ao;
+                mtbf_2SC019 = mtbf_2SC019 + _mtbf;
+                mttr_2SC019 = mttr_2SC019 + _mttr;
+            }
+            if(element.equipo_trabajo=='2SC022'){
+                m_2SC022 = m_2SC022 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2SC022 = i_2SC022 + parseInt(element.inspecc);
+                pv_2SC022 = pv_2SC022 + parseInt(element.mantto_prev);
+                pg_2SC022 = pg_2SC022 + parseInt(element.homp);
+                cr_2SC022 = cr_2SC022 + parseInt(element.repcorrect);
+                ra_2SC022 = ra_2SC022 + parseInt(element.otrosacci);
+                dm_2SC022 = dm_2SC022 + Ao;
+                mtbf_2SC022 = mtbf_2SC022 + _mtbf;
+                mttr_2SC022 = mttr_2SC022 + _mttr;
+            }
+            if(element.equipo_trabajo=='2SC026'){
+                m_2SC026 = m_2SC026 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2SC026 = i_2SC026 + parseInt(element.inspecc);
+                pv_2SC026 = pv_2SC026 + parseInt(element.mantto_prev);
+                pg_2SC026 = pg_2SC026 + parseInt(element.homp);
+                cr_2SC026 = cr_2SC026 + parseInt(element.repcorrect);
+                ra_2SC026 = ra_2SC026 + parseInt(element.otrosacci);
+                dm_2SC026 = dm_2SC026 + Ao;
+                mtbf_2SC026 = mtbf_2SC026 + _mtbf;
+                mttr_2SC026 = mttr_2SC026 + _mttr;
+            }
+            if(element.equipo_trabajo=='2SC029'){
+                m_2SC029 = m_2SC029 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2SC029 = i_2SC029 + parseInt(element.inspecc);
+                pv_2SC029 = pv_2SC029 + parseInt(element.mantto_prev);
+                pg_2SC029 = pg_2SC029 + parseInt(element.homp);
+                cr_2SC029 = cr_2SC029 + parseInt(element.repcorrect);
+                ra_2SC029 = ra_2SC029 + parseInt(element.otrosacci);
+                dm_2SC029 = dm_2SC029 + Ao;
+                mtbf_2SC029 = mtbf_2SC029 + _mtbf;
+                mttr_2SC029 = mttr_2SC029 + _mttr;
+            }
+            if(element.equipo_trabajo=='2SC035'){
+                m_2SC035 = m_2SC035 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2SC035 = i_2SC035 + parseInt(element.inspecc);
+                pv_2SC035 = pv_2SC035 + parseInt(element.mantto_prev);
+                pg_2SC035 = pg_2SC035 + parseInt(element.homp);
+                cr_2SC035 = cr_2SC035 + parseInt(element.repcorrect);
+                ra_2SC035 = ra_2SC035 + parseInt(element.otrosacci);
+                dm_2SC035 = dm_2SC035 + Ao;
+                mtbf_2SC035 = mtbf_2SC035 + _mtbf;
+                mttr_2SC035 = mttr_2SC035 + _mttr;
+            }
+            if(element.equipo_trabajo=='2SC037'){
+                m_2SC037 = m_2SC037 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2SC037 = i_2SC037 + parseInt(element.inspecc);
+                pv_2SC037 = pv_2SC037 + parseInt(element.mantto_prev);
+                pg_2SC037 = pg_2SC037 + parseInt(element.homp);
+                cr_2SC037 = cr_2SC037 + parseInt(element.repcorrect);
+                ra_2SC037 = ra_2SC037 + parseInt(element.otrosacci);
+                dm_2SC037 = dm_2SC037 + Ao;
+                mtbf_2SC037 = mtbf_2SC037 + _mtbf;
+                mttr_2SC037 = mttr_2SC037 + _mttr;
+            }
+            if(element.equipo_trabajo=='2JL003'){
+                m_2JL003 = m_2JL003 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2JL003 = i_2JL003 + parseInt(element.inspecc);
+                pv_2JL003 = pv_2JL003 + parseInt(element.mantto_prev);
+                pg_2JL003 = pg_2JL003 + parseInt(element.homp);
+                cr_2JL003 = cr_2JL003 + parseInt(element.repcorrect);
+                ra_2JL003 = ra_2JL003 + parseInt(element.otrosacci);
+                dm_2JL003 = dm_2JL003 + Ao;
+                mtbf_2JL003 = mtbf_2JL003 + _mtbf;
+                mttr_2JL003 = mttr_2JL003 + _mttr;
+            }
+            if(element.equipo_trabajo=='2JL015'){
+                m_2JL015 = m_2JL015 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2JL015 = i_2JL015 + parseInt(element.inspecc);
+                pv_2JL015 = pv_2JL015 + parseInt(element.mantto_prev);
+                pg_2JL015 = pg_2JL015 + parseInt(element.homp);
+                cr_2JL015 = cr_2JL015 + parseInt(element.repcorrect);
+                ra_2JL015 = ra_2JL015 + parseInt(element.otrosacci);
+                dm_2JL015 = dm_2JL015 + Ao;
+                mtbf_2JL015 = mtbf_2JL015 + _mtbf;
+                mttr_2JL015 = mttr_2JL015 + _mttr;
+            }
+            if(element.equipo_trabajo=='2JL016'){
+                m_2JL016 = m_2JL016 + parseInt(element.hora);
+                hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
+                _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                if(_mtbf == 0 && _mttr == 0){
+                    Ao = 0;
+                }else{
+                    Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                }
+                i_2JL016 = i_2JL016 + parseInt(element.inspecc);
+                pv_2JL016 = pv_2JL016 + parseInt(element.mantto_prev);
+                pg_2JL016 = pg_2JL016 + parseInt(element.homp);
+                cr_2JL016 = cr_2JL016 + parseInt(element.repcorrect);
+                ra_2JL016 = ra_2JL016 + parseInt(element.otrosacci);
+                dm_2JL016 = dm_2JL016 + Ao;
+                mtbf_2JL016 = mtbf_2JL016 + _mtbf;
+                mttr_2JL016 = mttr_2JL016 + _mttr;
+            }
+        });
+        /* console.log ("mes: "+m_2SC019); */
+        //suma en el año
+        m.year.forEach(function( element, index ){
+            if(element.equipo_trabajo=='2SC019'){
+                a_2SC019 = a_2SC019 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2SC022'){
+                a_2SC022 = a_2SC022 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2SC026'){
+                a_2SC026 = a_2SC026 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2SC029'){
+                a_2SC029 = a_2SC029 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2SC035'){
+                a_2SC035 = a_2SC035 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2SC037'){
+                a_2SC037 = a_2SC037 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2JL003'){
+                a_2JL003 = a_2JL003 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2JL015'){
+                a_2JL015 = a_2JL015 + parseInt(element.hora);
+            }
+            if(element.equipo_trabajo=='2JL016'){
+                a_2JL016 = a_2JL016 + parseInt(element.hora);
+            }
+        });
+        /* console.log ("año: "+a_2SC019); */
+        var body = '';
+            // para 2SC019
+            body += '<tr>';
+            body += '<td>2SC019</td>';
+            body += '<td>Caterpillar</td>';
+            body += '<td>R-1600G</td>';
+            body += '<td>9YZ00603</td>';
+            body += '<td></td>';
+            body += '<td>Iscaycruz</td>';
+            body += '<td>'+m_2SC019+'</td>';
+            body += '<td>'+a_2SC019+'</td>';
+            body += '<td>'+i_2SC019+'</td>';
+            body += '<td>'+pv_2SC019+'</td>';
+            body += '<td>'+pg_2SC019+'</td>';
+            body += '<td>'+cr_2SC019+'</td>';
+            body += '<td>'+ra_2SC019+'</td>';
+            body += '<td>'+dm_2SC019.toFixed(1)+'</td>';
+            body += '<td>'+mtbf_2SC019.toFixed(1)+'</td>';
+            body += '<td>'+mttr_2SC019.toFixed(1)+'</td>';
+            body += '</tr>';
+            // para 2SC022
+            body += '<tr>';
+            body += '<td>2SC022</td>';
+            body += '<td>Caterpillar</td>';
+            body += '<td>R-1600G</td>';
+            body += '<td>9YZ00657</td>';
+            body += '<td></td>';
+            body += '<td>Iscaycruz</td>';
+            body += '<td>'+m_2SC022+'</td>';
+            body += '<td>'+a_2SC022+'</td>';
+            body += '<td>'+i_2SC022+'</td>';
+            body += '<td>'+pv_2SC022+'</td>';
+            body += '<td>'+pg_2SC022+'</td>';
+            body += '<td>'+cr_2SC022+'</td>';
+            body += '<td>'+ra_2SC022+'</td>';
+            body += '<td>'+dm_2SC022.toFixed(1)+'</td>';
+            body += '<td>'+mtbf_2SC022.toFixed(1)+'</td>';
+            body += '<td>'+mttr_2SC022.toFixed(1)+'</td>';
+            body += '</tr>';
+            // para 2SC026
+            body += '<tr>';
+            body += '<td>2SC026</td>';
+            body += '<td>Caterpillar</td>';
+            body += '<td>R-1600G</td>';
+            body += '<td>09YZ00733</td>';
+            body += '<td></td>';
+            body += '<td>Iscaycruz</td>';
+            body += '<td>'+m_2SC026+'</td>';
+            body += '<td>'+a_2SC026+'</td>';
+            body += '<td>'+i_2SC026+'</td>';
+            body += '<td>'+pv_2SC026+'</td>';
+            body += '<td>'+pg_2SC026+'</td>';
+            body += '<td>'+cr_2SC026+'</td>';
+            body += '<td>'+ra_2SC026+'</td>';
+            body += '<td>'+dm_2SC026.toFixed(1)+'</td>';
+            body += '<td>'+mtbf_2SC026.toFixed(1)+'</td>';
+            body += '<td>'+mttr_2SC026.toFixed(1)+'</td>';
+            body += '</tr>';
+            // para 2SC029
+            body += '<tr>';
+            body += '<td>2SC029</td>';
+            body += '<td>Caterpillar</td>';
+            body += '<td>R-1600G</td>';
+            body += '<td>9YZ00803</td>';
+            body += '<td></td>';
+            body += '<td>Iscaycruz</td>';
+            body += '<td>'+m_2SC029+'</td>';
+            body += '<td>'+a_2SC029+'</td>';
+            body += '<td>'+i_2SC029+'</td>';
+            body += '<td>'+pv_2SC029+'</td>';
+            body += '<td>'+pg_2SC029+'</td>';
+            body += '<td>'+cr_2SC029+'</td>';
+            body += '<td>'+ra_2SC029+'</td>';
+            body += '<td>'+dm_2SC029.toFixed(1)+'</td>';
+            body += '<td>'+mtbf_2SC029.toFixed(1)+'</td>';
+            body += '<td>'+mttr_2SC029.toFixed(1)+'</td>';
+            body += '</tr>';
+            // para 2SC035
+            body += '<tr>';
+            body += '<td>2SC035</td>';
+            body += '<td>Caterpillar</td>';
+            body += '<td>R-1600G</td>';
+            body += '<td>9YZ00803</td>';
+            body += '<td></td>';
+            body += '<td>Iscaycruz</td>';
+            body += '<td>'+m_2SC035+'</td>';
+            body += '<td>'+a_2SC035+'</td>';
+            body += '<td>'+i_2SC035+'</td>';
+            body += '<td>'+pv_2SC035+'</td>';
+            body += '<td>'+pg_2SC035+'</td>';
+            body += '<td>'+cr_2SC035+'</td>';
+            body += '<td>'+ra_2SC035+'</td>';
+            body += '<td>'+dm_2SC035.toFixed(1)+'</td>';
+            body += '<td>'+mtbf_2SC035.toFixed(1)+'</td>';
+            body += '<td>'+mttr_2SC035.toFixed(1)+'</td>';
+            body += '</tr>';
+            // para 2SC037
+            body += '<tr>';
+            body += '<td>2SC037</td>';
+            body += '<td>Caterpillar</td>';
+            body += '<td>R-1600G</td>';
+            body += '<td>9YZ00803</td>';
+            body += '<td></td>';
+            body += '<td>Iscaycruz</td>';
+            body += '<td>'+m_2SC037+'</td>';
+            body += '<td>'+a_2SC037+'</td>';
+            body += '<td>'+i_2SC037+'</td>';
+            body += '<td>'+pv_2SC037+'</td>';
+            body += '<td>'+pg_2SC037+'</td>';
+            body += '<td>'+cr_2SC037+'</td>';
+            body += '<td>'+ra_2SC037+'</td>';
+            body += '<td>'+dm_2SC037.toFixed(1)+'</td>';
+            body += '<td>'+mtbf_2SC037.toFixed(1)+'</td>';
+            body += '<td>'+mttr_2SC037.toFixed(1)+'</td>';
+            body += '</tr>';
+        //print body
+        $('#tbl_resumenindicadores').append(body);
+
+        //sumando
+        var total_i = i_2SC019+i_2SC022+i_2SC026+i_2SC029+i_2SC035+i_2SC037;
+        var total_pv = pv_2SC019+pv_2SC022+pv_2SC026+pv_2SC029+pv_2SC035+pv_2SC037;
+        var total_pg = pg_2SC019+pg_2SC022+pg_2SC026+pg_2SC029+pg_2SC035+pg_2SC037;
+        var total_cr = cr_2SC019+cr_2SC022+cr_2SC026+cr_2SC029+cr_2SC035+cr_2SC037;
+        var total_ra = ra_2SC019+ra_2SC022+ra_2SC026+ra_2SC029+ra_2SC035+ra_2SC037;
+        var total_dm = dm_2SC019+dm_2SC022+dm_2SC026+dm_2SC029+dm_2SC035+dm_2SC037;
+        var total_mtbf = mtbf_2SC019+mtbf_2SC022+mtbf_2SC026+mtbf_2SC029+mtbf_2SC035+mtbf_2SC037;
+        var total_mttr = mttr_2SC019+mttr_2SC022+mttr_2SC026+mttr_2SC029+mttr_2SC035+mttr_2SC037;
+        //print footer
+        var footer = '';
+            footer += '<tr>';
+            footer += '<td colspan="8">Total Flota Scooptrams</td>';
+            footer += '<td>'+total_i+'</td>';
+            footer += '<td>'+total_pv+'</td>';
+            footer += '<td>'+total_pg+'</td>';
+            footer += '<td>'+total_cr+'</td>';
+            footer += '<td>'+total_ra+'</td>';
+            footer += '<td>'+total_dm.toFixed(1)+'</td>';
+            footer += '<td>'+total_mtbf.toFixed(1)+'</td>';
+            footer += '<td>'+total_mttr.toFixed(1)+'</td>';
+            footer += '</tr>';
+        $('#tbl_resumenindicadores_foot').append(footer);
     }
 };
 

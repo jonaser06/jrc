@@ -11,6 +11,7 @@ $app->post('/signup/','signup');
 $app->post('/signin/','signin');
 $app->get('/reporteservice/','reporteService');
 $app->get('/reportescoops/','reportescoops');
+$app->get('/resumenindicadores/','resumenIndicadores');
 
 #endpints de vistas
 $app->get('/','index');
@@ -592,6 +593,16 @@ function reporteproblema(){
 }
 
 #servicios
+function resumenIndicadores(){
+    $page = $_GET['page']==NULL?'1':$_GET['page'];
+
+    if(isset($_GET['month']) && isset($_GET['years'])){
+        $month = $_GET['month'];
+        $years = $_GET['years'];
+        consultasClassController::indicadorController($month, $years, $page);
+    }
+}
+
 function reportescoops(){
     $page = $_GET['page']==NULL?'1':$_GET['page'];
 
