@@ -87,7 +87,7 @@
 
                                     <label class="col-sm-2 control-label">DESCRIPCION:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="descripcion" required value="G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.">
+                                        <input type="text" class="form-control" name="descripcion" required >
                                     </div>
 
                                     <label class="col-sm-1 control-label">NRO DE FALLAS DEL EQUIPO:</label>
