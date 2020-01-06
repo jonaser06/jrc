@@ -17,5 +17,10 @@ class meClassController{
         return $getdata;
     }
 
+    public static function configController(){
+        $getdata = meClassModel::configModel();
+        return $getdata;
+    }
+
 }
 ?>

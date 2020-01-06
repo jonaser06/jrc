@@ -72,5 +72,20 @@ class meClassModel{
         }
     }
 
+    public static function configModel(){
+        try {
+            $db         = getDB();
+            $sql        = "SELECT * FROM maquinas";
+            $stmt       =   $db->prepare($sql);
+            $stmt->bindParam("id", $id,PDO::PARAM_STR);
+            $stmt->execute();
+            $me = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return json_encode($me, JSON_UNESCAPED_UNICODE);
+
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+
 }
 ?>

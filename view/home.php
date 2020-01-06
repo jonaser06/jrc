@@ -388,6 +388,7 @@ function scoops(){
 function superadministrador(){
     session_start();
     $dir = rutasClass::rutas();
+    $config = meClassController::configController();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
         if($_SESSION['rol']== 'super administrador'){ 
             include 'modules/head.php';
@@ -411,6 +412,7 @@ function superadministrador(){
 function administrador(){
     session_start();
     $dir = rutasClass::rutas();
+    $config = meClassController::configController();
     if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
         if($_SESSION['rol']== 'administrador'){
             include 'modules/head.php';
