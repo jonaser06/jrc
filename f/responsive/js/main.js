@@ -3500,6 +3500,18 @@ var objJrc = {
 
     },
     graficar: function(area){
+        var param = objJrc.$_GET('consulta');
+        //color
+        var color;
+        if(param=='disponibilidad'){
+            color = '#a0d0e0';
+        }
+        if(param=='mtbf'){
+            color = '#f39c12';
+        }
+        if(param=='mttr'){
+            color = '#74a5c2';
+        }
         // Sales chart
         const monthNames = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         var area = new Morris.Area({
@@ -3528,7 +3540,7 @@ var objJrc = {
             },
             xLabels: "month",
             labels    : ['Item 1'],
-            lineColors: ['#a0d0e0'],
+            lineColors: [color],
             hideHover : 'auto'
         });
     }
