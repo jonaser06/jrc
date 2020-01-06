@@ -2,7 +2,7 @@
     <div class="box-body">
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-7 control-label">MTBF</label>
+                <label class="col-sm-7 control-label">MTTR</label>
             </div>
             <div class="form-group">
                 <div class="container">
