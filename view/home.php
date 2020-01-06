@@ -9,9 +9,15 @@ $app = new \Slim\Slim();
 #endpoints de servicios
 $app->post('/signup/','signup');
 $app->post('/signin/','signin');
+$app->post('/registrarusuario/','registrarUsuario');
+$app->post('/asignarmaquina/','asignarMaquina');
+$app->get('/horasoperacion/','horasoperacion');
+$app->get('/disponibilidadmecanica/','disponibilidadMecanica');
+$app->get('/graphmtbf/','graphMtbf');
+$app->get('/graphmttr/','graphMttr');
+$app->get('/resumenindicadores/','resumenIndicadores');
 $app->get('/reporteservice/','reporteService');
 $app->get('/reportescoops/','reportescoops');
-$app->get('/resumenindicadores/','resumenIndicadores');
 
 #endpints de vistas
 $app->get('/','index');
@@ -388,6 +394,8 @@ function superadministrador(){
             include 'modules/menu.php';
             include 'modules/superadministrador.php';
             include 'modules/footer.php';
+
+            notificacion($_GET['status'], $_GET['message']);
          }else{
             echo '<script type="text/javascript">
                     window.location = "login";
@@ -409,6 +417,8 @@ function administrador(){
             include 'modules/menu.php';
             include 'modules/administrador.php';
             include 'modules/footer.php';
+
+            notificacion($_GET['status'], $_GET['message']);
         }else{
             echo '<script type="text/javascript">
                   window.location = "login";
@@ -462,16 +472,7 @@ function r1600g(){
         include 'modules/r1600g.php';
         include 'modules/footer.php';
         #notificacion
-        if($_GET['status']=='true'){
-            echo '<script>
-                    toastr.success("'.$_GET['message'].'", "Estado");
-                  </script>';
-        }
-        if($_GET['status']=='false'){
-        echo '<script>
-                toastr.error("'.$_GET['message'].'", "Estado");
-                </script>';
-        }
+        notificacion($_GET['status'], $_GET['message']);
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";
@@ -592,7 +593,77 @@ function reporteproblema(){
     }
 }
 
+function registrarUsuario(){
+
+    if(isset($_POST['name']) && isset($_POST['dni']) && isset($_POST['users']) && isset($_POST['pass']) && isset($_POST['rol'])){
+        $data = array(
+            'name'=> $_POST['name'],
+            'dni'=> $_POST['dni'],
+            'users'=> $_POST['users'],
+            'pass'=> $_POST['pass'],
+            'rol'=> $_POST['rol']
+        );
+        $reponse = authClassController::registroController($data);
+        /* $url = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]; */
+        if($reponse){
+            if($_POST['origen'] == 1){
+                echo '<script type="text/javascript">
+                        window.location = "administrador?status=true&message=Usuario Registrado correctamente";
+                    </script>';
+            }
+            if($_POST['origen'] == 2){
+                echo '<script type="text/javascript">
+                        window.location = "superadministrador?status=true&message=Usuario Registrado correctamente";
+                    </script>';
+            }
+        }
+    }else{
+        echo 'mal';
+    }
+
+}
+
+function asignarMaquina(){
+
+}
+
 #servicios
+function disponibilidadMecanica(){
+    if(isset($_GET['years'])){
+        $years = $_GET['years'];
+        consultasClassController::operacionController($years);
+    }else{
+        echo 'sin argumentos';
+    }
+}
+
+function graphMtbf(){
+    if(isset($_GET['years'])){
+        $years = $_GET['years'];
+        consultasClassController::operacionController($years);
+    }else{
+        echo 'sin argumentos';
+    }
+}
+
+function graphMttr(){
+    if(isset($_GET['years'])){
+        $years = $_GET['years'];
+        consultasClassController::operacionController($years);
+    }else{
+        echo 'sin argumentos';
+    }
+}
+
+function horasoperacion(){
+    if(isset($_GET['years'])){
+        $years = $_GET['years'];
+        consultasClassController::operacionController($years);
+    }else{
+        echo 'sin argumentos';
+    }
+}
+
 function resumenIndicadores(){
     $page = $_GET['page']==NULL?'1':$_GET['page'];
 
@@ -643,7 +714,18 @@ function signin(){
     $getbody = json_decode($request->getBody());
     authClassController::signinController($getbody);
 }
-
+function notificacion($status, $message){
+    if($status=='true'){
+        echo '<script>
+                toastr.success("'.$message.'", "Estado");
+              </script>';
+    }
+    if($status=='false'){
+        echo '<script>
+                toastr.error("'.$message.'", "Estado");
+                </script>';
+    }
+}
 $app->run();
 
 ?>

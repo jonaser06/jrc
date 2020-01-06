@@ -44,7 +44,7 @@
       });
     }
 
-    $(function () {    
+    /* $(function () {    
         new Morris.Line({
 
         element: 'myfirstchart',
@@ -63,7 +63,7 @@
         labels: ['Value']
         });
     
-    })
+    }) */
 </script>
 </body>
 </html>

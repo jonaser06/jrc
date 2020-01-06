@@ -308,5 +308,61 @@ class consultasClassModel{
             return '{"status":false, "message":'.$e.'}';
         }
     }
+
+    public static function operacionModel($years){
+        try {
+            $obj = ["a","b","c"];
+            $data = array(
+                
+            );
+            for ($i = 1 ; $i <= 12 ; $i++){
+                $k = 0;
+                #resultados meses
+                $db        =   getDB();
+                $sql       =   "SELECT hora, inicio_jornada, equipo_trabajo, fallas_equipo, homp, tiempo_parada FROM reporte WHERE MONTH(inicio_jornada) = :months AND YEAR(inicio_jornada) = :years ";
+                $stmt      =    $db->prepare($sql);
+                $stmt->bindParam("years", $years,PDO::PARAM_STR);
+                $stmt->bindParam("months", $i,PDO::PARAM_STR);
+                $stmt->execute();
+                $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+                switch ($i) {
+                    case 1: $mes ='Enero';
+                        break;
+                    case 2: $mes ='Febrero';
+                        break;
+                    case 3: $mes ='Marzo';
+                        break;
+                    case 4: $mes ='Abril';
+                        break;
+                    case 5: $mes ='Mayo';
+                        break;
+                    case 6: $mes ='Junio';
+                        break;
+                    case 7: $mes ='Julio';
+                        break;
+                    case 8: $mes ='Agosto';
+                        break;
+                    case 9: $mes ='Septiembre';
+                        break;
+                    case 10: $mes ='Octubre';
+                        break;
+                    case 11: $mes ='Noviembre';
+                        break;
+                    case 12: $mes ='Diciembre';
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+                $data[$mes] = $userData;
+                
+            }
+            return json_encode($data);
+
+        } catch (PDOException $e) {
+            return '{"status":false, "message":'.$e.'}';
+        }
+        
+    }
 }
 ?>

@@ -255,15 +255,55 @@ var objJrc = {
     },
     HorasOperacion: function(){
 
+        var years = $("#years").val();
+        objJrc.formesmachine(years);
+        $(".setyear").html(years);
+
+        $(".consulta_operacion").on("click",function(){
+
+            $('#tbl_horasoperacion').html('');
+            $('#tbl_horasoperacion_foot').html('');
+
+            var years = $("#years").val();
+            $(".setyear").html(years);
+            objJrc.formesmachine(years);
+        });
     },
     Disponibilidad: function(){
+        var years = $("#years").val();
+        var machine = $("#machine").val();
+        objJrc.antesdegrafica(years, machine, 'disponibilidad');
 
+        $(".consulta_disponibilidad").on("click",function(){
+            $("#grafica_disp").html("");
+            var years = $("#years").val();
+            var machine = $("#machine").val();
+            objJrc.antesdegrafica(years, machine, 'disponibilidad');
+        });
     },
     Mtbf: function(){
+        var years = $("#years").val();
+        var machine = $("#machine").val();
+        objJrc.antesdegrafica(years, machine, 'mtbf');
 
+        $(".consulta_mtbf").on("click",function(){
+            $("#grafica_disp").html("");
+            var years = $("#years").val();
+            var machine = $("#machine").val();
+            objJrc.antesdegrafica(years, machine, 'mtbf');
+        });
     },
     Mttr: function(){
+        var years = $("#years").val();
+        var machine = $("#machine").val();
+        objJrc.antesdegrafica(years, machine, 'mttr');
 
+        $(".consulta_mttr").on("click",function(){
+            $("#grafica_disp").html("");
+            var years = $("#years").val();
+            var machine = $("#machine").val();
+            objJrc.antesdegrafica(years, machine, 'mttr');
+        });
     },
     ReportScoops:function(){
         var equipo = $('.equipo').val();
@@ -1332,6 +1372,2165 @@ var objJrc = {
             footer += '<td>'+total_mttr.toFixed(1)+'</td>';
             footer += '</tr>';
         $('#tbl_resumenindicadores_foot').append(footer);
+    },
+    formesmachine: function(years){
+        $.ajax({
+            type: 'GET', 
+            url: urlProd+'horasoperacion?years='+years,
+            dataType : 'json'
+        }).done(function(data){
+            var prom_2SC019=0, prom_2SC022=0, prom_2SC026=0, prom_2SC029=0, prom_2SC035=0, prom_2SC037=0;
+            var ene=0, feb=0, mar=0, abr=0, may=0, jun=0, jul=0, ago=0, sep=0, oct=0, nov=0, dic=0, sum_pro=0;
+
+            var content = '', content2 = '', content3 = '', content4 = '', content5 = '', content6 = '';
+
+            content += '<tr>';
+            content += '<td>2SC019</td>';
+            content += '<td>Caterpillar</td>';
+            content += '<td>R-1600G</td>';
+            content += '<td>9YZ00603</td>';
+            content += '<td></td>';
+
+            content2 += '<tr>';
+            content2 += '<td>2SC022</td>';
+            content2 += '<td>Caterpillar</td>';
+            content2 += '<td>R-1600G</td>';
+            content2 += '<td>9YZ00657</td>';
+            content2 += '<td></td>';
+
+            content3 += '<tr>';
+            content3 += '<td>2SC026</td>';
+            content3 += '<td>Caterpillar</td>';
+            content3 += '<td>R-1600G</td>';
+            content3 += '<td>09YZ00733</td>';
+            content3 += '<td></td>';
+
+            content4 += '<tr>';
+            content4 += '<td>2SC029</td>';
+            content4 += '<td>Caterpillar</td>';
+            content4 += '<td>R-1600G</td>';
+            content4 += '<td>9YZ00803</td>';
+            content4 += '<td></td>';
+
+            content5 += '<tr>';
+            content5 += '<td>2SC035</td>';
+            content5 += '<td>Caterpillar</td>';
+            content5 += '<td>R-1600G</td>';
+            content5 += '<td>9YZ00803</td>';
+            content5 += '<td></td>';
+
+            content6 += '<tr>';
+            content6 += '<td>2SC037</td>';
+            content6 += '<td>Caterpillar</td>';
+            content6 += '<td>R-1600G</td>';
+            content6 += '<td>9YZ00803</td>';
+            content6 += '<td></td>';
+
+            //Enero
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Enero.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            ene  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Febrero
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Febrero.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            feb  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Marzo
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Marzo.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            mar  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Abril
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Abril.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            abr  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Mayo
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Mayo.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            may  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Junio
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Junio.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            jun  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Julio
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Julio.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            jul  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Agosto
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Agosto.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            ago  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Septiembre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Septiembre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+            
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            sep  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Octubre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Octubre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            oct  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Noviembre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Noviembre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            nov  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Diciembre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Diciembre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    m_2SC019 =  m_2SC019 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    m_2SC022 =  m_2SC022 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    m_2SC026 =  m_2SC026 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    m_2SC029 =  m_2SC029 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    m_2SC035 =  m_2SC035 + parseInt(element.hora);
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    m_2SC037 =  m_2SC037 + parseInt(element.hora);
+                }
+            });
+            content += '<td>'+m_2SC019+'</td>';
+            content2 += '<td>'+m_2SC022+'</td>';
+            content3 += '<td>'+m_2SC026+'</td>';
+            content4 += '<td>'+m_2SC029+'</td>';
+            content5 += '<td>'+m_2SC035+'</td>';
+            content6 += '<td>'+m_2SC037+'</td>';
+
+            
+            prom_2SC019 = prom_2SC019 + parseInt(m_2SC019);
+            prom_2SC022 = prom_2SC022 + parseInt(m_2SC022);
+            prom_2SC026 = prom_2SC026 + parseInt(m_2SC026);
+            prom_2SC029 = prom_2SC029 + parseInt(m_2SC029);
+            prom_2SC035 = prom_2SC035 + parseInt(m_2SC035);
+            prom_2SC037 = prom_2SC037 + parseInt(m_2SC037);
+
+            dic  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //sumprom
+            sum_pro = (prom_2SC019 + prom_2SC022 + prom_2SC026 + prom_2SC029 + prom_2SC035 + prom_2SC037)/12;
+
+            //promedio
+            prom_2SC019 = (prom_2SC019/12).toFixed(2);
+            prom_2SC022 = (prom_2SC022/12).toFixed(2);
+            prom_2SC026 = (prom_2SC026/12).toFixed(2);
+            prom_2SC029 = (prom_2SC029/12).toFixed(2);
+            prom_2SC035 = (prom_2SC035/12).toFixed(2);
+            prom_2SC037 = (prom_2SC037/12).toFixed(2);
+
+
+            content += '<td>'+prom_2SC019+'</td>';
+            content += '</tr>';
+            content2 += '<td>'+prom_2SC022+'</td>';
+            content2 += '</tr>';
+            content3 += '<td>'+prom_2SC026+'</td>';
+            content3 += '</tr>';
+            content4 += '<td>'+prom_2SC029+'</td>';
+            content4 += '</tr>';
+            content5 += '<td>'+prom_2SC035+'</td>';
+            content5 += '</tr>';
+            content6 += '<td>'+prom_2SC037+'</td>';
+            content6 += '</tr>';
+
+            //footer
+        var footer = '';
+            footer += '<tr>';
+            footer += '<td colspan="5"> Promedio de Flota </td>';
+            footer += '<td>'+ ene +'</td>';
+            footer += '<td>'+ feb +'</td>';
+            footer += '<td>'+ mar +'</td>';
+            footer += '<td>'+ abr +'</td>';
+            footer += '<td>'+ may +'</td>';
+            footer += '<td>'+ jun +'</td>';
+            footer += '<td>'+ jul +'</td>';
+            footer += '<td>'+ ago +'</td>';
+            footer += '<td>'+ sep +'</td>';
+            footer += '<td>'+ oct +'</td>';
+            footer += '<td>'+ nov +'</td>';
+            footer += '<td>'+ dic +'</td>';
+            footer += '<td>'+ sum_pro.toFixed(2) +'</td>';
+            footer += '</tr>';
+
+            $("#tbl_horasoperacion").append(content+content2+content3+content4+content5+content6);
+            $("#tbl_horasoperacion_foot").append(footer);
+        });
+    },
+    antesdegrafica: function(years, machine, opcion){
+        $.ajax({
+            type: 'GET', 
+            url: urlProd+'horasoperacion?years='+years,
+            dataType : 'json'
+        }).done(function(data){
+            var ene=0, feb=0, mar=0, abr=0, may=0, jun=0, jul=0, ago=0, sep=0, oct=0, nov=0, dic=0;
+            var g_2SC019=[], g_2SC022=[], g_2SC026=[], g_2SC029=[], g_2SC035=[], g_2SC037=[];
+
+            //Enero
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+
+            data.Enero.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[0] = m_2SC019;
+            g_2SC022[0] = m_2SC022;
+            g_2SC026[0] = m_2SC026;
+            g_2SC029[0] = m_2SC029;
+            g_2SC035[0] = m_2SC035;
+            g_2SC037[0] = m_2SC037;
+
+            ene  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Febrero
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Febrero.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[1] = m_2SC019;
+            g_2SC022[1] = m_2SC022;
+            g_2SC026[1] = m_2SC026;
+            g_2SC029[1] = m_2SC029;
+            g_2SC035[1] = m_2SC035;
+            g_2SC037[1] = m_2SC037;
+
+            feb  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Marzo
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Marzo.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[2] = m_2SC019;
+            g_2SC022[2] = m_2SC022;
+            g_2SC026[2] = m_2SC026;
+            g_2SC029[2] = m_2SC029;
+            g_2SC035[2] = m_2SC035;
+            g_2SC037[2] = m_2SC037;
+
+            mar  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Abril
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Abril.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[3] = m_2SC019;
+            g_2SC022[3] = m_2SC022;
+            g_2SC026[3] = m_2SC026;
+            g_2SC029[3] = m_2SC029;
+            g_2SC035[3] = m_2SC035;
+            g_2SC037[3] = m_2SC037;
+
+
+            abr  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Mayo
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Mayo.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[4] = m_2SC019;
+            g_2SC022[4] = m_2SC022;
+            g_2SC026[4] = m_2SC026;
+            g_2SC029[4] = m_2SC029;
+            g_2SC035[4] = m_2SC035;
+            g_2SC037[4] = m_2SC037;
+
+
+            may  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Junio
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Junio.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[5] = m_2SC019;
+            g_2SC022[5] = m_2SC022;
+            g_2SC026[5] = m_2SC026;
+            g_2SC029[5] = m_2SC029;
+            g_2SC035[5] = m_2SC035;
+            g_2SC037[5] = m_2SC037;
+
+
+            jun  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Julio
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Julio.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[6] = m_2SC019;
+            g_2SC022[6] = m_2SC022;
+            g_2SC026[6] = m_2SC026;
+            g_2SC029[6] = m_2SC029;
+            g_2SC035[6] = m_2SC035;
+            g_2SC037[6] = m_2SC037;
+
+
+            jul  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Agosto
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Agosto.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[7] = m_2SC019;
+            g_2SC022[7] = m_2SC022;
+            g_2SC026[7] = m_2SC026;
+            g_2SC029[7] = m_2SC029;
+            g_2SC035[7] = m_2SC035;
+            g_2SC037[7] = m_2SC037;
+
+
+            ago  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Septiembre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Septiembre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[8] = m_2SC019;
+            g_2SC022[8] = m_2SC022;
+            g_2SC026[8] = m_2SC026;
+            g_2SC029[8] = m_2SC029;
+            g_2SC035[8] = m_2SC035;
+            g_2SC037[8] = m_2SC037;
+            
+
+            sep  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Octubre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Octubre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[9] = m_2SC019;
+            g_2SC022[9] = m_2SC022;
+            g_2SC026[9] = m_2SC026;
+            g_2SC029[9] = m_2SC029;
+            g_2SC035[9] = m_2SC035;
+            g_2SC037[9] = m_2SC037;
+            
+
+            oct  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Noviembre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Noviembre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[10] = m_2SC019;
+            g_2SC022[10] = m_2SC022;
+            g_2SC026[10] = m_2SC026;
+            g_2SC029[10] = m_2SC029;
+            g_2SC035[10] = m_2SC035;
+            g_2SC037[10] = m_2SC037;
+
+
+            nov  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            //Diciembre
+            var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0;
+            data.Diciembre.forEach(element => {
+                if(element.equipo_trabajo=='2SC019'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC019 =  m_2SC019 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC019 =  m_2SC019 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC019 =  m_2SC019 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC022'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC022 =  m_2SC022 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC022 =  m_2SC022 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC022 =  m_2SC022 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC026'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC026 =  m_2SC026 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC026 =  m_2SC026 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC026 =  m_2SC026 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC029'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC029 =  m_2SC029 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC029 =  m_2SC029 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC029 =  m_2SC029 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC035'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC035 =  m_2SC035 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC035 =  m_2SC035 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC035 =  m_2SC035 + _mttr;
+                    }
+                }
+                if(element.equipo_trabajo=='2SC037'){
+                    _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
+                    _mttr = objJrc.calcmttr(element.homp,element.tiempo_parada,element.fallas_equipo);
+                    if(_mtbf == 0 && _mttr == 0){
+                        Ao = 0;
+                    }else{
+                        Ao =  ((_mtbf/(_mtbf+_mttr))*100);
+                    }
+
+                    if(opcion == 'disponibilidad'){
+                        m_2SC037 =  m_2SC037 + Ao;
+                    }
+                    if(opcion == 'mtbf'){
+                        m_2SC037 =  m_2SC037 + _mtbf;
+                    }
+                    if(opcion == 'mttr'){
+                        m_2SC037 =  m_2SC037 + _mttr;
+                    }
+                }
+            });
+            g_2SC019[11] = m_2SC019;
+            g_2SC022[11] = m_2SC022;
+            g_2SC026[11] = m_2SC026;
+            g_2SC029[11] = m_2SC029;
+            g_2SC035[11] = m_2SC035;
+            g_2SC037[11] = m_2SC037;
+
+            dic  = m_2SC019 + m_2SC022 + m_2SC026 + m_2SC029 + m_2SC035 + m_2SC037;
+
+            var maquinas = [g_2SC019, g_2SC022, g_2SC026, g_2SC029, g_2SC035, g_2SC037];
+
+            if( machine == '2SC019'){
+                objJrc.graficar(g_2SC019);
+            }
+            if( machine == '2SC022'){
+                objJrc.graficar(g_2SC022);
+            }
+            if( machine == '2SC026'){
+                objJrc.graficar(g_2SC026);
+            }
+            if( machine == '2SC029'){
+                objJrc.graficar(g_2SC029);
+            }
+            if( machine == '2SC035'){
+                objJrc.graficar(g_2SC035);
+            }
+            if( machine == '2SC037'){
+                objJrc.graficar(g_2SC037);
+            }
+
+        });
+
+
+    },
+    graficar: function(area){
+        // Sales chart
+        const monthNames = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var area = new Morris.Area({
+            element   : 'grafica_disp',
+            resize    : true,
+            data      : [
+                { y: 1, value: area[0] },
+                { y: 2, value: area[1] },
+                { y: 3, value: area[2] },
+                { y: 4, value: area[3] },
+                { y: 5, value: area[4] },
+                { y: 6, value: area[5] },
+                { y: 7, value: area[6] },
+                { y: 8, value: area[7] },
+                { y: 9, value: area[8] },
+                { y: 10, value: area[9] },
+                { y: 11, value: area[10] },
+                { y: 12, value: area[11] },
+            ],
+            xkey      : 'y',
+            parseTime: false,
+            ykeys     : ['value'],
+            xLabelFormat: function (x) {
+                var index = parseInt(x.src.y);
+                return monthNames[index];
+            },
+            xLabels: "month",
+            labels    : ['Item 1'],
+            lineColors: ['#a0d0e0'],
+            hideHover : 'auto'
+        });
     }
 };
 

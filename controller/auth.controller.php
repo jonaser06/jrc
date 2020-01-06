@@ -40,6 +40,12 @@ class authClassController{
         }
     }
 
+    public function registroController($data){
+        $response = authClassModel::registroModel($data);
+        $response = json_decode($response,true);
+        return $response['status'];
+    }
+
 }
 
 ?>

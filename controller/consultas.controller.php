@@ -69,5 +69,14 @@ class consultasClassController{
         echo $response;
         exit;
     }
+
+    public static function operacionController($years){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = consultasClassModel::operacionModel($years);
+        # respuesta
+        echo $response;
+        exit;
+    }
 }
 ?>
