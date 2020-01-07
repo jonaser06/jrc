@@ -1,5 +1,5 @@
-var urlProd = 'http://blackapp.xyz/';
-//var urlProd = 'http://localhost/jrc/';
+//var urlProd = 'http://blackapp.xyz/';
+var urlProd = 'http://localhost/jrc/';
 //var urlDev = 'http://localhost/jrc/';
 
 var objJrc = {
@@ -71,9 +71,11 @@ var objJrc = {
         }
     },
     ResumenEquipos: function(){
+        var de = $('.de').val();
+        var hasta = $('.hasta').val();
         $.ajax({
             type: 'GET',
-            url: urlProd+'reporteservice',
+            url: urlProd+'reporteservice?de='+de+'&hasta='+hasta,
             dataType: 'json'
         }).done(function(data){
             //totales
@@ -1016,7 +1018,9 @@ var objJrc = {
     formachine: function(m){
         var m_2SC019=0, m_2SC022=0, m_2SC026=0, m_2SC029=0, m_2SC035=0, m_2SC037=0, m_2JL003=0, m_2JL015=0, m_2JL016=0;
         var a_2SC019=0, a_2SC022=0, a_2SC026=0, a_2SC029=0, a_2SC035=0, a_2SC037=0, a_2JL003=0, a_2JL015=0, a_2JL016=0;
-
+        //promedio (correccion)
+        var prom1 = 0, prom2 = 0, prom3 = 0, prom4 = 0, prom5 = 0, prom6 = 0;
+        //end
         var i_2SC019=0, i_2SC022=0, i_2SC026=0, i_2SC029=0, i_2SC035=0, i_2SC037=0, i_2JL003=0, i_2JL015=0, i_2JL016=0;
         var pv_2SC019=0, pv_2SC022=0, pv_2SC026=0, pv_2SC029=0, pv_2SC035=0, pv_2SC037=0, pv_2JL003=0, pv_2JL015=0, pv_2JL016=0;
         var pg_2SC019=0, pg_2SC022=0, pg_2SC026=0, pg_2SC029=0, pg_2SC035=0, pg_2SC037=0, pg_2JL003=0, pg_2JL015=0, pg_2JL016=0;
@@ -1045,6 +1049,7 @@ var objJrc = {
                 dm_2SC019 = dm_2SC019 + Ao;
                 mtbf_2SC019 = mtbf_2SC019 + _mtbf;
                 mttr_2SC019 = mttr_2SC019 + _mttr;
+                prom1++;
             }
             if(element.equipo_trabajo=='2SC022'){
                 m_2SC022 = m_2SC022 + parseInt(element.hora);
@@ -1064,6 +1069,7 @@ var objJrc = {
                 dm_2SC022 = dm_2SC022 + Ao;
                 mtbf_2SC022 = mtbf_2SC022 + _mtbf;
                 mttr_2SC022 = mttr_2SC022 + _mttr;
+                prom2++;
             }
             if(element.equipo_trabajo=='2SC026'){
                 m_2SC026 = m_2SC026 + parseInt(element.hora);
@@ -1083,6 +1089,7 @@ var objJrc = {
                 dm_2SC026 = dm_2SC026 + Ao;
                 mtbf_2SC026 = mtbf_2SC026 + _mtbf;
                 mttr_2SC026 = mttr_2SC026 + _mttr;
+                prom3++;
             }
             if(element.equipo_trabajo=='2SC029'){
                 m_2SC029 = m_2SC029 + parseInt(element.hora);
@@ -1102,6 +1109,7 @@ var objJrc = {
                 dm_2SC029 = dm_2SC029 + Ao;
                 mtbf_2SC029 = mtbf_2SC029 + _mtbf;
                 mttr_2SC029 = mttr_2SC029 + _mttr;
+                prom4++;
             }
             if(element.equipo_trabajo=='2SC035'){
                 m_2SC035 = m_2SC035 + parseInt(element.hora);
@@ -1121,6 +1129,7 @@ var objJrc = {
                 dm_2SC035 = dm_2SC035 + Ao;
                 mtbf_2SC035 = mtbf_2SC035 + _mtbf;
                 mttr_2SC035 = mttr_2SC035 + _mttr;
+                prom5++;
             }
             if(element.equipo_trabajo=='2SC037'){
                 m_2SC037 = m_2SC037 + parseInt(element.hora);
@@ -1140,8 +1149,9 @@ var objJrc = {
                 dm_2SC037 = dm_2SC037 + Ao;
                 mtbf_2SC037 = mtbf_2SC037 + _mtbf;
                 mttr_2SC037 = mttr_2SC037 + _mttr;
+                prom6++;
             }
-            if(element.equipo_trabajo=='2JL003'){
+            /* if(element.equipo_trabajo=='2JL003'){
                 m_2JL003 = m_2JL003 + parseInt(element.hora);
                 hora =  parseFloat(element.hora) + parseFloat(element.hora_acumulada);
                 _mtbf = objJrc.calcmtbf(element.hora,element.fallas_equipo);
@@ -1159,6 +1169,7 @@ var objJrc = {
                 dm_2JL003 = dm_2JL003 + Ao;
                 mtbf_2JL003 = mtbf_2JL003 + _mtbf;
                 mttr_2JL003 = mttr_2JL003 + _mttr;
+                prom7++;
             }
             if(element.equipo_trabajo=='2JL015'){
                 m_2JL015 = m_2JL015 + parseInt(element.hora);
@@ -1178,6 +1189,7 @@ var objJrc = {
                 dm_2JL015 = dm_2JL015 + Ao;
                 mtbf_2JL015 = mtbf_2JL015 + _mtbf;
                 mttr_2JL015 = mttr_2JL015 + _mttr;
+                prom8++;
             }
             if(element.equipo_trabajo=='2JL016'){
                 m_2JL016 = m_2JL016 + parseInt(element.hora);
@@ -1197,9 +1209,28 @@ var objJrc = {
                 dm_2JL016 = dm_2JL016 + Ao;
                 mtbf_2JL016 = mtbf_2JL016 + _mtbf;
                 mttr_2JL016 = mttr_2JL016 + _mttr;
-            }
+                prom9++;
+            } */
         });
-        /* console.log ("mes: "+m_2SC019); */
+        /* evitar division entre 0 */
+        if(prom1 == 0){
+            prom1++;
+        }
+        if(prom2 == 0){
+            prom2++;
+        }
+        if(prom3 == 0){
+            prom3++;
+        }
+        if(prom4 == 0){
+            prom4++;
+        }
+        if(prom5 == 0){
+            prom5++;
+        }
+        if(prom6 == 0){
+            prom6++;
+        }
         //suma en el año
         m.year.forEach(function( element, index ){
             if(element.equipo_trabajo=='2SC019'){
@@ -1220,7 +1251,7 @@ var objJrc = {
             if(element.equipo_trabajo=='2SC037'){
                 a_2SC037 = a_2SC037 + parseInt(element.hora);
             }
-            if(element.equipo_trabajo=='2JL003'){
+            /* if(element.equipo_trabajo=='2JL003'){
                 a_2JL003 = a_2JL003 + parseInt(element.hora);
             }
             if(element.equipo_trabajo=='2JL015'){
@@ -1228,9 +1259,9 @@ var objJrc = {
             }
             if(element.equipo_trabajo=='2JL016'){
                 a_2JL016 = a_2JL016 + parseInt(element.hora);
-            }
+            } */
         });
-        /* console.log ("año: "+a_2SC019); */
+
         var body = '';
             // para 2SC019
             body += '<tr>';
@@ -1247,9 +1278,9 @@ var objJrc = {
             body += '<td>'+pg_2SC019+'</td>';
             body += '<td>'+cr_2SC019+'</td>';
             body += '<td>'+ra_2SC019+'</td>';
-            body += '<td>'+dm_2SC019.toFixed(1)+'</td>';
-            body += '<td>'+mtbf_2SC019.toFixed(1)+'</td>';
-            body += '<td>'+mttr_2SC019.toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC019/prom1).toFixed(1)+'</td>';
+            body += '<td>'+(mtbf_2SC019/prom1).toFixed(1)+'</td>';
+            body += '<td>'+(mttr_2SC019/prom1).toFixed(1)+'</td>';
             body += '</tr>';
             // para 2SC022
             body += '<tr>';
@@ -1266,9 +1297,9 @@ var objJrc = {
             body += '<td>'+pg_2SC022+'</td>';
             body += '<td>'+cr_2SC022+'</td>';
             body += '<td>'+ra_2SC022+'</td>';
-            body += '<td>'+dm_2SC022.toFixed(1)+'</td>';
-            body += '<td>'+mtbf_2SC022.toFixed(1)+'</td>';
-            body += '<td>'+mttr_2SC022.toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC022/prom2).toFixed(1)+'</td>';
+            body += '<td>'+(mtbf_2SC022/prom2).toFixed(1)+'</td>';
+            body += '<td>'+(mttr_2SC022/prom2).toFixed(1)+'</td>';
             body += '</tr>';
             // para 2SC026
             body += '<tr>';
@@ -1285,9 +1316,9 @@ var objJrc = {
             body += '<td>'+pg_2SC026+'</td>';
             body += '<td>'+cr_2SC026+'</td>';
             body += '<td>'+ra_2SC026+'</td>';
-            body += '<td>'+dm_2SC026.toFixed(1)+'</td>';
-            body += '<td>'+mtbf_2SC026.toFixed(1)+'</td>';
-            body += '<td>'+mttr_2SC026.toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC026/prom3).toFixed(1)+'</td>';
+            body += '<td>'+(mtbf_2SC026/prom3).toFixed(1)+'</td>';
+            body += '<td>'+(mttr_2SC026/prom3).toFixed(1)+'</td>';
             body += '</tr>';
             // para 2SC029
             body += '<tr>';
@@ -1304,9 +1335,9 @@ var objJrc = {
             body += '<td>'+pg_2SC029+'</td>';
             body += '<td>'+cr_2SC029+'</td>';
             body += '<td>'+ra_2SC029+'</td>';
-            body += '<td>'+dm_2SC029.toFixed(1)+'</td>';
-            body += '<td>'+mtbf_2SC029.toFixed(1)+'</td>';
-            body += '<td>'+mttr_2SC029.toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC029/prom4).toFixed(1)+'</td>';
+            body += '<td>'+(mtbf_2SC029/prom4).toFixed(1)+'</td>';
+            body += '<td>'+(mttr_2SC029/prom4).toFixed(1)+'</td>';
             body += '</tr>';
             // para 2SC035
             body += '<tr>';
@@ -1323,9 +1354,9 @@ var objJrc = {
             body += '<td>'+pg_2SC035+'</td>';
             body += '<td>'+cr_2SC035+'</td>';
             body += '<td>'+ra_2SC035+'</td>';
-            body += '<td>'+dm_2SC035.toFixed(1)+'</td>';
-            body += '<td>'+mtbf_2SC035.toFixed(1)+'</td>';
-            body += '<td>'+mttr_2SC035.toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC035/prom5).toFixed(1)+'</td>';
+            body += '<td>'+(mtbf_2SC035/prom5).toFixed(1)+'</td>';
+            body += '<td>'+(mttr_2SC035/prom5).toFixed(1)+'</td>';
             body += '</tr>';
             // para 2SC037
             body += '<tr>';
@@ -1342,9 +1373,9 @@ var objJrc = {
             body += '<td>'+pg_2SC037+'</td>';
             body += '<td>'+cr_2SC037+'</td>';
             body += '<td>'+ra_2SC037+'</td>';
-            body += '<td>'+dm_2SC037.toFixed(1)+'</td>';
-            body += '<td>'+mtbf_2SC037.toFixed(1)+'</td>';
-            body += '<td>'+mttr_2SC037.toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC037/prom6).toFixed(1)+'</td>';
+            body += '<td>'+(mtbf_2SC037/prom6).toFixed(1)+'</td>';
+            body += '<td>'+(mttr_2SC037/prom6).toFixed(1)+'</td>';
             body += '</tr>';
         //print body
         $('#tbl_resumenindicadores').append(body);
@@ -1355,9 +1386,9 @@ var objJrc = {
         var total_pg = pg_2SC019+pg_2SC022+pg_2SC026+pg_2SC029+pg_2SC035+pg_2SC037;
         var total_cr = cr_2SC019+cr_2SC022+cr_2SC026+cr_2SC029+cr_2SC035+cr_2SC037;
         var total_ra = ra_2SC019+ra_2SC022+ra_2SC026+ra_2SC029+ra_2SC035+ra_2SC037;
-        var total_dm = dm_2SC019+dm_2SC022+dm_2SC026+dm_2SC029+dm_2SC035+dm_2SC037;
-        var total_mtbf = mtbf_2SC019+mtbf_2SC022+mtbf_2SC026+mtbf_2SC029+mtbf_2SC035+mtbf_2SC037;
-        var total_mttr = mttr_2SC019+mttr_2SC022+mttr_2SC026+mttr_2SC029+mttr_2SC035+mttr_2SC037;
+        var total_dm = (dm_2SC019/prom1)+(dm_2SC022/prom2)+(dm_2SC026/prom3)+(dm_2SC029/prom4)+(dm_2SC035/prom5)+(dm_2SC037/prom6);
+        var total_mtbf = (mtbf_2SC019/prom1)+(mtbf_2SC022/prom2)+(mtbf_2SC026/prom3)+(mtbf_2SC029/prom4)+(mtbf_2SC035/prom5)+(mtbf_2SC037/prom6);
+        var total_mttr = (mttr_2SC019/prom1)+(mttr_2SC022/prom2)+(mttr_2SC026/prom3)+(mttr_2SC029/prom4)+(mttr_2SC035/prom5)+(mttr_2SC037/prom6);
         //print footer
         var footer = '';
             footer += '<tr>';

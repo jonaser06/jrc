@@ -34,6 +34,7 @@ $app->get('/requerimientos/','requerimientos');
 $app->get('/scoops/','scoops');
 $app->get('/registro/','registro');
 $app->get('/registro-s/','registros');
+$app->get('/listarusuarios/','listarusuarios');
 $app->get('/reporteproblema/','reporteproblema');
 $app->get('/reportediario/','reportediario');
 $app->get('/adminmt2010/','adminmt2010');
@@ -607,7 +608,7 @@ function registrarUsuario(){
         );
         $reponse = authClassController::registroController($data);
         /* $url = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]; */
-        if($reponse){
+        if($reponse['status']){
             if($_POST['origen'] == 1){
                 echo '<script type="text/javascript">
                         window.location = "administrador?status=true&message=Usuario Registrado correctamente";
@@ -616,6 +617,17 @@ function registrarUsuario(){
             if($_POST['origen'] == 2){
                 echo '<script type="text/javascript">
                         window.location = "superadministrador?status=true&message=Usuario Registrado correctamente";
+                    </script>';
+            }
+        }else{
+            if($_POST['origen'] == 1){
+                echo '<script type="text/javascript">
+                window.location = "superadministrador?status=false&message='.$reponse['message'].'";
+                    </script>';
+            }
+            if($_POST['origen'] == 2){
+                echo '<script type="text/javascript">
+                        window.location = "superadministrador?status=false&message='.$reponse['message'].'";
                     </script>';
             }
         }
@@ -627,6 +639,21 @@ function registrarUsuario(){
 
 function asignarMaquina(){
 
+}
+
+function listarusuarios(){
+    session_start();
+    $dir = rutasClass::rutas();
+    if(isset($_SESSION['id_usuarios']) && isset($_SESSION['nombres']) && isset($_SESSION['dni']) && isset($_SESSION['usuario']) && isset($_SESSION['rol'])){
+        include 'modules/head.php';
+        include 'modules/menu.php';
+        include 'modules/listadeusuarios.php';
+        include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
 }
 
 #servicios
@@ -716,6 +743,7 @@ function signin(){
     $getbody = json_decode($request->getBody());
     authClassController::signinController($getbody);
 }
+
 function notificacion($status, $message){
     if($status=='true'){
         echo '<script>
@@ -728,6 +756,7 @@ function notificacion($status, $message){
                 </script>';
     }
 }
+
 $app->run();
 
 ?>

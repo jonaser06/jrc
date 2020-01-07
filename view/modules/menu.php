@@ -56,6 +56,7 @@
             if($_SESSION['rol']=='super administrador'){
               $registro = 'registro-s';
               $active = ($base=='registro-s')?'active':'';
+              $active2 = ($base=='listadeusuarios')?'active':'';
               $display  = ($base=='registro-s')?'block':'none';
               echo '<li class="treeview '.$active.'">
                       <a href="#"><i class="fa fa-user"></i> <span>REGISTRO DE USUARIOS</span>
@@ -63,7 +64,7 @@
                       </a>
                       <ul class="treeview-menu" style="display: '.$display.';">
                           <li class="'.$active.'"><a href="'.$registro.'"><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
-                          <li><a href="#"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
+                          <li class="'.$active2.'"><a href="listarusuarios"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
                       </ul>
                   </li>';
               echo '<li>
@@ -73,6 +74,7 @@
             if($_SESSION['rol']=='administrador'){
               $registro = 'registro';
               $active = ($base=='registro')?'active':'';
+              $active2 = ($base=='listadeusuarios')?'active':'';
               $display  = ($base=='registro')?'block':'none';
               echo '<li class="treeview '.$active.'">
                         <a href="#"><i class="fa fa-user"></i> <span>REGISTRO DE USUARIOS</span>
@@ -80,7 +82,7 @@
                         </a>
                         <ul class="treeview-menu" style="display: '.$display.';">
                             <li class="'.$active.'"><a href="'.$registro.'  "><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
+                            <li class="'.$active2.'"><a href="listarusuarios"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
                         </ul>
                     </li>';
             }

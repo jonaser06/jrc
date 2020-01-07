@@ -127,7 +127,7 @@ class authClassModel{
                 $mainCount=$stmt->rowCount();
                 
                 if($mainCount != 0 ){
-                    return '{"status": false ,"message":"ya existe alguien con ese dni y/o dni registrado, vuelva a intentarlo ","data": [] }';
+                    return '{"status": false ,"message":"ya existe alguien con ese dni y/o usuario registrado, vuelva a intentarlo ","data": [] }';
                 }
 
                 if($mainCount == 0 ){
