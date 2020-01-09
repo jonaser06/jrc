@@ -10,6 +10,28 @@
             font-weight: 600 !important;
         }
     </style>
+    <div class="modal modal-info fade" id="modal-info">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="updateuser" method="POST">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Editar Usuario</h4>
+                </div>
+                <div class="modal-body" id="form_edit_user">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-outline">Actualizar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -19,7 +41,7 @@
                     </div>
                     <div class="box-body">
                         <table class="table table-hover">
-                            <tbody>
+                            <thead>
                                 <tr>
                                     <th>Nombres</th>
                                     <th>Dni</th>
@@ -28,35 +50,8 @@
                                     <th>Equipo</th>
                                     <th>Acciones</th>
                                 </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>John Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-success">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                    <td>219</td>
-                                    <td>Alexander Pierce</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                    <td>657</td>
-                                    <td>Bob Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-primary">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                    <td>175</td>
-                                    <td>Mike Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-danger">Denied</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                            </tbody>
+                            </thead>
+                            <tbody id="tbl_listuser"></tbody>
                         </table>
                     </div>
                 </div>

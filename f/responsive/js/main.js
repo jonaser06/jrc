@@ -9,6 +9,68 @@ var objJrc = {
         objJrc.DatePicker();
         objJrc.Consulta();
         objJrc.tools();
+        objJrc.listuser();
+        objJrc.actionuser();
+    },
+    listuser:function(){
+        $.ajax({
+            type: 'GET',
+            url: urlProd + 'listuser?page=1',
+            dataType:'json'
+        }).done(function(data){
+            data.data.forEach(function(element){
+            content = '';
+            content +='<tr>';
+            content +='<td><span class="name-'+element.id_usuarios+'" data-name="'+element.nombres+'">'+element.nombres+'</span></td>';
+            content +='<td><span class="dni-'+element.id_usuarios+'" data-dni="'+element.dni+'">'+element.dni+'</span></td>';
+            content +='<td><span class="user-'+element.id_usuarios+'" data-user="'+element.usuario+'">'+element.usuario+'</span></td>';
+            if(element.rol == 2){
+                content +='<td><span class="label label-success">administrador</span></td>';
+            }
+            if(element.rol == 1){
+                content +='<td><span class="label label-primary">mecanico</span></td>';
+            }
+            content +='<td>'+element.maquina+'</td>';
+            content +='<td>';
+            content +='<ul class="action-user">';
+            content +='<li><a href="#"><span class="edituser fa fa-pencil" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-info" ></span></a></li>';
+            content +='<li><a href="#"><span class="deleteuser fa fa-remove" data-id="'+element.id_usuarios+'"></span></a></li>';
+            content +='<li><a href="#"><span class="changepass" data-id="'+element.id_usuarios+'">Cambiar<br>Constraseña</span></a></li>';
+            content +='</ul>';
+            content +='</td>';
+            content +='</tr>';
+            $("#tbl_listuser").append(content);
+            });
+        });
+    },
+    actionuser:function(){
+        /* edituser
+        deleteuser */
+        $("body").on("click",".edituser",function(e){
+            e.preventDefault();
+            $("#form_edit_user").html('');
+            var id = $(this).data('id');
+            var nombre = $(".name").data('name');
+            var dni = $(".dni").data('dni');
+            var usuario = $(".user").data('user');
+            console.log(nombre);
+            formulario = '';
+            formulario += '<label>NOMBRES:</label>';
+            formulario += '<input type="text" class="nombre form-control" name="name" required value="'+nombre+'">';
+            formulario += '<label>USUARIO:</label>';
+            formulario += '<input type="text" class="form-control" name="name" required value="'+usuario+'">';
+            formulario += '<label>DNI:</label>';
+            formulario += '<input type="text" class="form-control" name="name" required value="'+dni+'">';
+            formulario += '<input type="hidden" name="name" value="'+id+'">';
+            
+            $("#form_edit_user").append(formulario);
+            
+        });
+        $("body").on("click",".deleteuser",function(e){
+            e.preventDefault();
+            console.log("eliminar");
+
+        });
     },
     checked: function(){
         $(".checked").click(function(){
@@ -1278,7 +1340,7 @@ var objJrc = {
             body += '<td>'+pg_2SC019+'</td>';
             body += '<td>'+cr_2SC019+'</td>';
             body += '<td>'+ra_2SC019+'</td>';
-            body += '<td>'+(dm_2SC019/prom1).toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC019/prom1).toFixed(1)+' %</td>';
             body += '<td>'+(mtbf_2SC019/prom1).toFixed(1)+'</td>';
             body += '<td>'+(mttr_2SC019/prom1).toFixed(1)+'</td>';
             body += '</tr>';
@@ -1297,7 +1359,7 @@ var objJrc = {
             body += '<td>'+pg_2SC022+'</td>';
             body += '<td>'+cr_2SC022+'</td>';
             body += '<td>'+ra_2SC022+'</td>';
-            body += '<td>'+(dm_2SC022/prom2).toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC022/prom2).toFixed(1)+' %</td>';
             body += '<td>'+(mtbf_2SC022/prom2).toFixed(1)+'</td>';
             body += '<td>'+(mttr_2SC022/prom2).toFixed(1)+'</td>';
             body += '</tr>';
@@ -1316,7 +1378,7 @@ var objJrc = {
             body += '<td>'+pg_2SC026+'</td>';
             body += '<td>'+cr_2SC026+'</td>';
             body += '<td>'+ra_2SC026+'</td>';
-            body += '<td>'+(dm_2SC026/prom3).toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC026/prom3).toFixed(1)+' %</td>';
             body += '<td>'+(mtbf_2SC026/prom3).toFixed(1)+'</td>';
             body += '<td>'+(mttr_2SC026/prom3).toFixed(1)+'</td>';
             body += '</tr>';
@@ -1335,7 +1397,7 @@ var objJrc = {
             body += '<td>'+pg_2SC029+'</td>';
             body += '<td>'+cr_2SC029+'</td>';
             body += '<td>'+ra_2SC029+'</td>';
-            body += '<td>'+(dm_2SC029/prom4).toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC029/prom4).toFixed(1)+' %</td>';
             body += '<td>'+(mtbf_2SC029/prom4).toFixed(1)+'</td>';
             body += '<td>'+(mttr_2SC029/prom4).toFixed(1)+'</td>';
             body += '</tr>';
@@ -1354,7 +1416,7 @@ var objJrc = {
             body += '<td>'+pg_2SC035+'</td>';
             body += '<td>'+cr_2SC035+'</td>';
             body += '<td>'+ra_2SC035+'</td>';
-            body += '<td>'+(dm_2SC035/prom5).toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC035/prom5).toFixed(1)+' %</td>';
             body += '<td>'+(mtbf_2SC035/prom5).toFixed(1)+'</td>';
             body += '<td>'+(mttr_2SC035/prom5).toFixed(1)+'</td>';
             body += '</tr>';
@@ -1373,7 +1435,7 @@ var objJrc = {
             body += '<td>'+pg_2SC037+'</td>';
             body += '<td>'+cr_2SC037+'</td>';
             body += '<td>'+ra_2SC037+'</td>';
-            body += '<td>'+(dm_2SC037/prom6).toFixed(1)+'</td>';
+            body += '<td>'+(dm_2SC037/prom6).toFixed(1)+' %</td>';
             body += '<td>'+(mtbf_2SC037/prom6).toFixed(1)+'</td>';
             body += '<td>'+(mttr_2SC037/prom6).toFixed(1)+'</td>';
             body += '</tr>';
@@ -1398,7 +1460,7 @@ var objJrc = {
             footer += '<td>'+total_pg+'</td>';
             footer += '<td>'+total_cr+'</td>';
             footer += '<td>'+total_ra+'</td>';
-            footer += '<td>'+total_dm.toFixed(1)+'</td>';
+            footer += '<td>'+total_dm.toFixed(1)+' %</td>';
             footer += '<td>'+total_mtbf.toFixed(1)+'</td>';
             footer += '<td>'+total_mttr.toFixed(1)+'</td>';
             footer += '</tr>';

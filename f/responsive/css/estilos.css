@@ -43,3 +43,30 @@ td, label{
 .activepage{
     background-color: #eee !important;
 }
+/* list user */
+.action-user{
+    list-style: none;
+}
+.action-user li{
+    float: left;
+    margin: 0 10px;
+}
+.action-user .fa-pencil{
+    color: primary;
+}
+.action-user .fa-remove{
+    color: red;
+}
+.leyenda{
+    text-align: center;
+}
+.ejey{
+    color: #b2d9e6;
+}
+.ejex{
+    color: #b2d9e6;
+}
+.txtleyend{
+    color: #666;
+    font-family: Arial, Helvetica, sans-serif;
+}

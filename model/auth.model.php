@@ -151,6 +151,49 @@ class authClassModel{
             return '{"status": false, "data":'. $e->getMessage() .'}';
         }
     }
+
+    public static function listUserModel($page){
+        try {
+            $rol = 3;
+            $db        = getDB();
+            $sql       = "SELECT * FROM usuarios WHERE rol !=:rol";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("rol", $rol,PDO::PARAM_STR);
+            $stmt->execute();
+            $total     =   $stmt->rowCount();
+            $forPage   = 10;
+            $pagination =   ceil($total/$forPage);
+            $current   = ((int)$page-1)*$forPage;
+            if($page <= $pagination){
+                $db        = getDB();
+                $sql       = "SELECT usuarios.id_usuarios, usuarios.nombres, usuarios.dni, usuarios.usuario, usuarios.rol, maquinas.nombre AS maquina FROM usuarios INNER JOIN maquinas ON usuarios.id_maquina = maquinas.id_maquina  WHERE rol !=:rol LIMIT :currentpage,:forpage";
+                $stmt      =    $db->prepare($sql);
+                $stmt->bindParam("rol", $rol,PDO::PARAM_STR);
+                $stmt->bindParam("currentpage", $current, PDO::PARAM_INT);
+                $stmt->bindParam("forpage", $forPage, PDO::PARAM_INT);
+                $stmt->execute();
+                $mainCount =    $stmt->rowCount();
+                $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+                #controls
+                $next_page    = ( (int)$page + 1 ) <= ( $pagination ) ? ( (int)$page + 1 ) : 'false';
+                $previus_page = ( (int)$page - 1 ) <= 0 ? 'false' : ( (int)$page - 1 ) ;
+
+                return '{
+                            "status":"true", 
+                            "message":"Find One",
+                            "current_page":"'.$page.'", 
+                            "next_page":"'.$next_page.'" ,
+                            "previus_page":"'.$previus_page.'" ,
+                            "pagination":"'.$pagination.'" ,
+                            "data": '.json_encode($userData).'
+                        }';
+            }else{
+                return '{"status":false, "message":"No found","data":[]}';
+            }
+        } catch (PDOException $e) {
+            return '{"status": false, "data":'. $e->getMessage() .'}';
+        }
+    }
 }
 
 ?>

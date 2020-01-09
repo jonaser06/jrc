@@ -18,6 +18,7 @@ $app->get('/graphmttr/','graphMttr');
 $app->get('/resumenindicadores/','resumenIndicadores');
 $app->get('/reporteservice/','reporteService');
 $app->get('/reportescoops/','reportescoops');
+$app->get('/listuser/','listuser');
 
 #endpints de vistas
 $app->get('/','index');
@@ -657,6 +658,11 @@ function listarusuarios(){
 }
 
 #servicios
+function listuser(){
+    $page=($_GET['page']==NULL)?'1':($_GET['page']);
+    authClassController::listUserController($page);
+}
+
 function disponibilidadMecanica(){
     if(isset($_GET['years'])){
         $years = $_GET['years'];

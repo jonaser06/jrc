@@ -311,10 +311,7 @@ class consultasClassModel{
 
     public static function operacionModel($years){
         try {
-            $obj = ["a","b","c"];
-            $data = array(
-                
-            );
+            
             for ($i = 1 ; $i <= 12 ; $i++){
                 $k = 0;
                 #resultados meses

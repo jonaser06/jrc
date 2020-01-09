@@ -46,6 +46,15 @@ class authClassController{
         return $response;
     }
 
+    public function listUserController($page){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = authClassModel::listUserModel($page);
+        echo $response;
+        # respuesta
+        exit;
+    }
+
 }
 
 ?>

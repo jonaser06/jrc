@@ -5,12 +5,12 @@
  *      This is a demo file used only for the main dashboard (index.html)
  **/
 
-$(function () {
+/* $(function () {
 
-  'use strict';
+  'use strict'; */
 
   // Make the dashboard widgets sortable Using jquery UI
-  $('.connectedSortable').sortable({
+  /* $('.connectedSortable').sortable({
     containment         : $('section.content'),
     placeholder         : 'sort-highlight',
     connectWith         : '.connectedSortable',
@@ -18,18 +18,18 @@ $(function () {
     forcePlaceholderSize: true,
     zIndex              : 999999
   });
-  $('.connectedSortable .box-header, .connectedSortable .nav-tabs-custom').css('cursor', 'move');
+  $('.connectedSortable .box-header, .connectedSortable .nav-tabs-custom').css('cursor', 'move'); */
 
   // jQuery UI sortable for the todo list
-  $('.todo-list').sortable({
+  /* $('.todo-list').sortable({
     placeholder         : 'sort-highlight',
     handle              : '.handle',
     forcePlaceholderSize: true,
     zIndex              : 999999
-  });
+  }); */
 
   // bootstrap WYSIHTML5 - text editor
-  $('.textarea').wysihtml5();
+  /* $('.textarea').wysihtml5();
 
   $('.daterange').daterangepicker({
     ranges   : {
@@ -44,13 +44,13 @@ $(function () {
     endDate  : moment()
   }, function (start, end) {
     window.alert('You chose: ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-  });
+  }); */
 
   /* jQueryKnob */
-  $('.knob').knob();
+  /* $('.knob').knob(); */
 
   // jvectormap data
-  var visitorsData = {
+  /* var visitorsData = {
     US: 398, // USA
     SA: 400, // Saudi Arabia
     CA: 1000, // Canada
@@ -62,9 +62,9 @@ $(function () {
     IN: 800, // India
     GB: 320, // Great Britain
     RU: 3000 // Russia
-  };
+  }; */
   // World map by jvectormap
-  $('#world-map').vectorMap({
+  /* $('#world-map').vectorMap({
     map              : 'world_mill_en',
     backgroundColor  : 'transparent',
     regionStyle      : {
@@ -89,10 +89,10 @@ $(function () {
       if (typeof visitorsData[code] != 'undefined')
         el.html(el.html() + ': ' + visitorsData[code] + ' new visitors');
     }
-  });
+  }); */
 
   // Sparkline charts
-  var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
+  /* var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
   $('#sparkline-1').sparkline(myvalues, {
     type     : 'line',
     lineColor: '#92c1dc',
@@ -115,19 +115,19 @@ $(function () {
     fillColor: '#ebf4f9',
     height   : '50',
     width    : '80'
-  });
+  }); */
 
   // The Calender
-  $('#calendar').datepicker();
+ /*  $('#calendar').datepicker(); */
 
   // SLIMSCROLL FOR CHAT WIDGET
-  $('#chat-box').slimScroll({
+  /* $('#chat-box').slimScroll({
     height: '250px'
-  });
+  }); */
 
   /* Morris.js Charts */
   // Sales chart
-  var area = new Morris.Area({
+  /* var area = new Morris.Area({
     element   : 'revenue-chart',
     resize    : true,
     data      : [
@@ -176,10 +176,10 @@ $(function () {
     gridLineColor    : '#efefef',
     gridTextFamily   : 'Open Sans',
     gridTextSize     : 10
-  });
+  }); */
 
   // Donut Chart
-  var donut = new Morris.Donut({
+  /* var donut = new Morris.Donut({
     element  : 'sales-chart',
     resize   : true,
     colors   : ['#3c8dbc', '#f56954', '#00a65a'],
@@ -189,17 +189,17 @@ $(function () {
       { label: 'Mail-Order Sales', value: 20 }
     ],
     hideHover: 'auto'
-  });
+  }); */
 
   // Fix for charts under tabs
-  $('.box ul.nav a').on('shown.bs.tab', function () {
+  /* $('.box ul.nav a').on('shown.bs.tab', function () {
     area.redraw();
     donut.redraw();
     line.redraw();
-  });
+  }); */
 
   /* The todo list plugin */
-  $('.todo-list').todoList({
+  /* $('.todo-list').todoList({
     onCheck  : function () {
       window.console.log($(this), 'The element has been checked');
     },
@@ -208,4 +208,4 @@ $(function () {
     }
   });
 
-});
+}); */

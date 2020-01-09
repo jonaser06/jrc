@@ -47,6 +47,10 @@
         }
     </style>
     <div class="box-footer">
-        <div id="grafica_disp"></div>        
+        <div id="grafica_disp"></div>  
+        <div class="leyenda">
+            <li class="fa fa-circle ejey"><span class="txtleyend"> Eje Y: en porcentaje ( % )</span></li>
+            <li class="fa fa-circle ejex"><span class="txtleyend"> Eje X: en meses</span></li>
+        </div>      
     </div>
 </div>
