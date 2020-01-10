@@ -11,6 +11,9 @@ $app->post('/signup/','signup');
 $app->post('/signin/','signin');
 $app->post('/registrarusuario/','registrarUsuario');
 $app->post('/asignarmaquina/','asignarMaquina');
+$app->post('/updateuser/','updateuser');
+$app->post('/changepassword/','changepassword');
+$app->post('/removeuser/','removeuser');
 $app->get('/horasoperacion/','horasoperacion');
 $app->get('/disponibilidadmecanica/','disponibilidadMecanica');
 $app->get('/graphmtbf/','graphMtbf');
@@ -650,11 +653,65 @@ function listarusuarios(){
         include 'modules/menu.php';
         include 'modules/listadeusuarios.php';
         include 'modules/footer.php';
+
+        notificacion($_GET['status'], $_GET['message']);
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";
               </script>';
     }
+}
+
+function updateuser(){
+
+    if(isset($_POST['id']) && isset($_POST['username']) && isset($_POST['name']) && isset($_POST['dni'])){
+
+        $data = array(
+            "id" => $_POST['id'],
+            "name" => $_POST['name'],
+            "username"=> $_POST['username'],
+            "dni" => $_POST['dni']
+        );
+        
+        $reponse = authClassController::updateUserController($data);
+        $json = json_decode($reponse,true);
+        if($json['status']){
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=true&message=Usuario actualizado";
+                    </script>';
+        }else{
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=false&message=Ocurrio un error";
+                    </script>';
+        }
+
+    }else{
+        echo 'falta algunos campos obligatorios';
+    }
+
+}
+
+function removeuser(){
+    if(isset($_POST['id'])){
+        $id = $_POST['id'];
+        $reponse = authClassController::removeUserController($id);
+        $json = json_decode($reponse,true);
+        if($json['status']){
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=true&message=Usuario Elimado";
+                    </script>';
+        }else{
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=false&message=Ocurrio un error";
+                    </script>';
+        }
+    }else{
+        echo 'Ocurrio un error, vuelve a intentar';
+    }
+}
+
+function changepassword(){
+    
 }
 
 #servicios

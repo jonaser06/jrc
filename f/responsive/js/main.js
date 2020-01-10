@@ -18,12 +18,13 @@ var objJrc = {
             url: urlProd + 'listuser?page=1',
             dataType:'json'
         }).done(function(data){
+
             data.data.forEach(function(element){
             content = '';
             content +='<tr>';
-            content +='<td><span class="name-'+element.id_usuarios+'" data-name="'+element.nombres+'">'+element.nombres+'</span></td>';
-            content +='<td><span class="dni-'+element.id_usuarios+'" data-dni="'+element.dni+'">'+element.dni+'</span></td>';
-            content +='<td><span class="user-'+element.id_usuarios+'" data-user="'+element.usuario+'">'+element.usuario+'</span></td>';
+            content +='<td>'+element.nombres+'</td>';
+            content +='<td>'+element.dni+'</td>';
+            content +='<td>'+element.usuario+'</td>';
             if(element.rol == 2){
                 content +='<td><span class="label label-success">administrador</span></td>';
             }
@@ -33,8 +34,8 @@ var objJrc = {
             content +='<td>'+element.maquina+'</td>';
             content +='<td>';
             content +='<ul class="action-user">';
-            content +='<li><a href="#"><span class="edituser fa fa-pencil" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-info" ></span></a></li>';
-            content +='<li><a href="#"><span class="deleteuser fa fa-remove" data-id="'+element.id_usuarios+'"></span></a></li>';
+            content +='<li><a href="#"><span class="edituser fa fa-pencil" data-user="'+element.usuario+'" data-dni="'+element.dni+'" data-name="'+element.nombres+'" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-info" ></span></a></li>';
+            content +='<li><a href="#"><span class="deleteuser fa fa-remove" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-danger" ></span></a></li>';
             content +='<li><a href="#"><span class="changepass" data-id="'+element.id_usuarios+'">Cambiar<br>Constraseña</span></a></li>';
             content +='</ul>';
             content +='</td>';
@@ -44,34 +45,34 @@ var objJrc = {
         });
     },
     actionuser:function(){
-        /* edituser
-        deleteuser */
         $("body").on("click",".edituser",function(e){
             e.preventDefault();
             $("#form_edit_user").html('');
             var id = $(this).data('id');
-            var nombre = $(".name").data('name');
-            var dni = $(".dni").data('dni');
-            var usuario = $(".user").data('user');
-            console.log(nombre);
+            var nombre = $(this).data('name');
+            var dni = $(this).data('dni');
+            var usuario = $(this).data('user');
             formulario = '';
             formulario += '<label>NOMBRES:</label>';
             formulario += '<input type="text" class="nombre form-control" name="name" required value="'+nombre+'">';
             formulario += '<label>USUARIO:</label>';
-            formulario += '<input type="text" class="form-control" name="name" required value="'+usuario+'">';
+            formulario += '<input type="text" class="form-control" name="username" required value="'+usuario+'">';
             formulario += '<label>DNI:</label>';
-            formulario += '<input type="text" class="form-control" name="name" required value="'+dni+'">';
-            formulario += '<input type="hidden" name="name" value="'+id+'">';
+            formulario += '<input type="text" class="form-control" name="dni" required value="'+dni+'">';
+            formulario += '<input type="hidden" name="id" value="'+id+'">';
             
             $("#form_edit_user").append(formulario);
             
         });
         $("body").on("click",".deleteuser",function(e){
             e.preventDefault();
-            console.log("eliminar");
-
+            $("#form_delete_user").html('');
+            var id = $(this).data('id');
+            formulario = '';
+            formulario += '<input type="hidden" name="id" value="'+id+'">';
+            $("#form_delete_user").append(formulario);
         });
-    },
+    },    
     checked: function(){
         $(".checked").click(function(){
             if($(this).hasClass('fa-square-o')){

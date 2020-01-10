@@ -55,6 +55,18 @@ class authClassController{
         exit;
     }
 
+    public function updateUserController($data){
+        # definiendo el modo de respuesta
+        $response = authClassModel::updateUserModel($data);
+        return $response;
+    }
+
+    public function removeUserController($id){
+        # definiendo el modo de respuesta
+        $response = authClassModel::removeUserModel($id);
+        return $response;
+    }
+
 }
 
 ?>

@@ -166,11 +166,11 @@ class authClassModel{
             $current   = ((int)$page-1)*$forPage;
             if($page <= $pagination){
                 $db        = getDB();
-                $sql       = "SELECT usuarios.id_usuarios, usuarios.nombres, usuarios.dni, usuarios.usuario, usuarios.rol, maquinas.nombre AS maquina FROM usuarios INNER JOIN maquinas ON usuarios.id_maquina = maquinas.id_maquina  WHERE rol !=:rol LIMIT :currentpage,:forpage";
+                $sql       = "SELECT usuarios.id_usuarios, usuarios.nombres, usuarios.dni, usuarios.usuario, usuarios.rol, maquinas.nombre AS maquina FROM usuarios INNER JOIN maquinas ON usuarios.id_maquina = maquinas.id_maquina  WHERE rol !=:rol ";//LIMIT :currentpage,:forpage
                 $stmt      =    $db->prepare($sql);
                 $stmt->bindParam("rol", $rol,PDO::PARAM_STR);
-                $stmt->bindParam("currentpage", $current, PDO::PARAM_INT);
-                $stmt->bindParam("forpage", $forPage, PDO::PARAM_INT);
+                /* $stmt->bindParam("currentpage", $current, PDO::PARAM_INT);
+                $stmt->bindParam("forpage", $forPage, PDO::PARAM_INT); */
                 $stmt->execute();
                 $mainCount =    $stmt->rowCount();
                 $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -190,6 +190,47 @@ class authClassModel{
             }else{
                 return '{"status":false, "message":"No found","data":[]}';
             }
+        } catch (PDOException $e) {
+            return '{"status": false, "data":'. $e->getMessage() .'}';
+        }
+    }
+
+    public static function updateUserModel($data){
+        try {
+            $db        = getDB();
+            $sql       = "UPDATE usuarios
+                          SET nombres = :nombres, dni = :dni, usuario = :usuario
+                          WHERE id_usuarios = :id_usuarios";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("nombres", $data['name'],PDO::PARAM_STR);
+            $stmt->bindParam("usuario", $data['username'],PDO::PARAM_STR);
+            $stmt->bindParam("dni", $data['dni'],PDO::PARAM_STR);
+            $stmt->bindParam("id_usuarios", $data['id'],PDO::PARAM_STR);
+            $stmt->execute();
+            return '{
+                "status":"true", 
+                "message":"Usuario Actualizado",
+                "data": []
+            }';
+
+        } catch (PDOException $e) {
+            return '{"status": false, "data":'. $e->getMessage() .'}';
+        }
+    }
+
+    public static function removeUserModel($id){
+        try {
+            $db        = getDB();
+            $sql       = "DELETE FROM usuarios WHERE id_usuarios=:id_usuarios";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("id_usuarios", $id,PDO::PARAM_STR);
+            $stmt->execute();
+            return '{
+                "status":"true", 
+                "message":"Usuario Eliminado",
+                "data": []
+            }';
+
         } catch (PDOException $e) {
             return '{"status": false, "data":'. $e->getMessage() .'}';
         }

@@ -10,10 +10,11 @@
             font-weight: 600 !important;
         }
     </style>
+    <!-- editar -->
     <div class="modal modal-info fade" id="modal-info">
         <div class="modal-dialog">
         <div class="modal-content">
-            <form action="updateuser" method="POST">
+            <form action="updateuser" method="POST" autocomplete="off">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -32,6 +33,33 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <!-- eliminar -->
+    <div class="modal modal-danger fade" id="modal-danger">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="removeuser" method="POST">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Eliminar Usuario</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Esta seguro que desea eliminar este Usuario?</p>
+                        <div id="form_delete_user"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline">Confirmar eliminacion</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- cambiar contrase -->
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -40,6 +68,7 @@
                         <h3 class="box-title">Lista de Usuarios</h3>
                     </div>
                     <div class="box-body">
+                        <ul class="user_pagination pagination pagination-sm no-margin pull-right"></ul>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
