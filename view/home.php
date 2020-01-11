@@ -22,6 +22,7 @@ $app->get('/resumenindicadores/','resumenIndicadores');
 $app->get('/reporteservice/','reporteService');
 $app->get('/reportescoops/','reportescoops');
 $app->get('/listuser/','listuser');
+$app->get('/listuserservice/','listuserservice');
 
 #endpints de vistas
 $app->get('/','index');
@@ -642,7 +643,29 @@ function registrarUsuario(){
 }
 
 function asignarMaquina(){
+    if(isset($_POST['usuario']) && isset($_POST['maquina']) && isset($_POST['desde']) && isset($_POST['hasta'])){
+        $data = array(
+            "id"=> $_POST['usuario'],
+            "maquina"=> $_POST['maquina'],
+            "desde"=> $_POST['desde'],
+            "hasta"=> $_POST['hasta']
+        );
+        
+        $reponse = authClassController::asignarMaquinaController($data);
+        $json = json_decode($reponse,true);
+        if($json['status']){
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=true&message=Maquina Asignada";
+                    </script>';
+        }else{
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=false&message=Ocurrio un error";
+                    </script>';
+        }
 
+    }else{
+        echo 'falta algunos campos obligatorios';
+    }
 }
 
 function listarusuarios(){
@@ -711,10 +734,29 @@ function removeuser(){
 }
 
 function changepassword(){
-    
+    if(isset($_POST['password']) && isset($_POST['id'])){
+        $password = $_POST['password'];
+        $id = $_POST['id'];
+        $reponse = authClassController::changePasswordController($password, $id);
+        $json = json_decode($reponse,true);
+        if($json['status']){
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=true&message=Contraseña actualizada";
+                    </script>';
+        }else{
+            echo '<script type="text/javascript">
+                        window.location = "listarusuarios?status=false&message=Ocurrio un error";
+                    </script>';
+        }
+    }else{
+        echo 'Ocurrio un error, vuelve a intentar';
+    }
 }
 
 #servicios
+function listuserservice(){
+    authClassController::getUserController();
+}
 function listuser(){
     $page=($_GET['page']==NULL)?'1':($_GET['page']);
     authClassController::listUserController($page);

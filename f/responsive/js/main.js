@@ -1,5 +1,5 @@
-var urlProd = 'http://blackapp.xyz/';
-//var urlProd = 'http://localhost/jrc/';
+//var urlProd = 'http://blackapp.xyz/';
+var urlProd = 'http://localhost/jrc/';
 //var urlDev = 'http://localhost/jrc/';
 
 var objJrc = {
@@ -11,6 +11,23 @@ var objJrc = {
         objJrc.tools();
         objJrc.listuser();
         objJrc.actionuser();
+        objJrc.asignarmaquina();
+    },
+    asignarmaquina: function(){
+        /* obtener usuarios */
+        $.ajax({
+            type : 'GET',
+            url: urlProd+'listuserservice?getuser=all',
+            dataType : 'json'
+        }).done(function(data){
+
+            data.data.forEach(function(element){
+                opciones = '';
+                opciones += '<option value="'+element.id_usuarios+'">'+element.usuario+'</option>';
+                $("#list_user").append(opciones);
+            });
+        });
+
     },
     listuser:function(){
         $.ajax({
@@ -36,7 +53,7 @@ var objJrc = {
             content +='<ul class="action-user">';
             content +='<li><a href="#"><span class="edituser fa fa-pencil" data-user="'+element.usuario+'" data-dni="'+element.dni+'" data-name="'+element.nombres+'" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-info" ></span></a></li>';
             content +='<li><a href="#"><span class="deleteuser fa fa-remove" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-danger" ></span></a></li>';
-            content +='<li><a href="#"><span class="changepass" data-id="'+element.id_usuarios+'">Cambiar<br>Constraseña</span></a></li>';
+            content +='<li><a href="#"><span class="changepass" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-default">Cambiar<br>Constraseña</span></a></li>';
             content +='</ul>';
             content +='</td>';
             content +='</tr>';
@@ -71,6 +88,16 @@ var objJrc = {
             formulario = '';
             formulario += '<input type="hidden" name="id" value="'+id+'">';
             $("#form_delete_user").append(formulario);
+        });
+        $("body").on("click",".changepass", function(e){
+            e.preventDefault();
+            $("#form_edit_pass").html('');
+            var id = $(this).data('id');
+            formulario = '';
+            formulario += '<label>ESCRIBA LA NUEVA CONTRASEÑA:</label>';
+            formulario += '<input type="password" class="form-control" name="password" required>';
+            formulario += '<input type="hidden" name="id" value="'+id+'">';
+            $("#form_edit_pass").append(formulario);
         });
     },    
     checked: function(){

@@ -26,12 +26,12 @@
       </ul>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MÓDULOS</li>
-        <li class="treeview <?php echo ($base=='r1600g')?'active':''; echo ($base=='scoops')?'active':''; ?>">
+        <li class="treeview <?php echo ($base=='r1600g')?'active':''; echo ($base=='scoops?consulta=scoops')?'active':''; ?>">
           <a href="#"><i class="fa fa-dashboard"></i> <span>SCOOPS</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu" style="display: <?php echo ($base=='r1600g')?'block':''; echo ($base=='scoops')?'block':''; ?>;">
-            <li class ="<?php echo ($base=='r1600g')?'active':''; echo ($base=='scoops')?'active':''; ?>">
+            <li class ="<?php echo ($base=='r1600g')?'active':''; echo ($base=='scoops?consulta=scoops')?'active':''; ?>">
               <?php
                 if($_SESSION['rol']=='mecanico'){
                   echo '<a href="r1600g"><i class="fa fa-circle-o"></i> R1600G</a>';
@@ -74,14 +74,14 @@
             if($_SESSION['rol']=='administrador'){
               $registro = 'registro';
               $active = ($base=='registro')?'active':'';
-              $active2 = ($base=='listadeusuarios')?'active':'';
-              $display  = ($base=='registro')?'block':'none';
+              $active2 = ($base=='listarusuarios')?'active':'';
+              $display  = ($base=='registro' || $base=='listarusuarios')?'block':'none';
               echo '<li class="treeview '.$active.'">
                         <a href="#"><i class="fa fa-user"></i> <span>REGISTRO DE USUARIOS</span>
                           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu" style="display: '.$display.';">
-                            <li class="'.$active.'"><a href="'.$registro.'  "><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
+                            <li class="'.$active.'"><a href="'.$registro.'"><i class="fa fa-circle-o"></i> AGREGAR USUARIO</a></li>
                             <li class="'.$active2.'"><a href="listarusuarios"><i class="fa fa-circle-o"></i> LISTA DE USUARIOS</a></li>
                         </ul>
                     </li>';

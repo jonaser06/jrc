@@ -24,7 +24,7 @@
                 <div class="modal-body" id="form_edit_user">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-outline">Actualizar</button>
                 </div>
             </form>
@@ -49,7 +49,7 @@
                         <div id="form_delete_user"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-outline">Confirmar eliminacion</button>
                     </div>
                 </form>
@@ -59,7 +59,30 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <!-- cambiar contrase -->
+    <!-- cambiar contraseña -->
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="changepassword" method="POST">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Cambiar Contraseña</h4>
+                    </div>
+                    <div class="modal-body" id="form_edit_pass">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
     <section class="content">
         <div class="row">
             <div class="col-md-12">

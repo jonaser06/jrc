@@ -235,6 +235,72 @@ class authClassModel{
             return '{"status": false, "data":'. $e->getMessage() .'}';
         }
     }
+
+    public static function changePasswordModel($password, $id){
+        try {
+            $db        = getDB();
+            $sql       = "UPDATE usuarios
+                          SET password = :pass
+                          WHERE id_usuarios = :id_usuarios";
+            $stmt      =    $db->prepare($sql);
+            $password   =   hash('sha256',$password);
+            $stmt->bindParam("pass", $password,PDO::PARAM_STR);
+            $stmt->bindParam("id_usuarios", $id,PDO::PARAM_STR);
+            $stmt->execute();
+            return '{
+                "status":"true", 
+                "message":"Contraseña actualizada!",
+                "data": []
+            }';
+
+        } catch (PDOException $e) {
+            return '{"status": false, "data":'. $e->getMessage() .'}';
+        }
+    }
+
+    public static function getUserModel(){
+        try {
+            $rol = 3;
+            $db        = getDB();
+            $sql       = "SELECT usuarios.id_usuarios, usuarios.nombres, usuarios.dni, usuarios.usuario, usuarios.rol, maquinas.nombre AS maquina FROM usuarios INNER JOIN maquinas ON usuarios.id_maquina = maquinas.id_maquina  WHERE rol !=:rol";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("rol", $rol,PDO::PARAM_STR);
+            $stmt->execute();
+            $mainCount =    $stmt->rowCount();
+            $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+            return '{
+                "status":"true", 
+                "message":"Find One",
+                "data": '.json_encode($userData).'
+            }';
+
+        } catch (PDOException $e) {
+            return '{"status": false, "data":'. $e->getMessage() .'}';
+        }
+    }
+
+    public static function asignarMaquinaModel($data){
+        try {
+            $db        = getDB();
+            $sql       = "UPDATE usuarios
+                          SET id_maquina = :id_maquina, desde = :desde, hasta = :hasta
+                          WHERE id_usuarios = :id_usuarios";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("id_maquina", $data['maquina'],PDO::PARAM_STR);
+            $stmt->bindParam("desde", $data['desde'],PDO::PARAM_STR);
+            $stmt->bindParam("hasta", $data['hasta'],PDO::PARAM_STR);
+            $stmt->bindParam("id_usuarios", $data['id'],PDO::PARAM_STR);
+            $stmt->execute();
+            return '{
+                "status":"true", 
+                "message":"Maquina asignada",
+                "data": []
+            }';
+
+        } catch (PDOException $e) {
+            return '{"status": false, "data":'. $e->getMessage() .'}';
+        }
+    }
 }
 
 ?>

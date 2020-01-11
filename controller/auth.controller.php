@@ -56,17 +56,33 @@ class authClassController{
     }
 
     public function updateUserController($data){
-        # definiendo el modo de respuesta
         $response = authClassModel::updateUserModel($data);
         return $response;
     }
 
     public function removeUserController($id){
-        # definiendo el modo de respuesta
         $response = authClassModel::removeUserModel($id);
         return $response;
     }
 
+    public function changePasswordController($password, $id){
+        $response = authClassModel::changePasswordModel($password, $id);
+        return $response;
+    }
+
+    public function getUserController(){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = authClassModel::getUserModel();
+        echo $response;
+        # respuesta
+        exit;
+    }
+
+    public function asignarMaquinaController($data){
+        $response = authClassModel::asignarMaquinaModel($data);
+        return $response;
+    }
 }
 
 ?>
