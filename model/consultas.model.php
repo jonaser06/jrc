@@ -358,8 +358,49 @@ class consultasClassModel{
 
         } catch (PDOException $e) {
             return '{"status":false, "message":'.$e.'}';
+        }        
+    }
+
+    public static function imboxRequestModel($page){
+        try {
+            #obtener total de paginas
+            $db        =   getDB();
+            $sql       =   "SELECT * FROM requerimientos";
+            $stmt      =    $db->prepare($sql);
+            $stmt->execute();
+            $total     =   $stmt->rowCount();
+            $forPage   = 10;
+            $pagination =   ceil($total/$forPage);
+            $current   = ((int)$page-1)*$forPage;
+            if($page <= $pagination){
+                #resultados por paginas
+                $db        =   getDB();
+                $sql       =   "SELECT * FROM requerimientos LIMIT :currentpage,:forpage";
+                $stmt      =    $db->prepare($sql);
+                $stmt->bindParam("currentpage", $current, PDO::PARAM_INT);
+                $stmt->bindParam("forpage", $forPage, PDO::PARAM_INT);
+                $stmt->execute();
+                $mainCount =    $stmt->rowCount();
+                $userData  =    $stmt->fetchAll(PDO::FETCH_OBJ);
+                #controls
+                $next_page    = ( (int)$page + 1 ) <= ( $pagination ) ? ( (int)$page + 1 ) : 'false';
+                $previus_page = ( (int)$page - 1 ) <= 0 ? 'false' : ( (int)$page - 1 ) ;
+
+                return '{
+                            "status":"true", 
+                            "message":"Find One",
+                            "current_page":"'.$page.'", 
+                            "next_page":"'.$next_page.'" ,
+                            "previus_page":"'.$previus_page.'" ,
+                            "pagination":"'.$pagination.'" ,
+                            "data": '.json_encode($userData).'
+                        }';
+            }else{
+                return '{"status":false, "message":"No found","data":[]}';
+            }
+        } catch (PDOException $e) {
+            return '{"status":false, "message":'.$e.'}';
         }
-        
     }
 }
 ?>

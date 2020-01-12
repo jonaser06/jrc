@@ -11,18 +11,18 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="setrequerimientos" method="POST">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">NOMBRE DE MECANICO:</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" value="<?php echo $_SESSION['nombres']; ?>">
+                                        <input type="text" name="nombre" class="form-control" value="<?php echo $_SESSION['nombres']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">DESCRIPCION:</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control">
+                                        <select class="form-control" name="descripcion">
                                             <option>ACEITE DE MOTOR</option>
                                             <option>ACEITE MANDOS FINALES</option>
                                             <option>ACEITE PARA DIFERENCIAL</option>
@@ -40,16 +40,16 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">OTROS:</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control">
+                                        <input type="text" name="otros" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">CANTIDAD:</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control">
+                                        <input type="text" name="cantidad" class="form-control">
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-block btn-primary">Enviar</button>
+                                <button type="submit" class="btn btn-block btn-primary">Enviar</button>
                             </div>
                         </form>
                     </div>

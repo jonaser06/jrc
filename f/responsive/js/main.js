@@ -35,7 +35,6 @@ var objJrc = {
             url: urlProd + 'listuser?page=1',
             dataType:'json'
         }).done(function(data){
-
             data.data.forEach(function(element){
             content = '';
             content +='<tr>';

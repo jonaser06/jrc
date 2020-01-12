@@ -105,61 +105,54 @@
           
         ?>
       </div>
+      <style>
+          td{
+              font-size: 14px;
+          }
+      </style>
       <div class="row">
-        <section class="col-lg-7 connectedSortable">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+        <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Últimos Requerimientos</h3>
             </div>
-          </div>
-        </section>
-        <section class="col-lg-5 connectedSortable">
-          <div class="box box-solid bg-teal-gradient">
-            <div class="box-header">
-              <i class="fa fa-th"></i>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
 
-              <h3 class="box-title">Sales Graph</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px;"></div>
-            </div>
-            <div class="box-footer no-border">
-              <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
-                         data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Mail-Orders</div>
+              <div class="mailbox-controls">
+                <div class="btn-group prints">
+                  <button type="button" class="imprimir btn btn-default btn-sm"><a href="javascript:imboxPDF()"><i class="fa fa-print"></i> Imprimir</a></button>
                 </div>
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
-                         data-fgColor="#39CCCC">
+                <span class="volver">
+                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> Volver</button>
+                </span>
+                <span class="refresh">                
+                  <button type="button" class="actualizar btn btn-default btn-sm"><i class="fa fa-refresh"></i> Actualizar</button>
+                </span>
 
-                  <div class="knob-label">Online</div>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
-                         data-fgColor="#39CCCC">
-
-                  <div class="knob-label">In-Store</div>
+                <!-- pagination -->
+                <div class="pull-right pagination_imbox">
                 </div>
               </div>
+              <div class="openmessage" id="capture">
+              </div>
+
+              <!-- body message -->
+
+
+              <div class="listmessage">
+                <div class="table-responsive mailbox-messages">
+                  <table class="table table-hover table-striped">
+                    <tbody class="imbox">
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- /.mail-box-messages -->
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </section>
   </div>

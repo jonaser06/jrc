@@ -14,6 +14,7 @@ $app->post('/asignarmaquina/','asignarMaquina');
 $app->post('/updateuser/','updateuser');
 $app->post('/changepassword/','changepassword');
 $app->post('/removeuser/','removeuser');
+$app->post('/setrequerimientos/','setrequerimientos');
 $app->get('/horasoperacion/','horasoperacion');
 $app->get('/disponibilidadmecanica/','disponibilidadMecanica');
 $app->get('/graphmtbf/','graphMtbf');
@@ -23,6 +24,7 @@ $app->get('/reporteservice/','reporteService');
 $app->get('/reportescoops/','reportescoops');
 $app->get('/listuser/','listuser');
 $app->get('/listuserservice/','listuserservice');
+$app->get('/imboxrequerimientos/','imboxrequerimientos');
 
 #endpints de vistas
 $app->get('/','index');
@@ -531,6 +533,8 @@ function mecanico(){
             include 'modules/menu.php';
             include 'modules/mecanico.php';
             include 'modules/footer.php';
+            
+            notificacion($_GET['status'], $_GET['message']);
         }else{
             echo '<script type="text/javascript">
                   window.location = "login";
@@ -751,6 +755,40 @@ function changepassword(){
     }else{
         echo 'Ocurrio un error, vuelve a intentar';
     }
+}
+
+function setrequerimientos(){
+    if( isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['otros']) && isset($_POST['cantidad'])){
+        $data = array(
+            'nombre' => $_POST['nombre'],
+            'descripcion' => $_POST['descripcion'],
+            'otros' => $_POST['otros'],
+            'cantidad' => $_POST['cantidad']
+        );
+
+        $reponse = meClassController::setRequerimientosController($data);
+        $json = json_decode($reponse,true);
+        if($json['status']){
+            echo '<script type="text/javascript">
+                        window.location = "mecanico?status=true&message='.$json['message'].'";
+                    </script>';
+        }else{
+            var_dump($reponse);
+            /* echo '<script type="text/javascript">
+                        window.location = "mecanico?status=false&message='.$json['message'].'";
+                    </script>'; */
+        }
+
+    }else{
+        echo 'Ocurrio un error, vuelve a intentar';
+    }
+
+}
+
+function imboxrequerimientos(){
+    
+    $page = $_GET['page']==NULL?'1':$_GET['page'];
+    consultasClassController::imboxRequestController($page);
 }
 
 #servicios

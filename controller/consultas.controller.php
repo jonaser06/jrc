@@ -78,5 +78,13 @@ class consultasClassController{
         echo $response;
         exit;
     }
+    public static function imboxRequestController($page){
+        # definiendo el modo de respuesta
+        header('Content-Type: application/json');
+        $response = consultasClassModel::imboxRequestModel($page);
+        # respuesta
+        echo $response;
+        exit;
+    }
 }
 ?>

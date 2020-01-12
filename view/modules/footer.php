@@ -22,6 +22,7 @@
 <script src="<?php echo $dir; ?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo $dir; ?>bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo $dir; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="<?php echo $dir; ?>plugins/iCheck/icheck.min.js"></script>
 <script src="<?php echo $dir; ?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo $dir; ?>bower_components/fastclick/lib/fastclick.js"></script>
 <script src="<?php echo $dir; ?>dist/js/adminlte.min.js"></script>
@@ -31,14 +32,29 @@
 <script src="<?php echo $dir; ?>js/toast.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script src="<?php echo $dir; ?>js/main.js?v15"></script>
+<?php
+  if($base == "administrador" || $base == "superadministrador"){
+    echo '<script src="'.$dir.'js/imboxrequest.js"></script>';
+  }
+?>
 <script>
     function getPDF(){
-
       html2canvas(document.querySelector("#capture"), {
         onrendered (canvas) {
           var img = canvas.toDataURL();
           var doc = new jsPDF();
           doc.addImage(img,'JPEG', 0, 0, 210, 300);
+          doc.save("reportepm.pdf");
+        }
+      });
+    }
+
+    function imboxPDF(){
+      html2canvas(document.querySelector("#capture"), {
+        onrendered (canvas) {
+          var img = canvas.toDataURL();
+          var doc = new jsPDF();
+          doc.addImage(img,'JPEG', 0, 0, 250, 50);
           doc.save("reportepm.pdf");
         }
       });

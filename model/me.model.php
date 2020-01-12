@@ -87,5 +87,27 @@ class meClassModel{
         }
     }
 
+    public static function setRequerimientoModel($data){
+        try {
+            $db         = getDB();
+            $sql        = "INSERT INTO requerimientos (mecanico, descripcion, otros, cantidad, fecha, estado)
+                            VALUES (:mecanico, :descripcion, :otros, :cantidad, NOW(), 'activo')";
+            $stmt       =   $db->prepare($sql);
+            $stmt->bindParam("mecanico", $data['nombre'],PDO::PARAM_STR);
+            $stmt->bindParam("descripcion", $data['descripcion'],PDO::PARAM_STR);
+            $stmt->bindParam("otros", $data['otros'],PDO::PARAM_STR);
+            $stmt->bindParam("cantidad", $data['cantidad'],PDO::PARAM_STR);
+            $stmt->execute();
+            return '{
+                "status":"true", 
+                "message":"Requerimiento Solicitado",
+                "data": []
+            }';
+
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+
 }
 ?>

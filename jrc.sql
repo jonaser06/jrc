@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 05-01-2020 a las 05:57:36
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Servidor: localhost:3306
+-- Tiempo de generación: 11-01-2020 a las 16:58:16
+-- Versión del servidor: 5.7.28-0ubuntu0.18.04.4
+-- Versión de PHP: 7.2.24-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -86,7 +86,7 @@ CREATE TABLE `maquinas` (
 
 INSERT INTO `maquinas` (`id_maquina`, `nombre`, `horas_acumuladas`) VALUES
 (1, '2SC019', 170),
-(2, '2SC022', 177),
+(2, '2SC022', 165),
 (3, '2SC026', 0),
 (4, '2SC029', 100),
 (5, '2SC035', 84),
@@ -179,14 +179,14 @@ INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acum
 (52, '2019-01-21', '2019-01-21', '104', '4', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 4, 5, 4, 24, 20, '5', '5'),
 (53, '2019-01-22', '2019-01-22', '108', '7', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 5, 5, 4, 4, 24, 20, '4', '1'),
 (54, '2019-01-23', '2019-01-23', '115', '10', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 1, 1, 1, 5, 24, 20, '2', '3'),
-(55, '2019-01-24', '2019-01-24', '137', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 1, 1, 1, 24, 20, '2', '3'),
-(56, '2019-01-25', '2019-01-25', '140', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 1, 1, 0, 24, 20, '2', '3'),
-(57, '2019-01-26', '2019-01-26', '143', '5', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 2, 2, 2, 24, 20, '2', '1'),
-(58, '2019-01-27', '2019-01-27', '148', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 3, 2, 1, 24, 20, '2', '3'),
-(59, '2019-01-28', '2019-01-28', '154', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 2, 1, 24, 20, '5', '3'),
-(60, '2019-01-29', '2019-01-29', '160', '10', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 2, 1, 1, 1, 24, 20, '1', '2'),
-(61, '2019-01-30', '2019-01-30', '170', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 1, 1, 2, 24, 20, '2', '1'),
-(62, '2019-01-31', '2019-01-31', '176', '1', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 3, 3, 2, 24, 20, '1', '1'),
+(55, '2019-01-24', '2019-01-24', '125', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 1, 1, 1, 24, 20, '2', '3'),
+(56, '2019-01-25', '2019-01-25', '128', '3', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 1, 1, 0, 24, 20, '2', '3'),
+(57, '2019-01-26', '2019-01-26', '131', '5', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 1, 2, 2, 2, 24, 20, '2', '1'),
+(58, '2019-01-27', '2019-01-27', '136', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 3, 2, 1, 24, 20, '2', '3'),
+(59, '2019-01-28', '2019-01-28', '142', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 2, 1, 24, 20, '5', '3'),
+(60, '2019-01-29', '2019-01-29', '148', '10', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 2, 1, 1, 1, 24, 20, '1', '2'),
+(61, '2019-01-30', '2019-01-30', '158', '6', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 3, 2, 1, 1, 2, 24, 20, '2', '1'),
+(62, '2019-01-31', '2019-01-31', '164', '1', '2SC022', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 3, 3, 3, 2, 24, 20, '1', '1'),
 (63, '2019-02-01', '2019-02-01', '0', '10', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 1, 1, 24, 20, '1', '2'),
 (64, '2019-02-02', '2019-02-02', '10', '3', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 2, 1, 1, 24, 20, '4', '2'),
 (65, '2019-02-03', '2019-02-03', '13', '12', '2SC029', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 2, 1, 5, 1, 2, 24, 20, '4', '1'),
@@ -737,24 +737,26 @@ CREATE TABLE `usuarios` (
   `usuario` text NOT NULL,
   `password` text NOT NULL,
   `rol` int(10) NOT NULL,
-  `id_maquina` int(11) NOT NULL
+  `id_maquina` int(11) NOT NULL,
+  `desde` date DEFAULT NULL,
+  `hasta` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuarios`, `nombres`, `dni`, `usuario`, `password`, `rol`, `id_maquina`) VALUES
-(1, 'test superadmin', '47793117', 'superadmin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 3, 1),
-(2, 'test admin', '47793118', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 2, 1),
-(3, 'test1', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1),
-(7, 'test2', '47793120', 'mecanico2', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 2),
-(8, 'test3', '47793121', 'mecanico3', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 3),
-(9, 'test4', '47793122', 'mecanico4', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 4),
-(10, 'test5', '47793123', 'mecanico5', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 5),
-(11, 'test6', '47793124', 'mecanico6', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 6),
-(12, 'test7', '47793125', 'mecanico7', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 7),
-(13, 'test8', '47793126', 'mecanico8', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 8);
+INSERT INTO `usuarios` (`id_usuarios`, `nombres`, `dni`, `usuario`, `password`, `rol`, `id_maquina`, `desde`, `hasta`) VALUES
+(1, 'test superadmin', '47793117', 'superadmin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 3, 1, '2020-01-01', '2020-01-01'),
+(2, 'test admin', '47793118', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 2, 1, '2020-01-01', '2020-01-01'),
+(3, 'test1', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1, '2020-01-01', '2020-01-01'),
+(7, 'test2', '47793120', 'mecanico2', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 2, '2020-01-01', '2020-01-01'),
+(8, 'test3', '47793121', 'mecanico3', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 3, '2020-01-01', '2020-01-01'),
+(9, 'test4', '47793122', 'mecanico4', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 4, '2020-01-01', '2020-01-01'),
+(10, 'test5', '47793123', 'mecanico5', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 5, '2020-01-01', '2020-01-01'),
+(11, 'test6', '47793124', 'mecanico6', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 6, '2020-01-01', '2020-01-01'),
+(12, 'test7', '47793125', 'mecanico7', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 7, '2020-01-01', '2020-01-01'),
+(13, 'test8', '47793126', 'mecanico8', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 8, '2020-01-01', '2020-01-01');
 
 --
 -- Índices para tablas volcadas

@@ -22,5 +22,10 @@ class meClassController{
         return $getdata;
     }
 
+    public static function setRequerimientosController($data){
+        $getdata = meClassModel::setRequerimientoModel($data);
+        return $getdata;
+    }
+
 }
 ?>
