@@ -1,5 +1,5 @@
-//var urlProd = 'http://blackapp.xyz/';
-var urlProd = 'http://localhost/jrc/';
+var urlProd = 'http://blackapp.xyz/';
+//var urlProd = 'http://localhost/jrc/';
 //var urlDev = 'http://localhost/jrc/';
 
 var objJrc = {
