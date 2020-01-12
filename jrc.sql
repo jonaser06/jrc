@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 11-01-2020 a las 16:58:16
--- Versión del servidor: 5.7.28-0ubuntu0.18.04.4
--- Versión de PHP: 7.2.24-0ubuntu0.18.04.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-01-2020 a las 07:33:31
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -268,6 +268,41 @@ INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acum
 (141, '2020-01-02', '2020-01-03', '144', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 0, 2, 1, 24, 20, '1', '2'),
 (142, '2020-02-03', '2020-02-03', '149', '11', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 3, 2, 24, 20, '1', '2'),
 (143, '2021-01-04', '2021-01-04', '160', '10', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 0, 0, 0, 0, 24, 20, '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `requerimientos`
+--
+
+CREATE TABLE `requerimientos` (
+  `id_requerimiento` int(11) NOT NULL,
+  `mecanico` text NOT NULL,
+  `descripcion` text NOT NULL,
+  `otros` text NOT NULL,
+  `cantidad` text NOT NULL,
+  `fecha` date NOT NULL,
+  `estado` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `requerimientos`
+--
+
+INSERT INTO `requerimientos` (`id_requerimiento`, `mecanico`, `descripcion`, `otros`, `cantidad`, `fecha`, `estado`) VALUES
+(1, 'Carlos', 'ACEITE DE MOTOR', 'solicito aceite shell sintetico', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(2, 'Carlos', 'ACEITE PARA DIFERENCIAL', 'solicito aceite shell sintetico', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(3, 'Carlos', 'ACEITE HIDRAULICO', 'solicito aceite shell sintetico', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(4, 'Carlos', 'ACEITE DE MOTOR', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(5, 'Roberto', 'FILTRO SEPARADOR DE AGUA EN EL COMBUSTIBLE', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', '5 unidades', '2020-01-11', 'activo'),
+(6, 'Roberto', 'FILTRO DE TRANSMISION', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(7, 'Luis', 'FILTROS DE COMBUSTIBLE', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', 'solo 1', '2020-01-11', 'activo'),
+(8, 'Luis', 'ACEITE MANDOS FINALES', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(9, 'Luis', 'FILTRO ADMISION PRIMARIO', 'solicito aceite shell sintetico', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(10, 'Luis', 'FILTRO DE TRANSMISION', 'solicito aceite shell sintetico', '3 botellas de 1/4', '2020-01-11', 'activo'),
+(11, 'Jose', 'ACEITE DE MOTOR', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', '2020-01-11', 'activo'),
+(12, 'Jose', 'ACEITE HIDRAULICO', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', '2020-01-11', 'activo'),
+(13, 'Jose', 'TRAPOS', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto', 'una docena', '2020-01-11', 'activo');
 
 -- --------------------------------------------------------
 
@@ -747,16 +782,16 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuarios`, `nombres`, `dni`, `usuario`, `password`, `rol`, `id_maquina`, `desde`, `hasta`) VALUES
-(1, 'test superadmin', '47793117', 'superadmin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 3, 1, '2020-01-01', '2020-01-01'),
-(2, 'test admin', '47793118', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 2, 1, '2020-01-01', '2020-01-01'),
-(3, 'test1', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1, '2020-01-01', '2020-01-01'),
-(7, 'test2', '47793120', 'mecanico2', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 2, '2020-01-01', '2020-01-01'),
-(8, 'test3', '47793121', 'mecanico3', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 3, '2020-01-01', '2020-01-01'),
-(9, 'test4', '47793122', 'mecanico4', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 4, '2020-01-01', '2020-01-01'),
-(10, 'test5', '47793123', 'mecanico5', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 5, '2020-01-01', '2020-01-01'),
-(11, 'test6', '47793124', 'mecanico6', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 6, '2020-01-01', '2020-01-01'),
-(12, 'test7', '47793125', 'mecanico7', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 7, '2020-01-01', '2020-01-01'),
-(13, 'test8', '47793126', 'mecanico8', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 8, '2020-01-01', '2020-01-01');
+(1, 'Superadmin', '47793117', 'superadmin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 3, 1, '2020-01-01', '2020-01-01'),
+(2, 'Admin', '47793118', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 2, 1, '2020-01-01', '2020-01-01'),
+(3, 'Carlos', '47793119', 'mecanico', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 1, '2020-01-01', '2020-01-01'),
+(7, 'Roberto', '47793120', 'mecanico2', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 2, '2020-01-01', '2020-01-01'),
+(8, 'Luis', '47793121', 'mecanico3', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 3, '2020-01-01', '2020-01-01'),
+(9, 'Jose', '47793122', 'mecanico4', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 4, '2020-01-01', '2020-01-01'),
+(10, 'Pedro', '47793123', 'mecanico5', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 5, '2020-01-01', '2020-01-01'),
+(11, 'Alfonso', '47793124', 'mecanico6', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 6, '2020-01-01', '2020-01-01'),
+(12, 'Cristian', '47793125', 'mecanico7', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 7, '2020-01-01', '2020-01-01'),
+(13, 'Jorge', '47793126', 'mecanico8', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 8, '2020-01-01', '2020-01-01');
 
 --
 -- Índices para tablas volcadas
@@ -790,6 +825,12 @@ ALTER TABLE `maquinas`
 --
 ALTER TABLE `reporte`
   ADD PRIMARY KEY (`id_reporte`);
+
+--
+-- Indices de la tabla `requerimientos`
+--
+ALTER TABLE `requerimientos`
+  ADD PRIMARY KEY (`id_requerimiento`);
 
 --
 -- Indices de la tabla `roles`
@@ -875,6 +916,12 @@ ALTER TABLE `maquinas`
 --
 ALTER TABLE `reporte`
   MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+
+--
+-- AUTO_INCREMENT de la tabla `requerimientos`
+--
+ALTER TABLE `requerimientos`
+  MODIFY `id_requerimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
