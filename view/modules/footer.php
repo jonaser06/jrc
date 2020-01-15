@@ -17,6 +17,7 @@
 <script src="<?php echo $dir; ?>bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <script src="<?php echo $dir; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="<?php echo $dir; ?>plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="<?php echo $dir; ?>plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <script src="<?php echo $dir; ?>bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <script src="<?php echo $dir; ?>bower_components/moment/min/moment.min.js"></script>
 <script src="<?php echo $dir; ?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>

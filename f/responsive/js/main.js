@@ -130,6 +130,12 @@ var objJrc = {
             format: 'yyyy-mm-dd'/* ,
             startDate: fecha, */
         }).datepicker("setDate", new Date());
+
+        $('#timepicker').timepicker({
+            template: false,
+            showInputs: false,
+            minuteStep: 5
+        });
     },
     Consulta: function(){
         var consulta = objJrc.$_GET('consulta');

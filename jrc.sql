@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-01-2020 a las 07:33:31
+-- Tiempo de generación: 15-01-2020 a las 05:12:28
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -268,6 +268,20 @@ INSERT INTO `reporte` (`id_reporte`, `inicio_jornada`, `fin_jornada`, `hora_acum
 (141, '2020-01-02', '2020-01-03', '144', '5', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 0, 2, 1, 24, 20, '1', '2'),
 (142, '2020-02-03', '2020-02-03', '149', '11', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 1, 2, 3, 3, 2, 24, 20, '1', '2'),
 (143, '2021-01-04', '2021-01-04', '160', '10', '2SC019', 'G/D y G/N: Equipo operativo trabajó normal. SE REQUIEREN LOS FILTROS PARA SUS MANTENIMIENTOS PREVENTIVOS.', 0, 0, 0, 0, 0, 24, 20, '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reporte_problema`
+--
+
+CREATE TABLE `reporte_problema` (
+  `id_rep_prob` int(11) NOT NULL,
+  `nameUser` text NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` text NOT NULL,
+  `incidente` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -827,6 +841,12 @@ ALTER TABLE `reporte`
   ADD PRIMARY KEY (`id_reporte`);
 
 --
+-- Indices de la tabla `reporte_problema`
+--
+ALTER TABLE `reporte_problema`
+  ADD PRIMARY KEY (`id_rep_prob`);
+
+--
 -- Indices de la tabla `requerimientos`
 --
 ALTER TABLE `requerimientos`
@@ -916,6 +936,12 @@ ALTER TABLE `maquinas`
 --
 ALTER TABLE `reporte`
   MODIFY `id_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+
+--
+-- AUTO_INCREMENT de la tabla `reporte_problema`
+--
+ALTER TABLE `reporte_problema`
+  MODIFY `id_rep_prob` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `requerimientos`

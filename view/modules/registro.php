@@ -21,7 +21,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">DNI:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="dni" required>
+                                        <input type="number" class="form-control" name="dni" required min="8" max="8">
                                     </div>
                                 </div>
                                 <div class="form-group">

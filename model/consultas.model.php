@@ -402,5 +402,23 @@ class consultasClassModel{
             return '{"status":false, "message":'.$e.'}';
         }
     }
+
+    public static function setRepPromModel($data){
+        try {
+            $db        =   getDB();
+            $sql       =   "INSERT INTO reporte_problema (nameUser, fecha, hora, incidente)
+                            VALUES (:nameUser, :fecha, :hora, :incidente)";
+            $stmt      =    $db->prepare($sql);
+            $stmt->bindParam("nameUser", $data['nameUser'], PDO::PARAM_STR);
+            $stmt->bindParam("fecha", $data['fecha'], PDO::PARAM_STR);
+            $stmt->bindParam("hora", $data['hora'], PDO::PARAM_STR);
+            $stmt->bindParam("incidente", $data['inc'], PDO::PARAM_STR);
+            $stmt->execute();
+            return true;
+
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
 }
 ?>

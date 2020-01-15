@@ -15,6 +15,7 @@ $app->post('/updateuser/','updateuser');
 $app->post('/changepassword/','changepassword');
 $app->post('/removeuser/','removeuser');
 $app->post('/setrequerimientos/','setrequerimientos');
+$app->post('/setreporteproblema/','setreporteproblema');
 $app->get('/horasoperacion/','horasoperacion');
 $app->get('/disponibilidadmecanica/','disponibilidadMecanica');
 $app->get('/graphmtbf/','graphMtbf');
@@ -789,6 +790,24 @@ function imboxrequerimientos(){
     
     $page = $_GET['page']==NULL?'1':$_GET['page'];
     consultasClassController::imboxRequestController($page);
+}
+
+function setreporteproblema(){
+    
+    if(isset($_POST['nameUser']) && isset($_POST['inc']) && isset($_POST['fecha']) && isset($_POST['hora'])){
+        $data = array(
+            'nameUser' => $_POST['nameUser'],
+            'inc' => $_POST['inc'],
+            'fecha' => $_POST['fecha'],
+            'hora' => $_POST['hora']
+        );
+        $response = consultasClassController::setRepPromController($data);
+        if($response){
+            echo '<script type="text/javascript">
+                        window.location = "'.$_SESSION['rol'].'?status=true&message=Reporte enviado";
+                    </script>';
+        }
+    }
 }
 
 #servicios

@@ -23,6 +23,14 @@ class consultasClassController{
 
     }
 
+    public static function setRepPromController($data){
+        
+        $set = consultasClassModel::setRepPromModel($data);
+
+        return $set;
+
+    }
+
     public static function reporteController($page){
 
         # definiendo el modo de respuesta
