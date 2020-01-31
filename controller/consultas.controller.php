@@ -31,7 +31,7 @@ class consultasClassController{
         $fecha = $data['fecha'];
         $hora = $data['hora'];
         
-        $para   = 'jonaser06@gmail.com';
+        $para = ['jonaser06@gmail.com', 'james.alarcon@tecsup.edu.pe', 'rodrigo.paravicino@tecsup.edu.pe'];
         $titulo = 'Nuevo Problema reportado!';
         ob_start();
         include "template-email.php";
@@ -40,7 +40,7 @@ class consultasClassController{
 
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
         $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
-        $cabeceras .= 'From: JRC <jonaser06@gmail.com>' . "\r\n";
+        $cabeceras .= 'From: JRC <support@blackapp.xyz>' . "\r\n";
 
         $mail = mail($para, $titulo, $mensaje, $cabeceras);
         
