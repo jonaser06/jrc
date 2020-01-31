@@ -34,7 +34,7 @@ class consultasClassController{
         $para = ['jonaser06@gmail.com', 'james.alarcon@tecsup.edu.pe', 'rodrigo.paravicino@tecsup.edu.pe'];
         $titulo = 'Nuevo Problema reportado!';
         ob_start();
-        include "template-email.php";
+        include "reporte.php";
         $mensaje = ob_get_contents();
         ob_end_clean();
 

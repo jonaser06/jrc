@@ -19,7 +19,6 @@
 	</div>
     
     <div style="padding:20px 0 30px 0;text-align:left;">
-      <p style="font-size:18px;font-weight:600;">Costo Total</p>
       <p style="font-size:20px;font-weight:600;">Reportado por: <?php echo $user; ?></p>
       <p style="font-size:20px;font-weight:600;">Incidente: <?php echo $incidente; ?></p>
       <p style="font-size:20px;font-weight:600;">Fecha: <?php echo $fecha; ?></p>
