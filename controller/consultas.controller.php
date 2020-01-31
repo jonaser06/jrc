@@ -40,7 +40,7 @@ class consultasClassController{
 
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
         $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
-        $cabeceras .= 'From: JRC <mail@servidormail.com>' . "\r\n";
+        $cabeceras .= 'From: JRC <jonaser06@gmail.com>' . "\r\n";
 
         $mail = mail($para, $titulo, $mensaje, $cabeceras);
         
