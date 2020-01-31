@@ -23,8 +23,6 @@ class meClassController{
     }
 
     public static function setRequerimientosController($data){
-        var_dump($data);
-        exit;
         #enviar mail
         $user = $data['nombre']; 
         $descripcion = $data['descripcion'];
@@ -43,6 +41,7 @@ class meClassController{
         $cabeceras .= 'From: JRC <support@blackapp.xyz>' . "\r\n";
 
         $mail = mail($para, $titulo, $mensaje, $cabeceras);
+        
         $getdata = meClassModel::setRequerimientoModel($data);
         return $getdata;
     }
