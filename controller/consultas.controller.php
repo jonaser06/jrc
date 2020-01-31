@@ -25,7 +25,7 @@ class consultasClassController{
 
     public static function setRepPromController($data){
 
-        $user = $data['nameUser'];
+        $user = $data['nameUser']; 
         $incidente = $data['inc'];
         $fecha = $data['fecha'];
         $hora = $data['hora'];
@@ -40,7 +40,7 @@ class consultasClassController{
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
         $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
         $cabeceras .= 'From: JRC <mail@servidormail.com>' . "\r\n";
-        
+
         mail($para, $titulo, $mensaje, $cabeceras);
         
         $set = consultasClassModel::setRepPromModel($data);
