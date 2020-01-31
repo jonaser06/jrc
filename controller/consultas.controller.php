@@ -25,6 +25,24 @@ class consultasClassController{
 
     public static function setRepPromController($data){
 
+        #enviar mail
+        $user = $data['nameUser']; 
+        $incidente = $data['inc'];
+        $fecha = $data['fecha'];
+        $hora = $data['hora'];
+        
+        $para   = 'jonaser06@gmail.com';
+        $titulo = 'Nuevo Problema reportado!';
+        ob_start();
+        include "template-email.php";
+        $mensaje = ob_get_contents();
+        ob_end_clean();
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
+        $cabeceras .= 'From: JRC <mail@servidormail.com>' . "\r\n";
+
+        $mail = mail($para, $titulo, $mensaje, $cabeceras);
         
         $set = consultasClassModel::setRepPromModel($data);
 
