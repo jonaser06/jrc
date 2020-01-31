@@ -819,8 +819,9 @@ function setreporteproblema(){
         $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
         $cabeceras .= 'From: JRC <mail@servidormail.com>' . "\r\n";
 
-        mail($para, $titulo, $mensaje, $cabeceras);
-
+        $mail = mail($para, $titulo, $mensaje, $cabeceras);
+        var_dump($mail);
+        exit;
         #save
         $response = consultasClassController::setRepPromController($data);
         if($response){
