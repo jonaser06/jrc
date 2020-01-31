@@ -808,20 +808,26 @@ function setreporteproblema(){
         $hora = $data['hora'];
         
         $para   = 'jonaser06@gmail.com';
-        $titulo = 'Nuevo Problema reportado!';
-        $mensaje = 'hola';
+        /* $titulo = 'Nuevo Problema reportado!';
+        $mensaje = 'hola'; */
         /* ob_start();
         include "template-email.php";
         $mensaje = ob_get_contents();
         ob_end_clean(); */
 
-        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        /* $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
         $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
-        $cabeceras .= 'From: JRC <mail@servidormail.com>' . "\r\n";
+        $cabeceras .= 'From: JRC <mail@servidormail.com>' . "\r\n"; */
 
-        $mail = mail($para, $titulo, $mensaje, $cabeceras);
-        var_dump($mail);
-        exit;
+        $titulo    = 'El título';
+        $mensaje   = 'Hola';
+        $cabeceras = 'From: webmaster@example.com' . "\r\n" .
+            'Reply-To: webmaster@example.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($para, $titulo, $mensaje, $cabeceras);
+
+        /* $mail = mail($para, $titulo, $mensaje, $cabeceras); */
         #save
         $response = consultasClassController::setRepPromController($data);
         if($response){
