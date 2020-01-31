@@ -15,7 +15,7 @@
 <div style="background:#fcfcfc;margin:0 auto;padding:20px 20px 50px 20px;max-width:600px;color:#5a5a5a;font-size:15px;">
 	<div style="padding:0 0 20px 0;">
 		<p style="font-weight: 600;font-size:20px;">Hola !</p>
-		<p style="font-size:15px;">Se detalla el problema a continuación:</p>
+		<p style="font-size:15px;">Se detalla el problema a continuación:</p> 
 	</div>
     
     <div style="padding:20px 0 30px 0;text-align:left;">
