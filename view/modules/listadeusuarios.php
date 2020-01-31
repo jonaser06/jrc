@@ -103,7 +103,14 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbl_listuser"></tbody>
+                            <?php
+                                if($_SESSION['rol']=='super administrador'){
+                                    echo '<tbody id="tbl_listuser_superadmin"></tbody>';
+                                }
+                                if($_SESSION['rol']=='administrador'){
+                                    echo '<tbody id="tbl_listuser_admin"></tbody>';
+                                }
+                            ?>
                         </table>
                     </div>
                 </div>

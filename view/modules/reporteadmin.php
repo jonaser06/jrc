@@ -29,7 +29,7 @@
                             <i class="fa fa-wrench"></i> MTTR 
                         </a>
                         <a href="reporteadmin?consulta=reporte" class="btn btn-app">
-                            <i class="fa fa-wrench"></i> REPORTE 
+                            <i class="fa fa-wrench"></i> REPORTE DIARIO
                         </a>
                     </div>
                 </div>

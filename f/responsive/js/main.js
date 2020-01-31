@@ -35,7 +35,32 @@ var objJrc = {
             url: urlProd + 'listuser?page=1',
             dataType:'json'
         }).done(function(data){
+            
             data.data.forEach(function(element){
+            //admin
+            if(element.rol != 2){
+                content2 = '';
+                content2 +='<tr>';
+                content2 +='<td>'+element.nombres+'</td>';
+                content2 +='<td>'+element.dni+'</td>';
+                content2 +='<td>'+element.usuario+'</td>';
+                if(element.rol == 1){
+                    content2 +='<td><span class="label label-primary">mecanico</span></td>';
+                }
+                content2 +='<td>'+element.maquina+'</td>';
+                content2 +='<td>';
+                content2 +='<ul class="action-user">';
+                content2 +='<li><a href="#"><span class="edituser fa fa-pencil" data-user="'+element.usuario+'" data-dni="'+element.dni+'" data-name="'+element.nombres+'" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-info" ></span></a></li>';
+                content2 +='<li><a href="#"><span class="deleteuser fa fa-remove" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-danger" ></span></a></li>';
+                content2 +='<li><a href="#"><span class="changepass" data-id="'+element.id_usuarios+'" data-toggle="modal" data-target="#modal-default">Cambiar<br>Constraseña</span></a></li>';
+                content2 +='</ul>';
+                content2 +='</td>';
+                content2 +='</tr>';
+    
+                $("#tbl_listuser_admin").append(content2);
+            }
+            
+            //superadmin
             content = '';
             content +='<tr>';
             content +='<td>'+element.nombres+'</td>';
@@ -56,7 +81,9 @@ var objJrc = {
             content +='</ul>';
             content +='</td>';
             content +='</tr>';
-            $("#tbl_listuser").append(content);
+
+            $("#tbl_listuser_superadmin").append(content);
+
             });
         });
     },
